@@ -1,0 +1,6504 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	
+    <title>Top8er - Top 8 Graphic Generator - ffcotw</title>
+    <meta charset="utf-8">
+
+	<meta property="og:url" content="www.top8er.com">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Top8er.com">
+	<meta property="og:description" content="Generate top 8 result graphics for many different fighting games">
+	<meta property="og:image" content="/static/samples/ffcotw.png">
+
+    <link rel="shortcut icon" type="image/png" href="https://www.top8er.com/static/favicon.ico">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/google-analytics_analytics.js"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-HJ84KMCE8Q');
+	</script>
+    <script async="" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/googlesyndication_adsbygoogle.js" crossorigin="anonymous"></script>
+
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/jquery.min.js"></script>
+	<!-- Popper JS -->
+	<script src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/popper.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/bootstrap.min.js"></script>
+
+    <style>
+    	body {
+    		background-color: #303030;
+    		color: white;
+    	}
+    	a {
+    		color : white;
+    		text-decoration: underline;
+    	 }
+
+    	a:hover {
+			color: lightcoral;
+		}
+
+    	input {
+    		border-radius: 3px;
+    	}
+    	select {
+    		border: 0;
+    		border-radius: 3px;
+    	}
+    	.form2box {
+    		border: 4px solid red;
+    		padding-bottom: 8px
+    	}
+    	.form2box input { width: 100% }
+    	.form2box p { font-size: 10px }
+
+    	.cajita {
+    		padding-bottom: 8px;
+    		overflow: hidden;
+    	}
+
+		.errorlist {
+			background: indianred;
+		}
+
+    	@media only screen and (max-width: 767px) {
+	        .cajita {
+	        	border: 4px solid red;
+	        	border-bottom: none;
+	        }
+			.cajita:nth-child(8) {
+				border-bottom: 4px solid red;
+			}
+    	 }
+    	 @media only screen and (max-width: 991px) and (min-width: 768px) {
+			.cajita:nth-child(2n+1) {
+				border-right: none;
+			}
+			.cajita:nth-child(7), .cajita:nth-child(8) {
+				border-bottom: 4px solid red;
+			}
+			.cajita {
+				border: 4px solid red;
+				border-bottom: none;
+			}
+    	 }
+    	 @media only screen and (min-width: 992px) {
+	        .cajita {
+	        	border: 4px solid red;
+	        	border-right: none;
+	        }
+			.cajita:nth-child(4n) {
+				border: 4px solid red;
+			}
+			.cajita:nth-child(-n+4) {
+				border-bottom: none;
+			}
+    	 }
+
+        .nocajota {
+            border-top : 0px;
+        }
+        .cajilla {
+            padding-bottom: 20px;
+            padding-top: 20px;
+            height: 100%;
+            display: inline-grid;
+        }
+
+        .form2, .extra_chars {
+        	display: none;
+        }
+
+		.extra_chars {
+			display: none;
+		}
+
+		.showextra {
+			background-color: red;
+			border-radius: 5px;
+			color: white;
+			width: 20px;
+			height: 20px;
+			display: flex;
+			float: right;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+		}
+
+		.toggleforms {
+			background-color: darkred;
+			border: 0;
+			color: white;
+		}
+
+		.plshide { display : none; }
+
+		.tab1, .tab2, .tab3, .tab4 {
+			width : 80%;
+			margin-left: 10%;
+			display: none;
+		 }
+
+		 .layopt, .fontopt { display : none; }
+
+		 .moreopt {
+		 	background-color: darkred;
+			border: 0;
+			color: white;
+			border-radius: 5px;
+			padding: 5px;
+			cursor: pointer;
+			width: 100%;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		 }
+
+    </style>
+
+    <script type="text/javascript">
+
+    	var dictsote = {
+
+		
+		
+		"ffcotw": {"Andy": ["Default"], "B. Jenet": ["Default"], "Billy": ["Default"], "Chun-Li": ["Default"], "Cristiano": ["Default"], "Dong Hwan": ["Default"], "Gato": ["Default"], "Geese": ["Default"], "Hokutomaru": ["Default"], "Hotaru": ["Default"], "Jae Hoon": ["Default"], "Joe": ["Default"], "Kain": ["Default"], "Ken": ["Default"], "Kevin": ["Default"], "Mai": ["Default"], "Marco": ["Default"], "Mr. Big": ["Default"], "Preecha": ["Default"], "Random": ["Default"], "Rock": ["Default"], "Salvatore": ["Default"], "Terry": ["Default"], "Tizoc": ["Default"], "Vox": ["Default"]}
+		
+		
+
+    	};
+    	dictsote = dictsote["ffcotw"];
+
+    	$(document).ready(function(){
+
+    		var hasextra = false;
+
+    		if (!hasextra) {
+    			$(".showextra").hide()
+    		}
+
+    		$(".showextra").click(function() {
+				$(this).parent().find('.extra_chars').toggle();
+				var a = $(this).html();
+				if (a == "+") {
+					$(this).html("-");
+				}
+				else {
+					$(this).html("+");
+				}
+			});
+
+			$( "select" ).each(function() {
+				var l = $(this).find('option').length;
+				if (l == 1) {
+					$(this).parent().hide();
+				}
+			});
+
+			for (i=1;i<=8;i++) {
+				$('select[name="player'+i+'_char"]').change(function() {
+					colorcito($(this));
+				});
+				$('select[name="player'+i+'_char"]').change();
+
+				$('select[name="player'+i+'_extra1"]').change(function() {
+					colorcito($(this));
+				});
+				$('select[name="player'+i+'_extra1"]').change();
+
+				$('select[name="player'+i+'_extra2"]').change(function() {
+					colorcito($(this));
+				});
+				$('select[name="player'+i+'_extra2"]').change();
+			}
+
+
+			$(".manualform").click(function() {
+				$(".form1").show();
+				$(".form2").hide();
+				$(".tab1").hide();
+				$(".tab2").hide();
+				$(".tab3").hide();
+				$(".tab4").hide();
+			});
+
+			$(".sggform").click(function() {
+				$(".form1").hide();
+				$(".form2").show();
+				$(".tab1").hide();
+				$(".tab2").hide();
+				$(".tab3").hide();
+				$(".tab4").hide();
+			});
+
+			$(".othergames").click(function() {
+				$(".form1").hide();
+				$(".form2").hide();
+				$(".tab1").show();
+				$(".tab2").hide();
+				$(".tab3").hide();
+				$(".tab4").hide();
+			});
+
+			$(".aboutus").click(function() {
+				$(".form1").hide();
+				$(".form2").hide();
+				$(".tab1").hide();
+				$(".tab2").show();
+				$(".tab3").hide();
+				$(".tab4").hide();
+			});
+
+			$(".spthanks").click(function() {
+				$(".form1").hide();
+				$(".form2").hide();
+				$(".tab1").hide();
+				$(".tab2").hide();
+				$(".tab3").show();
+				$(".tab4").hide();
+			});
+
+			$(".privacyp").click(function() {
+				$(".form1").hide();
+				$(".form2").hide();
+				$(".tab1").hide();
+				$(".tab2").hide();
+				$(".tab3").hide();
+				$(".tab4").show();
+			});
+
+			$(".togglelayopt").click(function() {
+				if ($(".layopt").is(":hidden")) {
+					$(".layopt").css('display', 'flex');
+					$(this).html("- Layout Options");
+				}
+				else {
+					$(".layopt").hide();
+					$(this).html("+ Layout Options");
+				}
+			});
+
+			$(".togglefontopt").click(function() {
+				if ($(".fontopt").is(":hidden")) {
+					$(".fontopt").css('display', 'flex');
+					$(this).html("- Font Options");
+				}
+				else {
+					$(".fontopt").hide();
+					$(this).html("+ Font Options");
+				}
+			});
+
+		});
+
+		function colorcito(desu) {
+			var m = 0;
+			desu.parent().next().find('select').children("option").each(function() {
+				try {
+					var char = desu.val();
+					if (char == "None") {
+							$(this).hide();
+							$(this).parent().val('0');
+						}
+					else if (dictsote[char].length == 0) {
+						$(this).hide();
+						$(this).html(m);
+					}
+					else if (dictsote[char].length <= m) {
+						$(this).hide();
+						if ($(this).is(':selected')) {
+							$(this).parent().val('0');
+						}
+					}
+					else {
+						$(this).show();
+						$(this).html(m+": "+dictsote[char][m]);
+					}
+				} catch (error) {
+				  console.error(error);
+				}
+				m += 1;
+			});
+		}
+
+    </script>
+</head>
+<body>
+
+    <div style="background-color:#1565c0;color:#fff;text-align:center;padding:10px 16px;font-size:15px;">
+        Check out the new Top8er beta site! &nbsp;
+        <a href="https://www.top8er.com/beta/template/top8er/game/FatalFuryCityOfTheWolves" style="color:#90caf9;font-weight:bold;text-decoration:underline;">
+            Try it here
+        </a>
+    </div>
+
+    <h1 style="text-align: center">top8er.com</h1>
+    <h4 style="text-align: center">Top 8 Graphic Generator</h4>
+
+    <button class="toggleforms manualform" style="margin-left: 10%">Enter data manually</button>
+    <button class="toggleforms sggform">Enter tournament link</button>
+    <button class="toggleforms othergames">Other Games</button>
+    <button class="toggleforms aboutus">About Us</button>
+    <button class="toggleforms spthanks">Special Thanks</button>
+    <button class="toggleforms privacyp">Privacy Policy</button>
+    <form class="form2" enctype="multipart/form-data" method="post" action="">
+    <input type="hidden" name="csrfmiddlewaretoken" value="GZ8VJraToshFtDCV7N6hACuQ0uaX5if3XjJBuLvSMr8GbVWSFcXcszhODW4gBGr9">
+    <div class="row" style="width: 80%; margin-left: 10%">
+		<p>Supports start.gg, challonge and tonamel</p>
+        <div class="form2box col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <label for="id_event">External link:</label>
+            
+            <input type="text" name="event" maxlength="200" required="" id="id_event">
+            <p>
+			   start.gg links <strong>MUST have this format:</strong> https://start.gg/tournament/.../event/...<br>
+               challonge links <strong>MUST have this format:</strong> https://challonge.com/.../... or https://COMMUNITY.challonge.com/.../...<br>
+			   tonamel links <strong>MUST have this format:</strong> https://tonamel.com/competition/...<br>
+			   parry.gg links <strong>MUST have this format:</strong> https://parry.gg/{tournament}/{event}/...<br>
+			   <br>
+			   Top8er will try its best to guess the characters used by each 
+player, but if it fails you can always select them manually in the next 
+screen.<br>
+			</p>
+        </div>
+
+        <div class="cajilla col-xs-12 col-sm-12 col-md-3 col-lg-3" style="padding-left: 5%; padding-right: 5%
+		                                                 padding-top: 10px;
+		                                                 padding-bottom: 10px;">
+		    <input type="submit" value="Load Data" style="height: 50px">
+		</div>
+
+        <div class="cajilla col-xs-12 col-sm-12 col-md-3 col-lg-3" style="padding-left: 5%; padding-right: 5%
+		                                                 padding-top: 10px;
+		                                                 padding-bottom: 10px;">
+		</div>
+
+    </div>
+
+	</form>
+
+    <form class="form1" enctype="multipart/form-data" method="post" action="#result">
+    <input type="hidden" name="csrfmiddlewaretoken" value="GZ8VJraToshFtDCV7N6hACuQ0uaX5if3XjJBuLvSMr8GbVWSFcXcszhODW4gBGr9">
+    <div class="row" style="width: 80%; margin-left: 10%">
+
+	<div class="cajita col-xs-12 col-sm-12 col-md-6 col-lg-3">
+		<p>Player 1</p>
+		
+		<div>
+    
+        <div>
+            Player Name<br>
+            <input type="text" name="player1_name" maxlength="40" label="Player Name" required="" id="id_player1_0">
+
+<br>
+        </div>
+    
+        <div>
+            Twitter Handle<br>
+            <input type="text" name="player1_twitter" maxlength="25" label="Twitter Handle" id="id_player1_1">
+
+<br>
+        </div>
+    
+        <div>
+            Main Character<br>
+            <select name="player1_char" label="Main Character" required="" id="id_player1_2">
+  <option value="Andy" selected="selected">Andy</option>
+
+  <option value="B. Jenet">B. Jenet</option>
+
+  <option value="Billy">Billy</option>
+
+  <option value="Chun-Li">Chun-Li</option>
+
+  <option value="Cristiano">Cristiano</option>
+
+  <option value="Dong Hwan">Dong Hwan</option>
+
+  <option value="Gato">Gato</option>
+
+  <option value="Geese">Geese</option>
+
+  <option value="Hokutomaru">Hokutomaru</option>
+
+  <option value="Hotaru">Hotaru</option>
+
+  <option value="Jae Hoon">Jae Hoon</option>
+
+  <option value="Joe">Joe</option>
+
+  <option value="Kain">Kain</option>
+
+  <option value="Ken">Ken</option>
+
+  <option value="Kevin">Kevin</option>
+
+  <option value="Mai">Mai</option>
+
+  <option value="Marco">Marco</option>
+
+  <option value="Mr. Big">Mr. Big</option>
+
+  <option value="Preecha">Preecha</option>
+
+  <option value="Random">Random</option>
+
+  <option value="Rock">Rock</option>
+
+  <option value="Salvatore">Salvatore</option>
+
+  <option value="Terry">Terry</option>
+
+  <option value="Tizoc">Tizoc</option>
+
+  <option value="Vox">Vox</option>
+
+</select>
+<br>
+        </div>
+    
+        <div style="display: none;">
+            Main Character Color<br>
+            <select name="player1_color" label="Main Character Color" required="" id="id_player1_3">
+  <option value="0" selected="selected">0: Default</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own portrait<br>
+            
+<input type="file" name="player1_portrait" accept="image/*" label="Upload your own portrait" id="id_player1_4">
+<br>
+        </div>
+    
+        <div>
+            Flag<br>
+            <select name="player1_flag" label="Flag" required="" id="id_player1_5">
+  <option value="None" selected="selected">None</option>
+
+  <option value="Abkhazia">Abkhazia</option>
+
+  <option value="Afghanistan">Afghanistan</option>
+
+  <option value="Albania">Albania</option>
+
+  <option value="Algeria">Algeria</option>
+
+  <option value="Andorra">Andorra</option>
+
+  <option value="Angola">Angola</option>
+
+  <option value="Antartica">Antartica</option>
+
+  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+
+  <option value="Argentina">Argentina</option>
+
+  <option value="Armenia">Armenia</option>
+
+  <option value="Artsakh">Artsakh</option>
+
+  <option value="Australia">Australia</option>
+
+  <option value="Austria">Austria</option>
+
+  <option value="Azerbaijan">Azerbaijan</option>
+
+  <option value="Bahamas">Bahamas</option>
+
+  <option value="Bahrain">Bahrain</option>
+
+  <option value="Bangladesh">Bangladesh</option>
+
+  <option value="Barbados">Barbados</option>
+
+  <option value="Belarus">Belarus</option>
+
+  <option value="Belgium">Belgium</option>
+
+  <option value="Belize">Belize</option>
+
+  <option value="Benin">Benin</option>
+
+  <option value="Bhutan">Bhutan</option>
+
+  <option value="Bolivia">Bolivia</option>
+
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+
+  <option value="Botswana">Botswana</option>
+
+  <option value="Brazil">Brazil</option>
+
+  <option value="Brunei">Brunei</option>
+
+  <option value="Bulgaria">Bulgaria</option>
+
+  <option value="Burkina Faso">Burkina Faso</option>
+
+  <option value="Burundi">Burundi</option>
+
+  <option value="Cambodia">Cambodia</option>
+
+  <option value="Cameroon">Cameroon</option>
+
+  <option value="Canada">Canada</option>
+
+  <option value="Cape Verde">Cape Verde</option>
+
+  <option value="Central African Republic">Central African Republic</option>
+
+  <option value="Chad">Chad</option>
+
+  <option value="Chile">Chile</option>
+
+  <option value="China">China</option>
+
+  <option value="Colombia">Colombia</option>
+
+  <option value="Comoros">Comoros</option>
+
+  <option value="Cook Islands">Cook Islands</option>
+
+  <option value="Costa Rica">Costa Rica</option>
+
+  <option value="Croatia">Croatia</option>
+
+  <option value="Cuba">Cuba</option>
+
+  <option value="Cyprus">Cyprus</option>
+
+  <option value="Czech Republic">Czech Republic</option>
+
+  <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+
+  <option value="Denmark">Denmark</option>
+
+  <option value="Djibouti">Djibouti</option>
+
+  <option value="Dominica">Dominica</option>
+
+  <option value="Dominican Republic">Dominican Republic</option>
+
+  <option value="East Timor">East Timor</option>
+
+  <option value="Ecuador">Ecuador</option>
+
+  <option value="Egypt">Egypt</option>
+
+  <option value="El Salvador">El Salvador</option>
+
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+
+  <option value="Eritrea">Eritrea</option>
+
+  <option value="Estonia">Estonia</option>
+
+  <option value="Eswatini">Eswatini</option>
+
+  <option value="Ethiopia">Ethiopia</option>
+
+  <option value="Federated States of Micronesia">Federated States of Micronesia</option>
+
+  <option value="Fiji">Fiji</option>
+
+  <option value="Finland">Finland</option>
+
+  <option value="France">France</option>
+
+  <option value="Gabon">Gabon</option>
+
+  <option value="Gambia">Gambia</option>
+
+  <option value="Georgia">Georgia</option>
+
+  <option value="Germany">Germany</option>
+
+  <option value="Ghana">Ghana</option>
+
+  <option value="Greece">Greece</option>
+
+  <option value="Grenada">Grenada</option>
+
+  <option value="Guatemala">Guatemala</option>
+
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+
+  <option value="Guinea">Guinea</option>
+
+  <option value="Guyana">Guyana</option>
+
+  <option value="Haiti">Haiti</option>
+
+  <option value="Honduras">Honduras</option>
+
+  <option value="Hong Kong">Hong Kong</option>
+
+  <option value="Hungary">Hungary</option>
+
+  <option value="Iceland">Iceland</option>
+
+  <option value="India">India</option>
+
+  <option value="Indonesia">Indonesia</option>
+
+  <option value="Iran">Iran</option>
+
+  <option value="Iraq">Iraq</option>
+
+  <option value="Ireland">Ireland</option>
+
+  <option value="Israel">Israel</option>
+
+  <option value="Italy">Italy</option>
+
+  <option value="Ivory Coast">Ivory Coast</option>
+
+  <option value="Jamaica">Jamaica</option>
+
+  <option value="Japan">Japan</option>
+
+  <option value="Jordan">Jordan</option>
+
+  <option value="Kazakhstan">Kazakhstan</option>
+
+  <option value="Kenya">Kenya</option>
+
+  <option value="Kiribati">Kiribati</option>
+
+  <option value="Kosovo">Kosovo</option>
+
+  <option value="Kuwait">Kuwait</option>
+
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+
+  <option value="Laos">Laos</option>
+
+  <option value="Latvia">Latvia</option>
+
+  <option value="Lebanon">Lebanon</option>
+
+  <option value="Lesotho">Lesotho</option>
+
+  <option value="Liberia">Liberia</option>
+
+  <option value="Libya">Libya</option>
+
+  <option value="Liechtenstein">Liechtenstein</option>
+
+  <option value="Lithuania">Lithuania</option>
+
+  <option value="Luxembourg">Luxembourg</option>
+
+  <option value="Madagascar">Madagascar</option>
+
+  <option value="Malawi">Malawi</option>
+
+  <option value="Malaysia">Malaysia</option>
+
+  <option value="Maldives">Maldives</option>
+
+  <option value="Mali">Mali</option>
+
+  <option value="Malta">Malta</option>
+
+  <option value="Marshall Islands">Marshall Islands</option>
+
+  <option value="Mauritania">Mauritania</option>
+
+  <option value="Mauritius">Mauritius</option>
+
+  <option value="Mexico">Mexico</option>
+
+  <option value="Moldova">Moldova</option>
+
+  <option value="Monaco">Monaco</option>
+
+  <option value="Mongolia">Mongolia</option>
+
+  <option value="Montenegro">Montenegro</option>
+
+  <option value="Morocco">Morocco</option>
+
+  <option value="Mozambique">Mozambique</option>
+
+  <option value="Myanmar">Myanmar</option>
+
+  <option value="Namibia">Namibia</option>
+
+  <option value="Nauru">Nauru</option>
+
+  <option value="Nepal">Nepal</option>
+
+  <option value="Netherlands">Netherlands</option>
+
+  <option value="New Zealand">New Zealand</option>
+
+  <option value="Nicaragua">Nicaragua</option>
+
+  <option value="Niger">Niger</option>
+
+  <option value="Nigeria">Nigeria</option>
+
+  <option value="Niue">Niue</option>
+
+  <option value="North Korea">North Korea</option>
+
+  <option value="North Macedonia">North Macedonia</option>
+
+  <option value="Northern Cyprus">Northern Cyprus</option>
+
+  <option value="Norway">Norway</option>
+
+  <option value="Oman">Oman</option>
+
+  <option value="Pakistan">Pakistan</option>
+
+  <option value="Palau">Palau</option>
+
+  <option value="Palestine">Palestine</option>
+
+  <option value="Panama">Panama</option>
+
+  <option value="Papua New Guinea">Papua New Guinea</option>
+
+  <option value="Paraguay">Paraguay</option>
+
+  <option value="Peru">Peru</option>
+
+  <option value="Philippines">Philippines</option>
+
+  <option value="Poland">Poland</option>
+
+  <option value="Portugal">Portugal</option>
+
+  <option value="Puerto Rico">Puerto Rico</option>
+
+  <option value="Qatar">Qatar</option>
+
+  <option value="Republic of China (Taiwan)">Republic of China (Taiwan)</option>
+
+  <option value="Republic of Congo">Republic of Congo</option>
+
+  <option value="Romania">Romania</option>
+
+  <option value="Russia">Russia</option>
+
+  <option value="Rwanda">Rwanda</option>
+
+  <option value="Sahrawi Arab Democratic Republic">Sahrawi Arab Democratic Republic</option>
+
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+
+  <option value="Saint Lucia">Saint Lucia</option>
+
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+
+  <option value="Samoa">Samoa</option>
+
+  <option value="San Marino">San Marino</option>
+
+  <option value="Saudi Arabia">Saudi Arabia</option>
+
+  <option value="Scania">Scania</option>
+
+  <option value="Scotland">Scotland</option>
+
+  <option value="Senegal">Senegal</option>
+
+  <option value="Serbia">Serbia</option>
+
+  <option value="Seychelles">Seychelles</option>
+
+  <option value="Sierra Leone">Sierra Leone</option>
+
+  <option value="Singapore">Singapore</option>
+
+  <option value="Slovakia">Slovakia</option>
+
+  <option value="Slovenia">Slovenia</option>
+
+  <option value="Solomon Islands">Solomon Islands</option>
+
+  <option value="Somalia">Somalia</option>
+
+  <option value="Somaliland">Somaliland</option>
+
+  <option value="South Africa">South Africa</option>
+
+  <option value="South Korea">South Korea</option>
+
+  <option value="South Ossetia">South Ossetia</option>
+
+  <option value="South Sudan">South Sudan</option>
+
+  <option value="Spain">Spain</option>
+
+  <option value="Sri Lanka">Sri Lanka</option>
+
+  <option value="Sudan">Sudan</option>
+
+  <option value="Suriname">Suriname</option>
+
+  <option value="Sweden">Sweden</option>
+
+  <option value="Switzerland">Switzerland</option>
+
+  <option value="Syria">Syria</option>
+
+  <option value="São Tomé and Príncipe">São Tomé and Príncipe</option>
+
+  <option value="Tajikistan">Tajikistan</option>
+
+  <option value="Tanzania">Tanzania</option>
+
+  <option value="Thailand">Thailand</option>
+
+  <option value="Togo">Togo</option>
+
+  <option value="Tonga">Tonga</option>
+
+  <option value="Transnistria">Transnistria</option>
+
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+
+  <option value="Tunisia">Tunisia</option>
+
+  <option value="Turkey">Turkey</option>
+
+  <option value="Turkmenistan">Turkmenistan</option>
+
+  <option value="Tuvalu">Tuvalu</option>
+
+  <option value="Uganda">Uganda</option>
+
+  <option value="Ukraine">Ukraine</option>
+
+  <option value="United Arab Emirates">United Arab Emirates</option>
+
+  <option value="United Kingdom">United Kingdom</option>
+
+  <option value="United States">United States</option>
+
+  <option value="Uruguay">Uruguay</option>
+
+  <option value="Uzbekistan">Uzbekistan</option>
+
+  <option value="Vanuatu">Vanuatu</option>
+
+  <option value="Vatican City">Vatican City</option>
+
+  <option value="Venezuela">Venezuela</option>
+
+  <option value="Vietnam">Vietnam</option>
+
+  <option value="Wales">Wales</option>
+
+  <option value="Yemen">Yemen</option>
+
+  <option value="Zambia">Zambia</option>
+
+  <option value="Zimbabwe">Zimbabwe</option>
+
+  <option value="Agender Pride">Agender Pride</option>
+
+  <option value="Aromantic Pride">Aromantic Pride</option>
+
+  <option value="Asexual Pride">Asexual Pride</option>
+
+  <option value="Bigender Pride">Bigender Pride</option>
+
+  <option value="Bisexual Pride">Bisexual Pride</option>
+
+  <option value="Demiromantic Pride">Demiromantic Pride</option>
+
+  <option value="Demisexual Pride">Demisexual Pride</option>
+
+  <option value="Gay Pride">Gay Pride</option>
+
+  <option value="Gender Fluid">Gender Fluid</option>
+
+  <option value="Genderqueer Pride">Genderqueer Pride</option>
+
+  <option value="Intersex Pride">Intersex Pride</option>
+
+  <option value="Lesbian Pride">Lesbian Pride</option>
+
+  <option value="Non-binary">Non-binary</option>
+
+  <option value="Pansexual Pride">Pansexual Pride</option>
+
+  <option value="Polyamory Pride">Polyamory Pride</option>
+
+  <option value="Polysexual Pride">Polysexual Pride</option>
+
+  <option value="Transgender Pride">Transgender Pride</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own flag<br>
+            
+<input type="file" name="player1_custom_flag" accept="image/*" label="Upload your own flag" id="id_player1_6">
+<br>
+        </div>
+    
+</div>
+	</div>
+	<div class="cajita col-xs-12 col-sm-12 col-md-6 col-lg-3">
+		<p>Player 2</p>
+		
+		<div>
+    
+        <div>
+            Player Name<br>
+            <input type="text" name="player2_name" maxlength="40" label="Player Name" required="" id="id_player2_0">
+
+<br>
+        </div>
+    
+        <div>
+            Twitter Handle<br>
+            <input type="text" name="player2_twitter" maxlength="25" label="Twitter Handle" id="id_player2_1">
+
+<br>
+        </div>
+    
+        <div>
+            Main Character<br>
+            <select name="player2_char" label="Main Character" required="" id="id_player2_2">
+  <option value="Andy" selected="selected">Andy</option>
+
+  <option value="B. Jenet">B. Jenet</option>
+
+  <option value="Billy">Billy</option>
+
+  <option value="Chun-Li">Chun-Li</option>
+
+  <option value="Cristiano">Cristiano</option>
+
+  <option value="Dong Hwan">Dong Hwan</option>
+
+  <option value="Gato">Gato</option>
+
+  <option value="Geese">Geese</option>
+
+  <option value="Hokutomaru">Hokutomaru</option>
+
+  <option value="Hotaru">Hotaru</option>
+
+  <option value="Jae Hoon">Jae Hoon</option>
+
+  <option value="Joe">Joe</option>
+
+  <option value="Kain">Kain</option>
+
+  <option value="Ken">Ken</option>
+
+  <option value="Kevin">Kevin</option>
+
+  <option value="Mai">Mai</option>
+
+  <option value="Marco">Marco</option>
+
+  <option value="Mr. Big">Mr. Big</option>
+
+  <option value="Preecha">Preecha</option>
+
+  <option value="Random">Random</option>
+
+  <option value="Rock">Rock</option>
+
+  <option value="Salvatore">Salvatore</option>
+
+  <option value="Terry">Terry</option>
+
+  <option value="Tizoc">Tizoc</option>
+
+  <option value="Vox">Vox</option>
+
+</select>
+<br>
+        </div>
+    
+        <div style="display: none;">
+            Main Character Color<br>
+            <select name="player2_color" label="Main Character Color" required="" id="id_player2_3">
+  <option value="0" selected="selected">0: Default</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own portrait<br>
+            
+<input type="file" name="player2_portrait" accept="image/*" label="Upload your own portrait" id="id_player2_4">
+<br>
+        </div>
+    
+        <div>
+            Flag<br>
+            <select name="player2_flag" label="Flag" required="" id="id_player2_5">
+  <option value="None" selected="selected">None</option>
+
+  <option value="Abkhazia">Abkhazia</option>
+
+  <option value="Afghanistan">Afghanistan</option>
+
+  <option value="Albania">Albania</option>
+
+  <option value="Algeria">Algeria</option>
+
+  <option value="Andorra">Andorra</option>
+
+  <option value="Angola">Angola</option>
+
+  <option value="Antartica">Antartica</option>
+
+  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+
+  <option value="Argentina">Argentina</option>
+
+  <option value="Armenia">Armenia</option>
+
+  <option value="Artsakh">Artsakh</option>
+
+  <option value="Australia">Australia</option>
+
+  <option value="Austria">Austria</option>
+
+  <option value="Azerbaijan">Azerbaijan</option>
+
+  <option value="Bahamas">Bahamas</option>
+
+  <option value="Bahrain">Bahrain</option>
+
+  <option value="Bangladesh">Bangladesh</option>
+
+  <option value="Barbados">Barbados</option>
+
+  <option value="Belarus">Belarus</option>
+
+  <option value="Belgium">Belgium</option>
+
+  <option value="Belize">Belize</option>
+
+  <option value="Benin">Benin</option>
+
+  <option value="Bhutan">Bhutan</option>
+
+  <option value="Bolivia">Bolivia</option>
+
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+
+  <option value="Botswana">Botswana</option>
+
+  <option value="Brazil">Brazil</option>
+
+  <option value="Brunei">Brunei</option>
+
+  <option value="Bulgaria">Bulgaria</option>
+
+  <option value="Burkina Faso">Burkina Faso</option>
+
+  <option value="Burundi">Burundi</option>
+
+  <option value="Cambodia">Cambodia</option>
+
+  <option value="Cameroon">Cameroon</option>
+
+  <option value="Canada">Canada</option>
+
+  <option value="Cape Verde">Cape Verde</option>
+
+  <option value="Central African Republic">Central African Republic</option>
+
+  <option value="Chad">Chad</option>
+
+  <option value="Chile">Chile</option>
+
+  <option value="China">China</option>
+
+  <option value="Colombia">Colombia</option>
+
+  <option value="Comoros">Comoros</option>
+
+  <option value="Cook Islands">Cook Islands</option>
+
+  <option value="Costa Rica">Costa Rica</option>
+
+  <option value="Croatia">Croatia</option>
+
+  <option value="Cuba">Cuba</option>
+
+  <option value="Cyprus">Cyprus</option>
+
+  <option value="Czech Republic">Czech Republic</option>
+
+  <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+
+  <option value="Denmark">Denmark</option>
+
+  <option value="Djibouti">Djibouti</option>
+
+  <option value="Dominica">Dominica</option>
+
+  <option value="Dominican Republic">Dominican Republic</option>
+
+  <option value="East Timor">East Timor</option>
+
+  <option value="Ecuador">Ecuador</option>
+
+  <option value="Egypt">Egypt</option>
+
+  <option value="El Salvador">El Salvador</option>
+
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+
+  <option value="Eritrea">Eritrea</option>
+
+  <option value="Estonia">Estonia</option>
+
+  <option value="Eswatini">Eswatini</option>
+
+  <option value="Ethiopia">Ethiopia</option>
+
+  <option value="Federated States of Micronesia">Federated States of Micronesia</option>
+
+  <option value="Fiji">Fiji</option>
+
+  <option value="Finland">Finland</option>
+
+  <option value="France">France</option>
+
+  <option value="Gabon">Gabon</option>
+
+  <option value="Gambia">Gambia</option>
+
+  <option value="Georgia">Georgia</option>
+
+  <option value="Germany">Germany</option>
+
+  <option value="Ghana">Ghana</option>
+
+  <option value="Greece">Greece</option>
+
+  <option value="Grenada">Grenada</option>
+
+  <option value="Guatemala">Guatemala</option>
+
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+
+  <option value="Guinea">Guinea</option>
+
+  <option value="Guyana">Guyana</option>
+
+  <option value="Haiti">Haiti</option>
+
+  <option value="Honduras">Honduras</option>
+
+  <option value="Hong Kong">Hong Kong</option>
+
+  <option value="Hungary">Hungary</option>
+
+  <option value="Iceland">Iceland</option>
+
+  <option value="India">India</option>
+
+  <option value="Indonesia">Indonesia</option>
+
+  <option value="Iran">Iran</option>
+
+  <option value="Iraq">Iraq</option>
+
+  <option value="Ireland">Ireland</option>
+
+  <option value="Israel">Israel</option>
+
+  <option value="Italy">Italy</option>
+
+  <option value="Ivory Coast">Ivory Coast</option>
+
+  <option value="Jamaica">Jamaica</option>
+
+  <option value="Japan">Japan</option>
+
+  <option value="Jordan">Jordan</option>
+
+  <option value="Kazakhstan">Kazakhstan</option>
+
+  <option value="Kenya">Kenya</option>
+
+  <option value="Kiribati">Kiribati</option>
+
+  <option value="Kosovo">Kosovo</option>
+
+  <option value="Kuwait">Kuwait</option>
+
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+
+  <option value="Laos">Laos</option>
+
+  <option value="Latvia">Latvia</option>
+
+  <option value="Lebanon">Lebanon</option>
+
+  <option value="Lesotho">Lesotho</option>
+
+  <option value="Liberia">Liberia</option>
+
+  <option value="Libya">Libya</option>
+
+  <option value="Liechtenstein">Liechtenstein</option>
+
+  <option value="Lithuania">Lithuania</option>
+
+  <option value="Luxembourg">Luxembourg</option>
+
+  <option value="Madagascar">Madagascar</option>
+
+  <option value="Malawi">Malawi</option>
+
+  <option value="Malaysia">Malaysia</option>
+
+  <option value="Maldives">Maldives</option>
+
+  <option value="Mali">Mali</option>
+
+  <option value="Malta">Malta</option>
+
+  <option value="Marshall Islands">Marshall Islands</option>
+
+  <option value="Mauritania">Mauritania</option>
+
+  <option value="Mauritius">Mauritius</option>
+
+  <option value="Mexico">Mexico</option>
+
+  <option value="Moldova">Moldova</option>
+
+  <option value="Monaco">Monaco</option>
+
+  <option value="Mongolia">Mongolia</option>
+
+  <option value="Montenegro">Montenegro</option>
+
+  <option value="Morocco">Morocco</option>
+
+  <option value="Mozambique">Mozambique</option>
+
+  <option value="Myanmar">Myanmar</option>
+
+  <option value="Namibia">Namibia</option>
+
+  <option value="Nauru">Nauru</option>
+
+  <option value="Nepal">Nepal</option>
+
+  <option value="Netherlands">Netherlands</option>
+
+  <option value="New Zealand">New Zealand</option>
+
+  <option value="Nicaragua">Nicaragua</option>
+
+  <option value="Niger">Niger</option>
+
+  <option value="Nigeria">Nigeria</option>
+
+  <option value="Niue">Niue</option>
+
+  <option value="North Korea">North Korea</option>
+
+  <option value="North Macedonia">North Macedonia</option>
+
+  <option value="Northern Cyprus">Northern Cyprus</option>
+
+  <option value="Norway">Norway</option>
+
+  <option value="Oman">Oman</option>
+
+  <option value="Pakistan">Pakistan</option>
+
+  <option value="Palau">Palau</option>
+
+  <option value="Palestine">Palestine</option>
+
+  <option value="Panama">Panama</option>
+
+  <option value="Papua New Guinea">Papua New Guinea</option>
+
+  <option value="Paraguay">Paraguay</option>
+
+  <option value="Peru">Peru</option>
+
+  <option value="Philippines">Philippines</option>
+
+  <option value="Poland">Poland</option>
+
+  <option value="Portugal">Portugal</option>
+
+  <option value="Puerto Rico">Puerto Rico</option>
+
+  <option value="Qatar">Qatar</option>
+
+  <option value="Republic of China (Taiwan)">Republic of China (Taiwan)</option>
+
+  <option value="Republic of Congo">Republic of Congo</option>
+
+  <option value="Romania">Romania</option>
+
+  <option value="Russia">Russia</option>
+
+  <option value="Rwanda">Rwanda</option>
+
+  <option value="Sahrawi Arab Democratic Republic">Sahrawi Arab Democratic Republic</option>
+
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+
+  <option value="Saint Lucia">Saint Lucia</option>
+
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+
+  <option value="Samoa">Samoa</option>
+
+  <option value="San Marino">San Marino</option>
+
+  <option value="Saudi Arabia">Saudi Arabia</option>
+
+  <option value="Scania">Scania</option>
+
+  <option value="Scotland">Scotland</option>
+
+  <option value="Senegal">Senegal</option>
+
+  <option value="Serbia">Serbia</option>
+
+  <option value="Seychelles">Seychelles</option>
+
+  <option value="Sierra Leone">Sierra Leone</option>
+
+  <option value="Singapore">Singapore</option>
+
+  <option value="Slovakia">Slovakia</option>
+
+  <option value="Slovenia">Slovenia</option>
+
+  <option value="Solomon Islands">Solomon Islands</option>
+
+  <option value="Somalia">Somalia</option>
+
+  <option value="Somaliland">Somaliland</option>
+
+  <option value="South Africa">South Africa</option>
+
+  <option value="South Korea">South Korea</option>
+
+  <option value="South Ossetia">South Ossetia</option>
+
+  <option value="South Sudan">South Sudan</option>
+
+  <option value="Spain">Spain</option>
+
+  <option value="Sri Lanka">Sri Lanka</option>
+
+  <option value="Sudan">Sudan</option>
+
+  <option value="Suriname">Suriname</option>
+
+  <option value="Sweden">Sweden</option>
+
+  <option value="Switzerland">Switzerland</option>
+
+  <option value="Syria">Syria</option>
+
+  <option value="São Tomé and Príncipe">São Tomé and Príncipe</option>
+
+  <option value="Tajikistan">Tajikistan</option>
+
+  <option value="Tanzania">Tanzania</option>
+
+  <option value="Thailand">Thailand</option>
+
+  <option value="Togo">Togo</option>
+
+  <option value="Tonga">Tonga</option>
+
+  <option value="Transnistria">Transnistria</option>
+
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+
+  <option value="Tunisia">Tunisia</option>
+
+  <option value="Turkey">Turkey</option>
+
+  <option value="Turkmenistan">Turkmenistan</option>
+
+  <option value="Tuvalu">Tuvalu</option>
+
+  <option value="Uganda">Uganda</option>
+
+  <option value="Ukraine">Ukraine</option>
+
+  <option value="United Arab Emirates">United Arab Emirates</option>
+
+  <option value="United Kingdom">United Kingdom</option>
+
+  <option value="United States">United States</option>
+
+  <option value="Uruguay">Uruguay</option>
+
+  <option value="Uzbekistan">Uzbekistan</option>
+
+  <option value="Vanuatu">Vanuatu</option>
+
+  <option value="Vatican City">Vatican City</option>
+
+  <option value="Venezuela">Venezuela</option>
+
+  <option value="Vietnam">Vietnam</option>
+
+  <option value="Wales">Wales</option>
+
+  <option value="Yemen">Yemen</option>
+
+  <option value="Zambia">Zambia</option>
+
+  <option value="Zimbabwe">Zimbabwe</option>
+
+  <option value="Agender Pride">Agender Pride</option>
+
+  <option value="Aromantic Pride">Aromantic Pride</option>
+
+  <option value="Asexual Pride">Asexual Pride</option>
+
+  <option value="Bigender Pride">Bigender Pride</option>
+
+  <option value="Bisexual Pride">Bisexual Pride</option>
+
+  <option value="Demiromantic Pride">Demiromantic Pride</option>
+
+  <option value="Demisexual Pride">Demisexual Pride</option>
+
+  <option value="Gay Pride">Gay Pride</option>
+
+  <option value="Gender Fluid">Gender Fluid</option>
+
+  <option value="Genderqueer Pride">Genderqueer Pride</option>
+
+  <option value="Intersex Pride">Intersex Pride</option>
+
+  <option value="Lesbian Pride">Lesbian Pride</option>
+
+  <option value="Non-binary">Non-binary</option>
+
+  <option value="Pansexual Pride">Pansexual Pride</option>
+
+  <option value="Polyamory Pride">Polyamory Pride</option>
+
+  <option value="Polysexual Pride">Polysexual Pride</option>
+
+  <option value="Transgender Pride">Transgender Pride</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own flag<br>
+            
+<input type="file" name="player2_custom_flag" accept="image/*" label="Upload your own flag" id="id_player2_6">
+<br>
+        </div>
+    
+</div>
+	</div>
+	<div class="cajita col-xs-12 col-sm-12 col-md-6 col-lg-3">
+		<p>Player 3</p>
+		
+		<div>
+    
+        <div>
+            Player Name<br>
+            <input type="text" name="player3_name" maxlength="40" label="Player Name" required="" id="id_player3_0">
+
+<br>
+        </div>
+    
+        <div>
+            Twitter Handle<br>
+            <input type="text" name="player3_twitter" maxlength="25" label="Twitter Handle" id="id_player3_1">
+
+<br>
+        </div>
+    
+        <div>
+            Main Character<br>
+            <select name="player3_char" label="Main Character" required="" id="id_player3_2">
+  <option value="Andy" selected="selected">Andy</option>
+
+  <option value="B. Jenet">B. Jenet</option>
+
+  <option value="Billy">Billy</option>
+
+  <option value="Chun-Li">Chun-Li</option>
+
+  <option value="Cristiano">Cristiano</option>
+
+  <option value="Dong Hwan">Dong Hwan</option>
+
+  <option value="Gato">Gato</option>
+
+  <option value="Geese">Geese</option>
+
+  <option value="Hokutomaru">Hokutomaru</option>
+
+  <option value="Hotaru">Hotaru</option>
+
+  <option value="Jae Hoon">Jae Hoon</option>
+
+  <option value="Joe">Joe</option>
+
+  <option value="Kain">Kain</option>
+
+  <option value="Ken">Ken</option>
+
+  <option value="Kevin">Kevin</option>
+
+  <option value="Mai">Mai</option>
+
+  <option value="Marco">Marco</option>
+
+  <option value="Mr. Big">Mr. Big</option>
+
+  <option value="Preecha">Preecha</option>
+
+  <option value="Random">Random</option>
+
+  <option value="Rock">Rock</option>
+
+  <option value="Salvatore">Salvatore</option>
+
+  <option value="Terry">Terry</option>
+
+  <option value="Tizoc">Tizoc</option>
+
+  <option value="Vox">Vox</option>
+
+</select>
+<br>
+        </div>
+    
+        <div style="display: none;">
+            Main Character Color<br>
+            <select name="player3_color" label="Main Character Color" required="" id="id_player3_3">
+  <option value="0" selected="selected">0: Default</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own portrait<br>
+            
+<input type="file" name="player3_portrait" accept="image/*" label="Upload your own portrait" id="id_player3_4">
+<br>
+        </div>
+    
+        <div>
+            Flag<br>
+            <select name="player3_flag" label="Flag" required="" id="id_player3_5">
+  <option value="None" selected="selected">None</option>
+
+  <option value="Abkhazia">Abkhazia</option>
+
+  <option value="Afghanistan">Afghanistan</option>
+
+  <option value="Albania">Albania</option>
+
+  <option value="Algeria">Algeria</option>
+
+  <option value="Andorra">Andorra</option>
+
+  <option value="Angola">Angola</option>
+
+  <option value="Antartica">Antartica</option>
+
+  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+
+  <option value="Argentina">Argentina</option>
+
+  <option value="Armenia">Armenia</option>
+
+  <option value="Artsakh">Artsakh</option>
+
+  <option value="Australia">Australia</option>
+
+  <option value="Austria">Austria</option>
+
+  <option value="Azerbaijan">Azerbaijan</option>
+
+  <option value="Bahamas">Bahamas</option>
+
+  <option value="Bahrain">Bahrain</option>
+
+  <option value="Bangladesh">Bangladesh</option>
+
+  <option value="Barbados">Barbados</option>
+
+  <option value="Belarus">Belarus</option>
+
+  <option value="Belgium">Belgium</option>
+
+  <option value="Belize">Belize</option>
+
+  <option value="Benin">Benin</option>
+
+  <option value="Bhutan">Bhutan</option>
+
+  <option value="Bolivia">Bolivia</option>
+
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+
+  <option value="Botswana">Botswana</option>
+
+  <option value="Brazil">Brazil</option>
+
+  <option value="Brunei">Brunei</option>
+
+  <option value="Bulgaria">Bulgaria</option>
+
+  <option value="Burkina Faso">Burkina Faso</option>
+
+  <option value="Burundi">Burundi</option>
+
+  <option value="Cambodia">Cambodia</option>
+
+  <option value="Cameroon">Cameroon</option>
+
+  <option value="Canada">Canada</option>
+
+  <option value="Cape Verde">Cape Verde</option>
+
+  <option value="Central African Republic">Central African Republic</option>
+
+  <option value="Chad">Chad</option>
+
+  <option value="Chile">Chile</option>
+
+  <option value="China">China</option>
+
+  <option value="Colombia">Colombia</option>
+
+  <option value="Comoros">Comoros</option>
+
+  <option value="Cook Islands">Cook Islands</option>
+
+  <option value="Costa Rica">Costa Rica</option>
+
+  <option value="Croatia">Croatia</option>
+
+  <option value="Cuba">Cuba</option>
+
+  <option value="Cyprus">Cyprus</option>
+
+  <option value="Czech Republic">Czech Republic</option>
+
+  <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+
+  <option value="Denmark">Denmark</option>
+
+  <option value="Djibouti">Djibouti</option>
+
+  <option value="Dominica">Dominica</option>
+
+  <option value="Dominican Republic">Dominican Republic</option>
+
+  <option value="East Timor">East Timor</option>
+
+  <option value="Ecuador">Ecuador</option>
+
+  <option value="Egypt">Egypt</option>
+
+  <option value="El Salvador">El Salvador</option>
+
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+
+  <option value="Eritrea">Eritrea</option>
+
+  <option value="Estonia">Estonia</option>
+
+  <option value="Eswatini">Eswatini</option>
+
+  <option value="Ethiopia">Ethiopia</option>
+
+  <option value="Federated States of Micronesia">Federated States of Micronesia</option>
+
+  <option value="Fiji">Fiji</option>
+
+  <option value="Finland">Finland</option>
+
+  <option value="France">France</option>
+
+  <option value="Gabon">Gabon</option>
+
+  <option value="Gambia">Gambia</option>
+
+  <option value="Georgia">Georgia</option>
+
+  <option value="Germany">Germany</option>
+
+  <option value="Ghana">Ghana</option>
+
+  <option value="Greece">Greece</option>
+
+  <option value="Grenada">Grenada</option>
+
+  <option value="Guatemala">Guatemala</option>
+
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+
+  <option value="Guinea">Guinea</option>
+
+  <option value="Guyana">Guyana</option>
+
+  <option value="Haiti">Haiti</option>
+
+  <option value="Honduras">Honduras</option>
+
+  <option value="Hong Kong">Hong Kong</option>
+
+  <option value="Hungary">Hungary</option>
+
+  <option value="Iceland">Iceland</option>
+
+  <option value="India">India</option>
+
+  <option value="Indonesia">Indonesia</option>
+
+  <option value="Iran">Iran</option>
+
+  <option value="Iraq">Iraq</option>
+
+  <option value="Ireland">Ireland</option>
+
+  <option value="Israel">Israel</option>
+
+  <option value="Italy">Italy</option>
+
+  <option value="Ivory Coast">Ivory Coast</option>
+
+  <option value="Jamaica">Jamaica</option>
+
+  <option value="Japan">Japan</option>
+
+  <option value="Jordan">Jordan</option>
+
+  <option value="Kazakhstan">Kazakhstan</option>
+
+  <option value="Kenya">Kenya</option>
+
+  <option value="Kiribati">Kiribati</option>
+
+  <option value="Kosovo">Kosovo</option>
+
+  <option value="Kuwait">Kuwait</option>
+
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+
+  <option value="Laos">Laos</option>
+
+  <option value="Latvia">Latvia</option>
+
+  <option value="Lebanon">Lebanon</option>
+
+  <option value="Lesotho">Lesotho</option>
+
+  <option value="Liberia">Liberia</option>
+
+  <option value="Libya">Libya</option>
+
+  <option value="Liechtenstein">Liechtenstein</option>
+
+  <option value="Lithuania">Lithuania</option>
+
+  <option value="Luxembourg">Luxembourg</option>
+
+  <option value="Madagascar">Madagascar</option>
+
+  <option value="Malawi">Malawi</option>
+
+  <option value="Malaysia">Malaysia</option>
+
+  <option value="Maldives">Maldives</option>
+
+  <option value="Mali">Mali</option>
+
+  <option value="Malta">Malta</option>
+
+  <option value="Marshall Islands">Marshall Islands</option>
+
+  <option value="Mauritania">Mauritania</option>
+
+  <option value="Mauritius">Mauritius</option>
+
+  <option value="Mexico">Mexico</option>
+
+  <option value="Moldova">Moldova</option>
+
+  <option value="Monaco">Monaco</option>
+
+  <option value="Mongolia">Mongolia</option>
+
+  <option value="Montenegro">Montenegro</option>
+
+  <option value="Morocco">Morocco</option>
+
+  <option value="Mozambique">Mozambique</option>
+
+  <option value="Myanmar">Myanmar</option>
+
+  <option value="Namibia">Namibia</option>
+
+  <option value="Nauru">Nauru</option>
+
+  <option value="Nepal">Nepal</option>
+
+  <option value="Netherlands">Netherlands</option>
+
+  <option value="New Zealand">New Zealand</option>
+
+  <option value="Nicaragua">Nicaragua</option>
+
+  <option value="Niger">Niger</option>
+
+  <option value="Nigeria">Nigeria</option>
+
+  <option value="Niue">Niue</option>
+
+  <option value="North Korea">North Korea</option>
+
+  <option value="North Macedonia">North Macedonia</option>
+
+  <option value="Northern Cyprus">Northern Cyprus</option>
+
+  <option value="Norway">Norway</option>
+
+  <option value="Oman">Oman</option>
+
+  <option value="Pakistan">Pakistan</option>
+
+  <option value="Palau">Palau</option>
+
+  <option value="Palestine">Palestine</option>
+
+  <option value="Panama">Panama</option>
+
+  <option value="Papua New Guinea">Papua New Guinea</option>
+
+  <option value="Paraguay">Paraguay</option>
+
+  <option value="Peru">Peru</option>
+
+  <option value="Philippines">Philippines</option>
+
+  <option value="Poland">Poland</option>
+
+  <option value="Portugal">Portugal</option>
+
+  <option value="Puerto Rico">Puerto Rico</option>
+
+  <option value="Qatar">Qatar</option>
+
+  <option value="Republic of China (Taiwan)">Republic of China (Taiwan)</option>
+
+  <option value="Republic of Congo">Republic of Congo</option>
+
+  <option value="Romania">Romania</option>
+
+  <option value="Russia">Russia</option>
+
+  <option value="Rwanda">Rwanda</option>
+
+  <option value="Sahrawi Arab Democratic Republic">Sahrawi Arab Democratic Republic</option>
+
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+
+  <option value="Saint Lucia">Saint Lucia</option>
+
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+
+  <option value="Samoa">Samoa</option>
+
+  <option value="San Marino">San Marino</option>
+
+  <option value="Saudi Arabia">Saudi Arabia</option>
+
+  <option value="Scania">Scania</option>
+
+  <option value="Scotland">Scotland</option>
+
+  <option value="Senegal">Senegal</option>
+
+  <option value="Serbia">Serbia</option>
+
+  <option value="Seychelles">Seychelles</option>
+
+  <option value="Sierra Leone">Sierra Leone</option>
+
+  <option value="Singapore">Singapore</option>
+
+  <option value="Slovakia">Slovakia</option>
+
+  <option value="Slovenia">Slovenia</option>
+
+  <option value="Solomon Islands">Solomon Islands</option>
+
+  <option value="Somalia">Somalia</option>
+
+  <option value="Somaliland">Somaliland</option>
+
+  <option value="South Africa">South Africa</option>
+
+  <option value="South Korea">South Korea</option>
+
+  <option value="South Ossetia">South Ossetia</option>
+
+  <option value="South Sudan">South Sudan</option>
+
+  <option value="Spain">Spain</option>
+
+  <option value="Sri Lanka">Sri Lanka</option>
+
+  <option value="Sudan">Sudan</option>
+
+  <option value="Suriname">Suriname</option>
+
+  <option value="Sweden">Sweden</option>
+
+  <option value="Switzerland">Switzerland</option>
+
+  <option value="Syria">Syria</option>
+
+  <option value="São Tomé and Príncipe">São Tomé and Príncipe</option>
+
+  <option value="Tajikistan">Tajikistan</option>
+
+  <option value="Tanzania">Tanzania</option>
+
+  <option value="Thailand">Thailand</option>
+
+  <option value="Togo">Togo</option>
+
+  <option value="Tonga">Tonga</option>
+
+  <option value="Transnistria">Transnistria</option>
+
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+
+  <option value="Tunisia">Tunisia</option>
+
+  <option value="Turkey">Turkey</option>
+
+  <option value="Turkmenistan">Turkmenistan</option>
+
+  <option value="Tuvalu">Tuvalu</option>
+
+  <option value="Uganda">Uganda</option>
+
+  <option value="Ukraine">Ukraine</option>
+
+  <option value="United Arab Emirates">United Arab Emirates</option>
+
+  <option value="United Kingdom">United Kingdom</option>
+
+  <option value="United States">United States</option>
+
+  <option value="Uruguay">Uruguay</option>
+
+  <option value="Uzbekistan">Uzbekistan</option>
+
+  <option value="Vanuatu">Vanuatu</option>
+
+  <option value="Vatican City">Vatican City</option>
+
+  <option value="Venezuela">Venezuela</option>
+
+  <option value="Vietnam">Vietnam</option>
+
+  <option value="Wales">Wales</option>
+
+  <option value="Yemen">Yemen</option>
+
+  <option value="Zambia">Zambia</option>
+
+  <option value="Zimbabwe">Zimbabwe</option>
+
+  <option value="Agender Pride">Agender Pride</option>
+
+  <option value="Aromantic Pride">Aromantic Pride</option>
+
+  <option value="Asexual Pride">Asexual Pride</option>
+
+  <option value="Bigender Pride">Bigender Pride</option>
+
+  <option value="Bisexual Pride">Bisexual Pride</option>
+
+  <option value="Demiromantic Pride">Demiromantic Pride</option>
+
+  <option value="Demisexual Pride">Demisexual Pride</option>
+
+  <option value="Gay Pride">Gay Pride</option>
+
+  <option value="Gender Fluid">Gender Fluid</option>
+
+  <option value="Genderqueer Pride">Genderqueer Pride</option>
+
+  <option value="Intersex Pride">Intersex Pride</option>
+
+  <option value="Lesbian Pride">Lesbian Pride</option>
+
+  <option value="Non-binary">Non-binary</option>
+
+  <option value="Pansexual Pride">Pansexual Pride</option>
+
+  <option value="Polyamory Pride">Polyamory Pride</option>
+
+  <option value="Polysexual Pride">Polysexual Pride</option>
+
+  <option value="Transgender Pride">Transgender Pride</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own flag<br>
+            
+<input type="file" name="player3_custom_flag" accept="image/*" label="Upload your own flag" id="id_player3_6">
+<br>
+        </div>
+    
+</div>
+	</div>
+	<div class="cajita col-xs-12 col-sm-12 col-md-6 col-lg-3">
+		<p>Player 4</p>
+		
+		<div>
+    
+        <div>
+            Player Name<br>
+            <input type="text" name="player4_name" maxlength="40" label="Player Name" required="" id="id_player4_0">
+
+<br>
+        </div>
+    
+        <div>
+            Twitter Handle<br>
+            <input type="text" name="player4_twitter" maxlength="25" label="Twitter Handle" id="id_player4_1">
+
+<br>
+        </div>
+    
+        <div>
+            Main Character<br>
+            <select name="player4_char" label="Main Character" required="" id="id_player4_2">
+  <option value="Andy" selected="selected">Andy</option>
+
+  <option value="B. Jenet">B. Jenet</option>
+
+  <option value="Billy">Billy</option>
+
+  <option value="Chun-Li">Chun-Li</option>
+
+  <option value="Cristiano">Cristiano</option>
+
+  <option value="Dong Hwan">Dong Hwan</option>
+
+  <option value="Gato">Gato</option>
+
+  <option value="Geese">Geese</option>
+
+  <option value="Hokutomaru">Hokutomaru</option>
+
+  <option value="Hotaru">Hotaru</option>
+
+  <option value="Jae Hoon">Jae Hoon</option>
+
+  <option value="Joe">Joe</option>
+
+  <option value="Kain">Kain</option>
+
+  <option value="Ken">Ken</option>
+
+  <option value="Kevin">Kevin</option>
+
+  <option value="Mai">Mai</option>
+
+  <option value="Marco">Marco</option>
+
+  <option value="Mr. Big">Mr. Big</option>
+
+  <option value="Preecha">Preecha</option>
+
+  <option value="Random">Random</option>
+
+  <option value="Rock">Rock</option>
+
+  <option value="Salvatore">Salvatore</option>
+
+  <option value="Terry">Terry</option>
+
+  <option value="Tizoc">Tizoc</option>
+
+  <option value="Vox">Vox</option>
+
+</select>
+<br>
+        </div>
+    
+        <div style="display: none;">
+            Main Character Color<br>
+            <select name="player4_color" label="Main Character Color" required="" id="id_player4_3">
+  <option value="0" selected="selected">0: Default</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own portrait<br>
+            
+<input type="file" name="player4_portrait" accept="image/*" label="Upload your own portrait" id="id_player4_4">
+<br>
+        </div>
+    
+        <div>
+            Flag<br>
+            <select name="player4_flag" label="Flag" required="" id="id_player4_5">
+  <option value="None" selected="selected">None</option>
+
+  <option value="Abkhazia">Abkhazia</option>
+
+  <option value="Afghanistan">Afghanistan</option>
+
+  <option value="Albania">Albania</option>
+
+  <option value="Algeria">Algeria</option>
+
+  <option value="Andorra">Andorra</option>
+
+  <option value="Angola">Angola</option>
+
+  <option value="Antartica">Antartica</option>
+
+  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+
+  <option value="Argentina">Argentina</option>
+
+  <option value="Armenia">Armenia</option>
+
+  <option value="Artsakh">Artsakh</option>
+
+  <option value="Australia">Australia</option>
+
+  <option value="Austria">Austria</option>
+
+  <option value="Azerbaijan">Azerbaijan</option>
+
+  <option value="Bahamas">Bahamas</option>
+
+  <option value="Bahrain">Bahrain</option>
+
+  <option value="Bangladesh">Bangladesh</option>
+
+  <option value="Barbados">Barbados</option>
+
+  <option value="Belarus">Belarus</option>
+
+  <option value="Belgium">Belgium</option>
+
+  <option value="Belize">Belize</option>
+
+  <option value="Benin">Benin</option>
+
+  <option value="Bhutan">Bhutan</option>
+
+  <option value="Bolivia">Bolivia</option>
+
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+
+  <option value="Botswana">Botswana</option>
+
+  <option value="Brazil">Brazil</option>
+
+  <option value="Brunei">Brunei</option>
+
+  <option value="Bulgaria">Bulgaria</option>
+
+  <option value="Burkina Faso">Burkina Faso</option>
+
+  <option value="Burundi">Burundi</option>
+
+  <option value="Cambodia">Cambodia</option>
+
+  <option value="Cameroon">Cameroon</option>
+
+  <option value="Canada">Canada</option>
+
+  <option value="Cape Verde">Cape Verde</option>
+
+  <option value="Central African Republic">Central African Republic</option>
+
+  <option value="Chad">Chad</option>
+
+  <option value="Chile">Chile</option>
+
+  <option value="China">China</option>
+
+  <option value="Colombia">Colombia</option>
+
+  <option value="Comoros">Comoros</option>
+
+  <option value="Cook Islands">Cook Islands</option>
+
+  <option value="Costa Rica">Costa Rica</option>
+
+  <option value="Croatia">Croatia</option>
+
+  <option value="Cuba">Cuba</option>
+
+  <option value="Cyprus">Cyprus</option>
+
+  <option value="Czech Republic">Czech Republic</option>
+
+  <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+
+  <option value="Denmark">Denmark</option>
+
+  <option value="Djibouti">Djibouti</option>
+
+  <option value="Dominica">Dominica</option>
+
+  <option value="Dominican Republic">Dominican Republic</option>
+
+  <option value="East Timor">East Timor</option>
+
+  <option value="Ecuador">Ecuador</option>
+
+  <option value="Egypt">Egypt</option>
+
+  <option value="El Salvador">El Salvador</option>
+
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+
+  <option value="Eritrea">Eritrea</option>
+
+  <option value="Estonia">Estonia</option>
+
+  <option value="Eswatini">Eswatini</option>
+
+  <option value="Ethiopia">Ethiopia</option>
+
+  <option value="Federated States of Micronesia">Federated States of Micronesia</option>
+
+  <option value="Fiji">Fiji</option>
+
+  <option value="Finland">Finland</option>
+
+  <option value="France">France</option>
+
+  <option value="Gabon">Gabon</option>
+
+  <option value="Gambia">Gambia</option>
+
+  <option value="Georgia">Georgia</option>
+
+  <option value="Germany">Germany</option>
+
+  <option value="Ghana">Ghana</option>
+
+  <option value="Greece">Greece</option>
+
+  <option value="Grenada">Grenada</option>
+
+  <option value="Guatemala">Guatemala</option>
+
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+
+  <option value="Guinea">Guinea</option>
+
+  <option value="Guyana">Guyana</option>
+
+  <option value="Haiti">Haiti</option>
+
+  <option value="Honduras">Honduras</option>
+
+  <option value="Hong Kong">Hong Kong</option>
+
+  <option value="Hungary">Hungary</option>
+
+  <option value="Iceland">Iceland</option>
+
+  <option value="India">India</option>
+
+  <option value="Indonesia">Indonesia</option>
+
+  <option value="Iran">Iran</option>
+
+  <option value="Iraq">Iraq</option>
+
+  <option value="Ireland">Ireland</option>
+
+  <option value="Israel">Israel</option>
+
+  <option value="Italy">Italy</option>
+
+  <option value="Ivory Coast">Ivory Coast</option>
+
+  <option value="Jamaica">Jamaica</option>
+
+  <option value="Japan">Japan</option>
+
+  <option value="Jordan">Jordan</option>
+
+  <option value="Kazakhstan">Kazakhstan</option>
+
+  <option value="Kenya">Kenya</option>
+
+  <option value="Kiribati">Kiribati</option>
+
+  <option value="Kosovo">Kosovo</option>
+
+  <option value="Kuwait">Kuwait</option>
+
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+
+  <option value="Laos">Laos</option>
+
+  <option value="Latvia">Latvia</option>
+
+  <option value="Lebanon">Lebanon</option>
+
+  <option value="Lesotho">Lesotho</option>
+
+  <option value="Liberia">Liberia</option>
+
+  <option value="Libya">Libya</option>
+
+  <option value="Liechtenstein">Liechtenstein</option>
+
+  <option value="Lithuania">Lithuania</option>
+
+  <option value="Luxembourg">Luxembourg</option>
+
+  <option value="Madagascar">Madagascar</option>
+
+  <option value="Malawi">Malawi</option>
+
+  <option value="Malaysia">Malaysia</option>
+
+  <option value="Maldives">Maldives</option>
+
+  <option value="Mali">Mali</option>
+
+  <option value="Malta">Malta</option>
+
+  <option value="Marshall Islands">Marshall Islands</option>
+
+  <option value="Mauritania">Mauritania</option>
+
+  <option value="Mauritius">Mauritius</option>
+
+  <option value="Mexico">Mexico</option>
+
+  <option value="Moldova">Moldova</option>
+
+  <option value="Monaco">Monaco</option>
+
+  <option value="Mongolia">Mongolia</option>
+
+  <option value="Montenegro">Montenegro</option>
+
+  <option value="Morocco">Morocco</option>
+
+  <option value="Mozambique">Mozambique</option>
+
+  <option value="Myanmar">Myanmar</option>
+
+  <option value="Namibia">Namibia</option>
+
+  <option value="Nauru">Nauru</option>
+
+  <option value="Nepal">Nepal</option>
+
+  <option value="Netherlands">Netherlands</option>
+
+  <option value="New Zealand">New Zealand</option>
+
+  <option value="Nicaragua">Nicaragua</option>
+
+  <option value="Niger">Niger</option>
+
+  <option value="Nigeria">Nigeria</option>
+
+  <option value="Niue">Niue</option>
+
+  <option value="North Korea">North Korea</option>
+
+  <option value="North Macedonia">North Macedonia</option>
+
+  <option value="Northern Cyprus">Northern Cyprus</option>
+
+  <option value="Norway">Norway</option>
+
+  <option value="Oman">Oman</option>
+
+  <option value="Pakistan">Pakistan</option>
+
+  <option value="Palau">Palau</option>
+
+  <option value="Palestine">Palestine</option>
+
+  <option value="Panama">Panama</option>
+
+  <option value="Papua New Guinea">Papua New Guinea</option>
+
+  <option value="Paraguay">Paraguay</option>
+
+  <option value="Peru">Peru</option>
+
+  <option value="Philippines">Philippines</option>
+
+  <option value="Poland">Poland</option>
+
+  <option value="Portugal">Portugal</option>
+
+  <option value="Puerto Rico">Puerto Rico</option>
+
+  <option value="Qatar">Qatar</option>
+
+  <option value="Republic of China (Taiwan)">Republic of China (Taiwan)</option>
+
+  <option value="Republic of Congo">Republic of Congo</option>
+
+  <option value="Romania">Romania</option>
+
+  <option value="Russia">Russia</option>
+
+  <option value="Rwanda">Rwanda</option>
+
+  <option value="Sahrawi Arab Democratic Republic">Sahrawi Arab Democratic Republic</option>
+
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+
+  <option value="Saint Lucia">Saint Lucia</option>
+
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+
+  <option value="Samoa">Samoa</option>
+
+  <option value="San Marino">San Marino</option>
+
+  <option value="Saudi Arabia">Saudi Arabia</option>
+
+  <option value="Scania">Scania</option>
+
+  <option value="Scotland">Scotland</option>
+
+  <option value="Senegal">Senegal</option>
+
+  <option value="Serbia">Serbia</option>
+
+  <option value="Seychelles">Seychelles</option>
+
+  <option value="Sierra Leone">Sierra Leone</option>
+
+  <option value="Singapore">Singapore</option>
+
+  <option value="Slovakia">Slovakia</option>
+
+  <option value="Slovenia">Slovenia</option>
+
+  <option value="Solomon Islands">Solomon Islands</option>
+
+  <option value="Somalia">Somalia</option>
+
+  <option value="Somaliland">Somaliland</option>
+
+  <option value="South Africa">South Africa</option>
+
+  <option value="South Korea">South Korea</option>
+
+  <option value="South Ossetia">South Ossetia</option>
+
+  <option value="South Sudan">South Sudan</option>
+
+  <option value="Spain">Spain</option>
+
+  <option value="Sri Lanka">Sri Lanka</option>
+
+  <option value="Sudan">Sudan</option>
+
+  <option value="Suriname">Suriname</option>
+
+  <option value="Sweden">Sweden</option>
+
+  <option value="Switzerland">Switzerland</option>
+
+  <option value="Syria">Syria</option>
+
+  <option value="São Tomé and Príncipe">São Tomé and Príncipe</option>
+
+  <option value="Tajikistan">Tajikistan</option>
+
+  <option value="Tanzania">Tanzania</option>
+
+  <option value="Thailand">Thailand</option>
+
+  <option value="Togo">Togo</option>
+
+  <option value="Tonga">Tonga</option>
+
+  <option value="Transnistria">Transnistria</option>
+
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+
+  <option value="Tunisia">Tunisia</option>
+
+  <option value="Turkey">Turkey</option>
+
+  <option value="Turkmenistan">Turkmenistan</option>
+
+  <option value="Tuvalu">Tuvalu</option>
+
+  <option value="Uganda">Uganda</option>
+
+  <option value="Ukraine">Ukraine</option>
+
+  <option value="United Arab Emirates">United Arab Emirates</option>
+
+  <option value="United Kingdom">United Kingdom</option>
+
+  <option value="United States">United States</option>
+
+  <option value="Uruguay">Uruguay</option>
+
+  <option value="Uzbekistan">Uzbekistan</option>
+
+  <option value="Vanuatu">Vanuatu</option>
+
+  <option value="Vatican City">Vatican City</option>
+
+  <option value="Venezuela">Venezuela</option>
+
+  <option value="Vietnam">Vietnam</option>
+
+  <option value="Wales">Wales</option>
+
+  <option value="Yemen">Yemen</option>
+
+  <option value="Zambia">Zambia</option>
+
+  <option value="Zimbabwe">Zimbabwe</option>
+
+  <option value="Agender Pride">Agender Pride</option>
+
+  <option value="Aromantic Pride">Aromantic Pride</option>
+
+  <option value="Asexual Pride">Asexual Pride</option>
+
+  <option value="Bigender Pride">Bigender Pride</option>
+
+  <option value="Bisexual Pride">Bisexual Pride</option>
+
+  <option value="Demiromantic Pride">Demiromantic Pride</option>
+
+  <option value="Demisexual Pride">Demisexual Pride</option>
+
+  <option value="Gay Pride">Gay Pride</option>
+
+  <option value="Gender Fluid">Gender Fluid</option>
+
+  <option value="Genderqueer Pride">Genderqueer Pride</option>
+
+  <option value="Intersex Pride">Intersex Pride</option>
+
+  <option value="Lesbian Pride">Lesbian Pride</option>
+
+  <option value="Non-binary">Non-binary</option>
+
+  <option value="Pansexual Pride">Pansexual Pride</option>
+
+  <option value="Polyamory Pride">Polyamory Pride</option>
+
+  <option value="Polysexual Pride">Polysexual Pride</option>
+
+  <option value="Transgender Pride">Transgender Pride</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own flag<br>
+            
+<input type="file" name="player4_custom_flag" accept="image/*" label="Upload your own flag" id="id_player4_6">
+<br>
+        </div>
+    
+</div>
+	</div>
+	<div class="cajita col-xs-12 col-sm-12 col-md-6 col-lg-3">
+		<p>Player 5</p>
+		
+		<div>
+    
+        <div>
+            Player Name<br>
+            <input type="text" name="player5_name" maxlength="40" label="Player Name" required="" id="id_player5_0">
+
+<br>
+        </div>
+    
+        <div>
+            Twitter Handle<br>
+            <input type="text" name="player5_twitter" maxlength="25" label="Twitter Handle" id="id_player5_1">
+
+<br>
+        </div>
+    
+        <div>
+            Main Character<br>
+            <select name="player5_char" label="Main Character" required="" id="id_player5_2">
+  <option value="Andy" selected="selected">Andy</option>
+
+  <option value="B. Jenet">B. Jenet</option>
+
+  <option value="Billy">Billy</option>
+
+  <option value="Chun-Li">Chun-Li</option>
+
+  <option value="Cristiano">Cristiano</option>
+
+  <option value="Dong Hwan">Dong Hwan</option>
+
+  <option value="Gato">Gato</option>
+
+  <option value="Geese">Geese</option>
+
+  <option value="Hokutomaru">Hokutomaru</option>
+
+  <option value="Hotaru">Hotaru</option>
+
+  <option value="Jae Hoon">Jae Hoon</option>
+
+  <option value="Joe">Joe</option>
+
+  <option value="Kain">Kain</option>
+
+  <option value="Ken">Ken</option>
+
+  <option value="Kevin">Kevin</option>
+
+  <option value="Mai">Mai</option>
+
+  <option value="Marco">Marco</option>
+
+  <option value="Mr. Big">Mr. Big</option>
+
+  <option value="Preecha">Preecha</option>
+
+  <option value="Random">Random</option>
+
+  <option value="Rock">Rock</option>
+
+  <option value="Salvatore">Salvatore</option>
+
+  <option value="Terry">Terry</option>
+
+  <option value="Tizoc">Tizoc</option>
+
+  <option value="Vox">Vox</option>
+
+</select>
+<br>
+        </div>
+    
+        <div style="display: none;">
+            Main Character Color<br>
+            <select name="player5_color" label="Main Character Color" required="" id="id_player5_3">
+  <option value="0" selected="selected">0: Default</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own portrait<br>
+            
+<input type="file" name="player5_portrait" accept="image/*" label="Upload your own portrait" id="id_player5_4">
+<br>
+        </div>
+    
+        <div>
+            Flag<br>
+            <select name="player5_flag" label="Flag" required="" id="id_player5_5">
+  <option value="None" selected="selected">None</option>
+
+  <option value="Abkhazia">Abkhazia</option>
+
+  <option value="Afghanistan">Afghanistan</option>
+
+  <option value="Albania">Albania</option>
+
+  <option value="Algeria">Algeria</option>
+
+  <option value="Andorra">Andorra</option>
+
+  <option value="Angola">Angola</option>
+
+  <option value="Antartica">Antartica</option>
+
+  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+
+  <option value="Argentina">Argentina</option>
+
+  <option value="Armenia">Armenia</option>
+
+  <option value="Artsakh">Artsakh</option>
+
+  <option value="Australia">Australia</option>
+
+  <option value="Austria">Austria</option>
+
+  <option value="Azerbaijan">Azerbaijan</option>
+
+  <option value="Bahamas">Bahamas</option>
+
+  <option value="Bahrain">Bahrain</option>
+
+  <option value="Bangladesh">Bangladesh</option>
+
+  <option value="Barbados">Barbados</option>
+
+  <option value="Belarus">Belarus</option>
+
+  <option value="Belgium">Belgium</option>
+
+  <option value="Belize">Belize</option>
+
+  <option value="Benin">Benin</option>
+
+  <option value="Bhutan">Bhutan</option>
+
+  <option value="Bolivia">Bolivia</option>
+
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+
+  <option value="Botswana">Botswana</option>
+
+  <option value="Brazil">Brazil</option>
+
+  <option value="Brunei">Brunei</option>
+
+  <option value="Bulgaria">Bulgaria</option>
+
+  <option value="Burkina Faso">Burkina Faso</option>
+
+  <option value="Burundi">Burundi</option>
+
+  <option value="Cambodia">Cambodia</option>
+
+  <option value="Cameroon">Cameroon</option>
+
+  <option value="Canada">Canada</option>
+
+  <option value="Cape Verde">Cape Verde</option>
+
+  <option value="Central African Republic">Central African Republic</option>
+
+  <option value="Chad">Chad</option>
+
+  <option value="Chile">Chile</option>
+
+  <option value="China">China</option>
+
+  <option value="Colombia">Colombia</option>
+
+  <option value="Comoros">Comoros</option>
+
+  <option value="Cook Islands">Cook Islands</option>
+
+  <option value="Costa Rica">Costa Rica</option>
+
+  <option value="Croatia">Croatia</option>
+
+  <option value="Cuba">Cuba</option>
+
+  <option value="Cyprus">Cyprus</option>
+
+  <option value="Czech Republic">Czech Republic</option>
+
+  <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+
+  <option value="Denmark">Denmark</option>
+
+  <option value="Djibouti">Djibouti</option>
+
+  <option value="Dominica">Dominica</option>
+
+  <option value="Dominican Republic">Dominican Republic</option>
+
+  <option value="East Timor">East Timor</option>
+
+  <option value="Ecuador">Ecuador</option>
+
+  <option value="Egypt">Egypt</option>
+
+  <option value="El Salvador">El Salvador</option>
+
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+
+  <option value="Eritrea">Eritrea</option>
+
+  <option value="Estonia">Estonia</option>
+
+  <option value="Eswatini">Eswatini</option>
+
+  <option value="Ethiopia">Ethiopia</option>
+
+  <option value="Federated States of Micronesia">Federated States of Micronesia</option>
+
+  <option value="Fiji">Fiji</option>
+
+  <option value="Finland">Finland</option>
+
+  <option value="France">France</option>
+
+  <option value="Gabon">Gabon</option>
+
+  <option value="Gambia">Gambia</option>
+
+  <option value="Georgia">Georgia</option>
+
+  <option value="Germany">Germany</option>
+
+  <option value="Ghana">Ghana</option>
+
+  <option value="Greece">Greece</option>
+
+  <option value="Grenada">Grenada</option>
+
+  <option value="Guatemala">Guatemala</option>
+
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+
+  <option value="Guinea">Guinea</option>
+
+  <option value="Guyana">Guyana</option>
+
+  <option value="Haiti">Haiti</option>
+
+  <option value="Honduras">Honduras</option>
+
+  <option value="Hong Kong">Hong Kong</option>
+
+  <option value="Hungary">Hungary</option>
+
+  <option value="Iceland">Iceland</option>
+
+  <option value="India">India</option>
+
+  <option value="Indonesia">Indonesia</option>
+
+  <option value="Iran">Iran</option>
+
+  <option value="Iraq">Iraq</option>
+
+  <option value="Ireland">Ireland</option>
+
+  <option value="Israel">Israel</option>
+
+  <option value="Italy">Italy</option>
+
+  <option value="Ivory Coast">Ivory Coast</option>
+
+  <option value="Jamaica">Jamaica</option>
+
+  <option value="Japan">Japan</option>
+
+  <option value="Jordan">Jordan</option>
+
+  <option value="Kazakhstan">Kazakhstan</option>
+
+  <option value="Kenya">Kenya</option>
+
+  <option value="Kiribati">Kiribati</option>
+
+  <option value="Kosovo">Kosovo</option>
+
+  <option value="Kuwait">Kuwait</option>
+
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+
+  <option value="Laos">Laos</option>
+
+  <option value="Latvia">Latvia</option>
+
+  <option value="Lebanon">Lebanon</option>
+
+  <option value="Lesotho">Lesotho</option>
+
+  <option value="Liberia">Liberia</option>
+
+  <option value="Libya">Libya</option>
+
+  <option value="Liechtenstein">Liechtenstein</option>
+
+  <option value="Lithuania">Lithuania</option>
+
+  <option value="Luxembourg">Luxembourg</option>
+
+  <option value="Madagascar">Madagascar</option>
+
+  <option value="Malawi">Malawi</option>
+
+  <option value="Malaysia">Malaysia</option>
+
+  <option value="Maldives">Maldives</option>
+
+  <option value="Mali">Mali</option>
+
+  <option value="Malta">Malta</option>
+
+  <option value="Marshall Islands">Marshall Islands</option>
+
+  <option value="Mauritania">Mauritania</option>
+
+  <option value="Mauritius">Mauritius</option>
+
+  <option value="Mexico">Mexico</option>
+
+  <option value="Moldova">Moldova</option>
+
+  <option value="Monaco">Monaco</option>
+
+  <option value="Mongolia">Mongolia</option>
+
+  <option value="Montenegro">Montenegro</option>
+
+  <option value="Morocco">Morocco</option>
+
+  <option value="Mozambique">Mozambique</option>
+
+  <option value="Myanmar">Myanmar</option>
+
+  <option value="Namibia">Namibia</option>
+
+  <option value="Nauru">Nauru</option>
+
+  <option value="Nepal">Nepal</option>
+
+  <option value="Netherlands">Netherlands</option>
+
+  <option value="New Zealand">New Zealand</option>
+
+  <option value="Nicaragua">Nicaragua</option>
+
+  <option value="Niger">Niger</option>
+
+  <option value="Nigeria">Nigeria</option>
+
+  <option value="Niue">Niue</option>
+
+  <option value="North Korea">North Korea</option>
+
+  <option value="North Macedonia">North Macedonia</option>
+
+  <option value="Northern Cyprus">Northern Cyprus</option>
+
+  <option value="Norway">Norway</option>
+
+  <option value="Oman">Oman</option>
+
+  <option value="Pakistan">Pakistan</option>
+
+  <option value="Palau">Palau</option>
+
+  <option value="Palestine">Palestine</option>
+
+  <option value="Panama">Panama</option>
+
+  <option value="Papua New Guinea">Papua New Guinea</option>
+
+  <option value="Paraguay">Paraguay</option>
+
+  <option value="Peru">Peru</option>
+
+  <option value="Philippines">Philippines</option>
+
+  <option value="Poland">Poland</option>
+
+  <option value="Portugal">Portugal</option>
+
+  <option value="Puerto Rico">Puerto Rico</option>
+
+  <option value="Qatar">Qatar</option>
+
+  <option value="Republic of China (Taiwan)">Republic of China (Taiwan)</option>
+
+  <option value="Republic of Congo">Republic of Congo</option>
+
+  <option value="Romania">Romania</option>
+
+  <option value="Russia">Russia</option>
+
+  <option value="Rwanda">Rwanda</option>
+
+  <option value="Sahrawi Arab Democratic Republic">Sahrawi Arab Democratic Republic</option>
+
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+
+  <option value="Saint Lucia">Saint Lucia</option>
+
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+
+  <option value="Samoa">Samoa</option>
+
+  <option value="San Marino">San Marino</option>
+
+  <option value="Saudi Arabia">Saudi Arabia</option>
+
+  <option value="Scania">Scania</option>
+
+  <option value="Scotland">Scotland</option>
+
+  <option value="Senegal">Senegal</option>
+
+  <option value="Serbia">Serbia</option>
+
+  <option value="Seychelles">Seychelles</option>
+
+  <option value="Sierra Leone">Sierra Leone</option>
+
+  <option value="Singapore">Singapore</option>
+
+  <option value="Slovakia">Slovakia</option>
+
+  <option value="Slovenia">Slovenia</option>
+
+  <option value="Solomon Islands">Solomon Islands</option>
+
+  <option value="Somalia">Somalia</option>
+
+  <option value="Somaliland">Somaliland</option>
+
+  <option value="South Africa">South Africa</option>
+
+  <option value="South Korea">South Korea</option>
+
+  <option value="South Ossetia">South Ossetia</option>
+
+  <option value="South Sudan">South Sudan</option>
+
+  <option value="Spain">Spain</option>
+
+  <option value="Sri Lanka">Sri Lanka</option>
+
+  <option value="Sudan">Sudan</option>
+
+  <option value="Suriname">Suriname</option>
+
+  <option value="Sweden">Sweden</option>
+
+  <option value="Switzerland">Switzerland</option>
+
+  <option value="Syria">Syria</option>
+
+  <option value="São Tomé and Príncipe">São Tomé and Príncipe</option>
+
+  <option value="Tajikistan">Tajikistan</option>
+
+  <option value="Tanzania">Tanzania</option>
+
+  <option value="Thailand">Thailand</option>
+
+  <option value="Togo">Togo</option>
+
+  <option value="Tonga">Tonga</option>
+
+  <option value="Transnistria">Transnistria</option>
+
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+
+  <option value="Tunisia">Tunisia</option>
+
+  <option value="Turkey">Turkey</option>
+
+  <option value="Turkmenistan">Turkmenistan</option>
+
+  <option value="Tuvalu">Tuvalu</option>
+
+  <option value="Uganda">Uganda</option>
+
+  <option value="Ukraine">Ukraine</option>
+
+  <option value="United Arab Emirates">United Arab Emirates</option>
+
+  <option value="United Kingdom">United Kingdom</option>
+
+  <option value="United States">United States</option>
+
+  <option value="Uruguay">Uruguay</option>
+
+  <option value="Uzbekistan">Uzbekistan</option>
+
+  <option value="Vanuatu">Vanuatu</option>
+
+  <option value="Vatican City">Vatican City</option>
+
+  <option value="Venezuela">Venezuela</option>
+
+  <option value="Vietnam">Vietnam</option>
+
+  <option value="Wales">Wales</option>
+
+  <option value="Yemen">Yemen</option>
+
+  <option value="Zambia">Zambia</option>
+
+  <option value="Zimbabwe">Zimbabwe</option>
+
+  <option value="Agender Pride">Agender Pride</option>
+
+  <option value="Aromantic Pride">Aromantic Pride</option>
+
+  <option value="Asexual Pride">Asexual Pride</option>
+
+  <option value="Bigender Pride">Bigender Pride</option>
+
+  <option value="Bisexual Pride">Bisexual Pride</option>
+
+  <option value="Demiromantic Pride">Demiromantic Pride</option>
+
+  <option value="Demisexual Pride">Demisexual Pride</option>
+
+  <option value="Gay Pride">Gay Pride</option>
+
+  <option value="Gender Fluid">Gender Fluid</option>
+
+  <option value="Genderqueer Pride">Genderqueer Pride</option>
+
+  <option value="Intersex Pride">Intersex Pride</option>
+
+  <option value="Lesbian Pride">Lesbian Pride</option>
+
+  <option value="Non-binary">Non-binary</option>
+
+  <option value="Pansexual Pride">Pansexual Pride</option>
+
+  <option value="Polyamory Pride">Polyamory Pride</option>
+
+  <option value="Polysexual Pride">Polysexual Pride</option>
+
+  <option value="Transgender Pride">Transgender Pride</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own flag<br>
+            
+<input type="file" name="player5_custom_flag" accept="image/*" label="Upload your own flag" id="id_player5_6">
+<br>
+        </div>
+    
+</div>
+	</div>
+	<div class="cajita col-xs-12 col-sm-12 col-md-6 col-lg-3">
+		<p>Player 6</p>
+		
+		<div>
+    
+        <div>
+            Player Name<br>
+            <input type="text" name="player6_name" maxlength="40" label="Player Name" required="" id="id_player6_0">
+
+<br>
+        </div>
+    
+        <div>
+            Twitter Handle<br>
+            <input type="text" name="player6_twitter" maxlength="25" label="Twitter Handle" id="id_player6_1">
+
+<br>
+        </div>
+    
+        <div>
+            Main Character<br>
+            <select name="player6_char" label="Main Character" required="" id="id_player6_2">
+  <option value="Andy" selected="selected">Andy</option>
+
+  <option value="B. Jenet">B. Jenet</option>
+
+  <option value="Billy">Billy</option>
+
+  <option value="Chun-Li">Chun-Li</option>
+
+  <option value="Cristiano">Cristiano</option>
+
+  <option value="Dong Hwan">Dong Hwan</option>
+
+  <option value="Gato">Gato</option>
+
+  <option value="Geese">Geese</option>
+
+  <option value="Hokutomaru">Hokutomaru</option>
+
+  <option value="Hotaru">Hotaru</option>
+
+  <option value="Jae Hoon">Jae Hoon</option>
+
+  <option value="Joe">Joe</option>
+
+  <option value="Kain">Kain</option>
+
+  <option value="Ken">Ken</option>
+
+  <option value="Kevin">Kevin</option>
+
+  <option value="Mai">Mai</option>
+
+  <option value="Marco">Marco</option>
+
+  <option value="Mr. Big">Mr. Big</option>
+
+  <option value="Preecha">Preecha</option>
+
+  <option value="Random">Random</option>
+
+  <option value="Rock">Rock</option>
+
+  <option value="Salvatore">Salvatore</option>
+
+  <option value="Terry">Terry</option>
+
+  <option value="Tizoc">Tizoc</option>
+
+  <option value="Vox">Vox</option>
+
+</select>
+<br>
+        </div>
+    
+        <div style="display: none;">
+            Main Character Color<br>
+            <select name="player6_color" label="Main Character Color" required="" id="id_player6_3">
+  <option value="0" selected="selected">0: Default</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own portrait<br>
+            
+<input type="file" name="player6_portrait" accept="image/*" label="Upload your own portrait" id="id_player6_4">
+<br>
+        </div>
+    
+        <div>
+            Flag<br>
+            <select name="player6_flag" label="Flag" required="" id="id_player6_5">
+  <option value="None" selected="selected">None</option>
+
+  <option value="Abkhazia">Abkhazia</option>
+
+  <option value="Afghanistan">Afghanistan</option>
+
+  <option value="Albania">Albania</option>
+
+  <option value="Algeria">Algeria</option>
+
+  <option value="Andorra">Andorra</option>
+
+  <option value="Angola">Angola</option>
+
+  <option value="Antartica">Antartica</option>
+
+  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+
+  <option value="Argentina">Argentina</option>
+
+  <option value="Armenia">Armenia</option>
+
+  <option value="Artsakh">Artsakh</option>
+
+  <option value="Australia">Australia</option>
+
+  <option value="Austria">Austria</option>
+
+  <option value="Azerbaijan">Azerbaijan</option>
+
+  <option value="Bahamas">Bahamas</option>
+
+  <option value="Bahrain">Bahrain</option>
+
+  <option value="Bangladesh">Bangladesh</option>
+
+  <option value="Barbados">Barbados</option>
+
+  <option value="Belarus">Belarus</option>
+
+  <option value="Belgium">Belgium</option>
+
+  <option value="Belize">Belize</option>
+
+  <option value="Benin">Benin</option>
+
+  <option value="Bhutan">Bhutan</option>
+
+  <option value="Bolivia">Bolivia</option>
+
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+
+  <option value="Botswana">Botswana</option>
+
+  <option value="Brazil">Brazil</option>
+
+  <option value="Brunei">Brunei</option>
+
+  <option value="Bulgaria">Bulgaria</option>
+
+  <option value="Burkina Faso">Burkina Faso</option>
+
+  <option value="Burundi">Burundi</option>
+
+  <option value="Cambodia">Cambodia</option>
+
+  <option value="Cameroon">Cameroon</option>
+
+  <option value="Canada">Canada</option>
+
+  <option value="Cape Verde">Cape Verde</option>
+
+  <option value="Central African Republic">Central African Republic</option>
+
+  <option value="Chad">Chad</option>
+
+  <option value="Chile">Chile</option>
+
+  <option value="China">China</option>
+
+  <option value="Colombia">Colombia</option>
+
+  <option value="Comoros">Comoros</option>
+
+  <option value="Cook Islands">Cook Islands</option>
+
+  <option value="Costa Rica">Costa Rica</option>
+
+  <option value="Croatia">Croatia</option>
+
+  <option value="Cuba">Cuba</option>
+
+  <option value="Cyprus">Cyprus</option>
+
+  <option value="Czech Republic">Czech Republic</option>
+
+  <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+
+  <option value="Denmark">Denmark</option>
+
+  <option value="Djibouti">Djibouti</option>
+
+  <option value="Dominica">Dominica</option>
+
+  <option value="Dominican Republic">Dominican Republic</option>
+
+  <option value="East Timor">East Timor</option>
+
+  <option value="Ecuador">Ecuador</option>
+
+  <option value="Egypt">Egypt</option>
+
+  <option value="El Salvador">El Salvador</option>
+
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+
+  <option value="Eritrea">Eritrea</option>
+
+  <option value="Estonia">Estonia</option>
+
+  <option value="Eswatini">Eswatini</option>
+
+  <option value="Ethiopia">Ethiopia</option>
+
+  <option value="Federated States of Micronesia">Federated States of Micronesia</option>
+
+  <option value="Fiji">Fiji</option>
+
+  <option value="Finland">Finland</option>
+
+  <option value="France">France</option>
+
+  <option value="Gabon">Gabon</option>
+
+  <option value="Gambia">Gambia</option>
+
+  <option value="Georgia">Georgia</option>
+
+  <option value="Germany">Germany</option>
+
+  <option value="Ghana">Ghana</option>
+
+  <option value="Greece">Greece</option>
+
+  <option value="Grenada">Grenada</option>
+
+  <option value="Guatemala">Guatemala</option>
+
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+
+  <option value="Guinea">Guinea</option>
+
+  <option value="Guyana">Guyana</option>
+
+  <option value="Haiti">Haiti</option>
+
+  <option value="Honduras">Honduras</option>
+
+  <option value="Hong Kong">Hong Kong</option>
+
+  <option value="Hungary">Hungary</option>
+
+  <option value="Iceland">Iceland</option>
+
+  <option value="India">India</option>
+
+  <option value="Indonesia">Indonesia</option>
+
+  <option value="Iran">Iran</option>
+
+  <option value="Iraq">Iraq</option>
+
+  <option value="Ireland">Ireland</option>
+
+  <option value="Israel">Israel</option>
+
+  <option value="Italy">Italy</option>
+
+  <option value="Ivory Coast">Ivory Coast</option>
+
+  <option value="Jamaica">Jamaica</option>
+
+  <option value="Japan">Japan</option>
+
+  <option value="Jordan">Jordan</option>
+
+  <option value="Kazakhstan">Kazakhstan</option>
+
+  <option value="Kenya">Kenya</option>
+
+  <option value="Kiribati">Kiribati</option>
+
+  <option value="Kosovo">Kosovo</option>
+
+  <option value="Kuwait">Kuwait</option>
+
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+
+  <option value="Laos">Laos</option>
+
+  <option value="Latvia">Latvia</option>
+
+  <option value="Lebanon">Lebanon</option>
+
+  <option value="Lesotho">Lesotho</option>
+
+  <option value="Liberia">Liberia</option>
+
+  <option value="Libya">Libya</option>
+
+  <option value="Liechtenstein">Liechtenstein</option>
+
+  <option value="Lithuania">Lithuania</option>
+
+  <option value="Luxembourg">Luxembourg</option>
+
+  <option value="Madagascar">Madagascar</option>
+
+  <option value="Malawi">Malawi</option>
+
+  <option value="Malaysia">Malaysia</option>
+
+  <option value="Maldives">Maldives</option>
+
+  <option value="Mali">Mali</option>
+
+  <option value="Malta">Malta</option>
+
+  <option value="Marshall Islands">Marshall Islands</option>
+
+  <option value="Mauritania">Mauritania</option>
+
+  <option value="Mauritius">Mauritius</option>
+
+  <option value="Mexico">Mexico</option>
+
+  <option value="Moldova">Moldova</option>
+
+  <option value="Monaco">Monaco</option>
+
+  <option value="Mongolia">Mongolia</option>
+
+  <option value="Montenegro">Montenegro</option>
+
+  <option value="Morocco">Morocco</option>
+
+  <option value="Mozambique">Mozambique</option>
+
+  <option value="Myanmar">Myanmar</option>
+
+  <option value="Namibia">Namibia</option>
+
+  <option value="Nauru">Nauru</option>
+
+  <option value="Nepal">Nepal</option>
+
+  <option value="Netherlands">Netherlands</option>
+
+  <option value="New Zealand">New Zealand</option>
+
+  <option value="Nicaragua">Nicaragua</option>
+
+  <option value="Niger">Niger</option>
+
+  <option value="Nigeria">Nigeria</option>
+
+  <option value="Niue">Niue</option>
+
+  <option value="North Korea">North Korea</option>
+
+  <option value="North Macedonia">North Macedonia</option>
+
+  <option value="Northern Cyprus">Northern Cyprus</option>
+
+  <option value="Norway">Norway</option>
+
+  <option value="Oman">Oman</option>
+
+  <option value="Pakistan">Pakistan</option>
+
+  <option value="Palau">Palau</option>
+
+  <option value="Palestine">Palestine</option>
+
+  <option value="Panama">Panama</option>
+
+  <option value="Papua New Guinea">Papua New Guinea</option>
+
+  <option value="Paraguay">Paraguay</option>
+
+  <option value="Peru">Peru</option>
+
+  <option value="Philippines">Philippines</option>
+
+  <option value="Poland">Poland</option>
+
+  <option value="Portugal">Portugal</option>
+
+  <option value="Puerto Rico">Puerto Rico</option>
+
+  <option value="Qatar">Qatar</option>
+
+  <option value="Republic of China (Taiwan)">Republic of China (Taiwan)</option>
+
+  <option value="Republic of Congo">Republic of Congo</option>
+
+  <option value="Romania">Romania</option>
+
+  <option value="Russia">Russia</option>
+
+  <option value="Rwanda">Rwanda</option>
+
+  <option value="Sahrawi Arab Democratic Republic">Sahrawi Arab Democratic Republic</option>
+
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+
+  <option value="Saint Lucia">Saint Lucia</option>
+
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+
+  <option value="Samoa">Samoa</option>
+
+  <option value="San Marino">San Marino</option>
+
+  <option value="Saudi Arabia">Saudi Arabia</option>
+
+  <option value="Scania">Scania</option>
+
+  <option value="Scotland">Scotland</option>
+
+  <option value="Senegal">Senegal</option>
+
+  <option value="Serbia">Serbia</option>
+
+  <option value="Seychelles">Seychelles</option>
+
+  <option value="Sierra Leone">Sierra Leone</option>
+
+  <option value="Singapore">Singapore</option>
+
+  <option value="Slovakia">Slovakia</option>
+
+  <option value="Slovenia">Slovenia</option>
+
+  <option value="Solomon Islands">Solomon Islands</option>
+
+  <option value="Somalia">Somalia</option>
+
+  <option value="Somaliland">Somaliland</option>
+
+  <option value="South Africa">South Africa</option>
+
+  <option value="South Korea">South Korea</option>
+
+  <option value="South Ossetia">South Ossetia</option>
+
+  <option value="South Sudan">South Sudan</option>
+
+  <option value="Spain">Spain</option>
+
+  <option value="Sri Lanka">Sri Lanka</option>
+
+  <option value="Sudan">Sudan</option>
+
+  <option value="Suriname">Suriname</option>
+
+  <option value="Sweden">Sweden</option>
+
+  <option value="Switzerland">Switzerland</option>
+
+  <option value="Syria">Syria</option>
+
+  <option value="São Tomé and Príncipe">São Tomé and Príncipe</option>
+
+  <option value="Tajikistan">Tajikistan</option>
+
+  <option value="Tanzania">Tanzania</option>
+
+  <option value="Thailand">Thailand</option>
+
+  <option value="Togo">Togo</option>
+
+  <option value="Tonga">Tonga</option>
+
+  <option value="Transnistria">Transnistria</option>
+
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+
+  <option value="Tunisia">Tunisia</option>
+
+  <option value="Turkey">Turkey</option>
+
+  <option value="Turkmenistan">Turkmenistan</option>
+
+  <option value="Tuvalu">Tuvalu</option>
+
+  <option value="Uganda">Uganda</option>
+
+  <option value="Ukraine">Ukraine</option>
+
+  <option value="United Arab Emirates">United Arab Emirates</option>
+
+  <option value="United Kingdom">United Kingdom</option>
+
+  <option value="United States">United States</option>
+
+  <option value="Uruguay">Uruguay</option>
+
+  <option value="Uzbekistan">Uzbekistan</option>
+
+  <option value="Vanuatu">Vanuatu</option>
+
+  <option value="Vatican City">Vatican City</option>
+
+  <option value="Venezuela">Venezuela</option>
+
+  <option value="Vietnam">Vietnam</option>
+
+  <option value="Wales">Wales</option>
+
+  <option value="Yemen">Yemen</option>
+
+  <option value="Zambia">Zambia</option>
+
+  <option value="Zimbabwe">Zimbabwe</option>
+
+  <option value="Agender Pride">Agender Pride</option>
+
+  <option value="Aromantic Pride">Aromantic Pride</option>
+
+  <option value="Asexual Pride">Asexual Pride</option>
+
+  <option value="Bigender Pride">Bigender Pride</option>
+
+  <option value="Bisexual Pride">Bisexual Pride</option>
+
+  <option value="Demiromantic Pride">Demiromantic Pride</option>
+
+  <option value="Demisexual Pride">Demisexual Pride</option>
+
+  <option value="Gay Pride">Gay Pride</option>
+
+  <option value="Gender Fluid">Gender Fluid</option>
+
+  <option value="Genderqueer Pride">Genderqueer Pride</option>
+
+  <option value="Intersex Pride">Intersex Pride</option>
+
+  <option value="Lesbian Pride">Lesbian Pride</option>
+
+  <option value="Non-binary">Non-binary</option>
+
+  <option value="Pansexual Pride">Pansexual Pride</option>
+
+  <option value="Polyamory Pride">Polyamory Pride</option>
+
+  <option value="Polysexual Pride">Polysexual Pride</option>
+
+  <option value="Transgender Pride">Transgender Pride</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own flag<br>
+            
+<input type="file" name="player6_custom_flag" accept="image/*" label="Upload your own flag" id="id_player6_6">
+<br>
+        </div>
+    
+</div>
+	</div>
+	<div class="cajita col-xs-12 col-sm-12 col-md-6 col-lg-3">
+		<p>Player 7</p>
+		
+		<div>
+    
+        <div>
+            Player Name<br>
+            <input type="text" name="player7_name" maxlength="40" label="Player Name" required="" id="id_player7_0">
+
+<br>
+        </div>
+    
+        <div>
+            Twitter Handle<br>
+            <input type="text" name="player7_twitter" maxlength="25" label="Twitter Handle" id="id_player7_1">
+
+<br>
+        </div>
+    
+        <div>
+            Main Character<br>
+            <select name="player7_char" label="Main Character" required="" id="id_player7_2">
+  <option value="Andy" selected="selected">Andy</option>
+
+  <option value="B. Jenet">B. Jenet</option>
+
+  <option value="Billy">Billy</option>
+
+  <option value="Chun-Li">Chun-Li</option>
+
+  <option value="Cristiano">Cristiano</option>
+
+  <option value="Dong Hwan">Dong Hwan</option>
+
+  <option value="Gato">Gato</option>
+
+  <option value="Geese">Geese</option>
+
+  <option value="Hokutomaru">Hokutomaru</option>
+
+  <option value="Hotaru">Hotaru</option>
+
+  <option value="Jae Hoon">Jae Hoon</option>
+
+  <option value="Joe">Joe</option>
+
+  <option value="Kain">Kain</option>
+
+  <option value="Ken">Ken</option>
+
+  <option value="Kevin">Kevin</option>
+
+  <option value="Mai">Mai</option>
+
+  <option value="Marco">Marco</option>
+
+  <option value="Mr. Big">Mr. Big</option>
+
+  <option value="Preecha">Preecha</option>
+
+  <option value="Random">Random</option>
+
+  <option value="Rock">Rock</option>
+
+  <option value="Salvatore">Salvatore</option>
+
+  <option value="Terry">Terry</option>
+
+  <option value="Tizoc">Tizoc</option>
+
+  <option value="Vox">Vox</option>
+
+</select>
+<br>
+        </div>
+    
+        <div style="display: none;">
+            Main Character Color<br>
+            <select name="player7_color" label="Main Character Color" required="" id="id_player7_3">
+  <option value="0" selected="selected">0: Default</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own portrait<br>
+            
+<input type="file" name="player7_portrait" accept="image/*" label="Upload your own portrait" id="id_player7_4">
+<br>
+        </div>
+    
+        <div>
+            Flag<br>
+            <select name="player7_flag" label="Flag" required="" id="id_player7_5">
+  <option value="None" selected="selected">None</option>
+
+  <option value="Abkhazia">Abkhazia</option>
+
+  <option value="Afghanistan">Afghanistan</option>
+
+  <option value="Albania">Albania</option>
+
+  <option value="Algeria">Algeria</option>
+
+  <option value="Andorra">Andorra</option>
+
+  <option value="Angola">Angola</option>
+
+  <option value="Antartica">Antartica</option>
+
+  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+
+  <option value="Argentina">Argentina</option>
+
+  <option value="Armenia">Armenia</option>
+
+  <option value="Artsakh">Artsakh</option>
+
+  <option value="Australia">Australia</option>
+
+  <option value="Austria">Austria</option>
+
+  <option value="Azerbaijan">Azerbaijan</option>
+
+  <option value="Bahamas">Bahamas</option>
+
+  <option value="Bahrain">Bahrain</option>
+
+  <option value="Bangladesh">Bangladesh</option>
+
+  <option value="Barbados">Barbados</option>
+
+  <option value="Belarus">Belarus</option>
+
+  <option value="Belgium">Belgium</option>
+
+  <option value="Belize">Belize</option>
+
+  <option value="Benin">Benin</option>
+
+  <option value="Bhutan">Bhutan</option>
+
+  <option value="Bolivia">Bolivia</option>
+
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+
+  <option value="Botswana">Botswana</option>
+
+  <option value="Brazil">Brazil</option>
+
+  <option value="Brunei">Brunei</option>
+
+  <option value="Bulgaria">Bulgaria</option>
+
+  <option value="Burkina Faso">Burkina Faso</option>
+
+  <option value="Burundi">Burundi</option>
+
+  <option value="Cambodia">Cambodia</option>
+
+  <option value="Cameroon">Cameroon</option>
+
+  <option value="Canada">Canada</option>
+
+  <option value="Cape Verde">Cape Verde</option>
+
+  <option value="Central African Republic">Central African Republic</option>
+
+  <option value="Chad">Chad</option>
+
+  <option value="Chile">Chile</option>
+
+  <option value="China">China</option>
+
+  <option value="Colombia">Colombia</option>
+
+  <option value="Comoros">Comoros</option>
+
+  <option value="Cook Islands">Cook Islands</option>
+
+  <option value="Costa Rica">Costa Rica</option>
+
+  <option value="Croatia">Croatia</option>
+
+  <option value="Cuba">Cuba</option>
+
+  <option value="Cyprus">Cyprus</option>
+
+  <option value="Czech Republic">Czech Republic</option>
+
+  <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+
+  <option value="Denmark">Denmark</option>
+
+  <option value="Djibouti">Djibouti</option>
+
+  <option value="Dominica">Dominica</option>
+
+  <option value="Dominican Republic">Dominican Republic</option>
+
+  <option value="East Timor">East Timor</option>
+
+  <option value="Ecuador">Ecuador</option>
+
+  <option value="Egypt">Egypt</option>
+
+  <option value="El Salvador">El Salvador</option>
+
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+
+  <option value="Eritrea">Eritrea</option>
+
+  <option value="Estonia">Estonia</option>
+
+  <option value="Eswatini">Eswatini</option>
+
+  <option value="Ethiopia">Ethiopia</option>
+
+  <option value="Federated States of Micronesia">Federated States of Micronesia</option>
+
+  <option value="Fiji">Fiji</option>
+
+  <option value="Finland">Finland</option>
+
+  <option value="France">France</option>
+
+  <option value="Gabon">Gabon</option>
+
+  <option value="Gambia">Gambia</option>
+
+  <option value="Georgia">Georgia</option>
+
+  <option value="Germany">Germany</option>
+
+  <option value="Ghana">Ghana</option>
+
+  <option value="Greece">Greece</option>
+
+  <option value="Grenada">Grenada</option>
+
+  <option value="Guatemala">Guatemala</option>
+
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+
+  <option value="Guinea">Guinea</option>
+
+  <option value="Guyana">Guyana</option>
+
+  <option value="Haiti">Haiti</option>
+
+  <option value="Honduras">Honduras</option>
+
+  <option value="Hong Kong">Hong Kong</option>
+
+  <option value="Hungary">Hungary</option>
+
+  <option value="Iceland">Iceland</option>
+
+  <option value="India">India</option>
+
+  <option value="Indonesia">Indonesia</option>
+
+  <option value="Iran">Iran</option>
+
+  <option value="Iraq">Iraq</option>
+
+  <option value="Ireland">Ireland</option>
+
+  <option value="Israel">Israel</option>
+
+  <option value="Italy">Italy</option>
+
+  <option value="Ivory Coast">Ivory Coast</option>
+
+  <option value="Jamaica">Jamaica</option>
+
+  <option value="Japan">Japan</option>
+
+  <option value="Jordan">Jordan</option>
+
+  <option value="Kazakhstan">Kazakhstan</option>
+
+  <option value="Kenya">Kenya</option>
+
+  <option value="Kiribati">Kiribati</option>
+
+  <option value="Kosovo">Kosovo</option>
+
+  <option value="Kuwait">Kuwait</option>
+
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+
+  <option value="Laos">Laos</option>
+
+  <option value="Latvia">Latvia</option>
+
+  <option value="Lebanon">Lebanon</option>
+
+  <option value="Lesotho">Lesotho</option>
+
+  <option value="Liberia">Liberia</option>
+
+  <option value="Libya">Libya</option>
+
+  <option value="Liechtenstein">Liechtenstein</option>
+
+  <option value="Lithuania">Lithuania</option>
+
+  <option value="Luxembourg">Luxembourg</option>
+
+  <option value="Madagascar">Madagascar</option>
+
+  <option value="Malawi">Malawi</option>
+
+  <option value="Malaysia">Malaysia</option>
+
+  <option value="Maldives">Maldives</option>
+
+  <option value="Mali">Mali</option>
+
+  <option value="Malta">Malta</option>
+
+  <option value="Marshall Islands">Marshall Islands</option>
+
+  <option value="Mauritania">Mauritania</option>
+
+  <option value="Mauritius">Mauritius</option>
+
+  <option value="Mexico">Mexico</option>
+
+  <option value="Moldova">Moldova</option>
+
+  <option value="Monaco">Monaco</option>
+
+  <option value="Mongolia">Mongolia</option>
+
+  <option value="Montenegro">Montenegro</option>
+
+  <option value="Morocco">Morocco</option>
+
+  <option value="Mozambique">Mozambique</option>
+
+  <option value="Myanmar">Myanmar</option>
+
+  <option value="Namibia">Namibia</option>
+
+  <option value="Nauru">Nauru</option>
+
+  <option value="Nepal">Nepal</option>
+
+  <option value="Netherlands">Netherlands</option>
+
+  <option value="New Zealand">New Zealand</option>
+
+  <option value="Nicaragua">Nicaragua</option>
+
+  <option value="Niger">Niger</option>
+
+  <option value="Nigeria">Nigeria</option>
+
+  <option value="Niue">Niue</option>
+
+  <option value="North Korea">North Korea</option>
+
+  <option value="North Macedonia">North Macedonia</option>
+
+  <option value="Northern Cyprus">Northern Cyprus</option>
+
+  <option value="Norway">Norway</option>
+
+  <option value="Oman">Oman</option>
+
+  <option value="Pakistan">Pakistan</option>
+
+  <option value="Palau">Palau</option>
+
+  <option value="Palestine">Palestine</option>
+
+  <option value="Panama">Panama</option>
+
+  <option value="Papua New Guinea">Papua New Guinea</option>
+
+  <option value="Paraguay">Paraguay</option>
+
+  <option value="Peru">Peru</option>
+
+  <option value="Philippines">Philippines</option>
+
+  <option value="Poland">Poland</option>
+
+  <option value="Portugal">Portugal</option>
+
+  <option value="Puerto Rico">Puerto Rico</option>
+
+  <option value="Qatar">Qatar</option>
+
+  <option value="Republic of China (Taiwan)">Republic of China (Taiwan)</option>
+
+  <option value="Republic of Congo">Republic of Congo</option>
+
+  <option value="Romania">Romania</option>
+
+  <option value="Russia">Russia</option>
+
+  <option value="Rwanda">Rwanda</option>
+
+  <option value="Sahrawi Arab Democratic Republic">Sahrawi Arab Democratic Republic</option>
+
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+
+  <option value="Saint Lucia">Saint Lucia</option>
+
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+
+  <option value="Samoa">Samoa</option>
+
+  <option value="San Marino">San Marino</option>
+
+  <option value="Saudi Arabia">Saudi Arabia</option>
+
+  <option value="Scania">Scania</option>
+
+  <option value="Scotland">Scotland</option>
+
+  <option value="Senegal">Senegal</option>
+
+  <option value="Serbia">Serbia</option>
+
+  <option value="Seychelles">Seychelles</option>
+
+  <option value="Sierra Leone">Sierra Leone</option>
+
+  <option value="Singapore">Singapore</option>
+
+  <option value="Slovakia">Slovakia</option>
+
+  <option value="Slovenia">Slovenia</option>
+
+  <option value="Solomon Islands">Solomon Islands</option>
+
+  <option value="Somalia">Somalia</option>
+
+  <option value="Somaliland">Somaliland</option>
+
+  <option value="South Africa">South Africa</option>
+
+  <option value="South Korea">South Korea</option>
+
+  <option value="South Ossetia">South Ossetia</option>
+
+  <option value="South Sudan">South Sudan</option>
+
+  <option value="Spain">Spain</option>
+
+  <option value="Sri Lanka">Sri Lanka</option>
+
+  <option value="Sudan">Sudan</option>
+
+  <option value="Suriname">Suriname</option>
+
+  <option value="Sweden">Sweden</option>
+
+  <option value="Switzerland">Switzerland</option>
+
+  <option value="Syria">Syria</option>
+
+  <option value="São Tomé and Príncipe">São Tomé and Príncipe</option>
+
+  <option value="Tajikistan">Tajikistan</option>
+
+  <option value="Tanzania">Tanzania</option>
+
+  <option value="Thailand">Thailand</option>
+
+  <option value="Togo">Togo</option>
+
+  <option value="Tonga">Tonga</option>
+
+  <option value="Transnistria">Transnistria</option>
+
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+
+  <option value="Tunisia">Tunisia</option>
+
+  <option value="Turkey">Turkey</option>
+
+  <option value="Turkmenistan">Turkmenistan</option>
+
+  <option value="Tuvalu">Tuvalu</option>
+
+  <option value="Uganda">Uganda</option>
+
+  <option value="Ukraine">Ukraine</option>
+
+  <option value="United Arab Emirates">United Arab Emirates</option>
+
+  <option value="United Kingdom">United Kingdom</option>
+
+  <option value="United States">United States</option>
+
+  <option value="Uruguay">Uruguay</option>
+
+  <option value="Uzbekistan">Uzbekistan</option>
+
+  <option value="Vanuatu">Vanuatu</option>
+
+  <option value="Vatican City">Vatican City</option>
+
+  <option value="Venezuela">Venezuela</option>
+
+  <option value="Vietnam">Vietnam</option>
+
+  <option value="Wales">Wales</option>
+
+  <option value="Yemen">Yemen</option>
+
+  <option value="Zambia">Zambia</option>
+
+  <option value="Zimbabwe">Zimbabwe</option>
+
+  <option value="Agender Pride">Agender Pride</option>
+
+  <option value="Aromantic Pride">Aromantic Pride</option>
+
+  <option value="Asexual Pride">Asexual Pride</option>
+
+  <option value="Bigender Pride">Bigender Pride</option>
+
+  <option value="Bisexual Pride">Bisexual Pride</option>
+
+  <option value="Demiromantic Pride">Demiromantic Pride</option>
+
+  <option value="Demisexual Pride">Demisexual Pride</option>
+
+  <option value="Gay Pride">Gay Pride</option>
+
+  <option value="Gender Fluid">Gender Fluid</option>
+
+  <option value="Genderqueer Pride">Genderqueer Pride</option>
+
+  <option value="Intersex Pride">Intersex Pride</option>
+
+  <option value="Lesbian Pride">Lesbian Pride</option>
+
+  <option value="Non-binary">Non-binary</option>
+
+  <option value="Pansexual Pride">Pansexual Pride</option>
+
+  <option value="Polyamory Pride">Polyamory Pride</option>
+
+  <option value="Polysexual Pride">Polysexual Pride</option>
+
+  <option value="Transgender Pride">Transgender Pride</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own flag<br>
+            
+<input type="file" name="player7_custom_flag" accept="image/*" label="Upload your own flag" id="id_player7_6">
+<br>
+        </div>
+    
+</div>
+	</div>
+	<div class="cajita col-xs-12 col-sm-12 col-md-6 col-lg-3">
+		<p>Player 8</p>
+		
+		<div>
+    
+        <div>
+            Player Name<br>
+            <input type="text" name="player8_name" maxlength="40" label="Player Name" required="" id="id_player8_0">
+
+<br>
+        </div>
+    
+        <div>
+            Twitter Handle<br>
+            <input type="text" name="player8_twitter" maxlength="25" label="Twitter Handle" id="id_player8_1">
+
+<br>
+        </div>
+    
+        <div>
+            Main Character<br>
+            <select name="player8_char" label="Main Character" required="" id="id_player8_2">
+  <option value="Andy" selected="selected">Andy</option>
+
+  <option value="B. Jenet">B. Jenet</option>
+
+  <option value="Billy">Billy</option>
+
+  <option value="Chun-Li">Chun-Li</option>
+
+  <option value="Cristiano">Cristiano</option>
+
+  <option value="Dong Hwan">Dong Hwan</option>
+
+  <option value="Gato">Gato</option>
+
+  <option value="Geese">Geese</option>
+
+  <option value="Hokutomaru">Hokutomaru</option>
+
+  <option value="Hotaru">Hotaru</option>
+
+  <option value="Jae Hoon">Jae Hoon</option>
+
+  <option value="Joe">Joe</option>
+
+  <option value="Kain">Kain</option>
+
+  <option value="Ken">Ken</option>
+
+  <option value="Kevin">Kevin</option>
+
+  <option value="Mai">Mai</option>
+
+  <option value="Marco">Marco</option>
+
+  <option value="Mr. Big">Mr. Big</option>
+
+  <option value="Preecha">Preecha</option>
+
+  <option value="Random">Random</option>
+
+  <option value="Rock">Rock</option>
+
+  <option value="Salvatore">Salvatore</option>
+
+  <option value="Terry">Terry</option>
+
+  <option value="Tizoc">Tizoc</option>
+
+  <option value="Vox">Vox</option>
+
+</select>
+<br>
+        </div>
+    
+        <div style="display: none;">
+            Main Character Color<br>
+            <select name="player8_color" label="Main Character Color" required="" id="id_player8_3">
+  <option value="0" selected="selected">0: Default</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own portrait<br>
+            
+<input type="file" name="player8_portrait" accept="image/*" label="Upload your own portrait" id="id_player8_4">
+<br>
+        </div>
+    
+        <div>
+            Flag<br>
+            <select name="player8_flag" label="Flag" required="" id="id_player8_5">
+  <option value="None" selected="selected">None</option>
+
+  <option value="Abkhazia">Abkhazia</option>
+
+  <option value="Afghanistan">Afghanistan</option>
+
+  <option value="Albania">Albania</option>
+
+  <option value="Algeria">Algeria</option>
+
+  <option value="Andorra">Andorra</option>
+
+  <option value="Angola">Angola</option>
+
+  <option value="Antartica">Antartica</option>
+
+  <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+
+  <option value="Argentina">Argentina</option>
+
+  <option value="Armenia">Armenia</option>
+
+  <option value="Artsakh">Artsakh</option>
+
+  <option value="Australia">Australia</option>
+
+  <option value="Austria">Austria</option>
+
+  <option value="Azerbaijan">Azerbaijan</option>
+
+  <option value="Bahamas">Bahamas</option>
+
+  <option value="Bahrain">Bahrain</option>
+
+  <option value="Bangladesh">Bangladesh</option>
+
+  <option value="Barbados">Barbados</option>
+
+  <option value="Belarus">Belarus</option>
+
+  <option value="Belgium">Belgium</option>
+
+  <option value="Belize">Belize</option>
+
+  <option value="Benin">Benin</option>
+
+  <option value="Bhutan">Bhutan</option>
+
+  <option value="Bolivia">Bolivia</option>
+
+  <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+
+  <option value="Botswana">Botswana</option>
+
+  <option value="Brazil">Brazil</option>
+
+  <option value="Brunei">Brunei</option>
+
+  <option value="Bulgaria">Bulgaria</option>
+
+  <option value="Burkina Faso">Burkina Faso</option>
+
+  <option value="Burundi">Burundi</option>
+
+  <option value="Cambodia">Cambodia</option>
+
+  <option value="Cameroon">Cameroon</option>
+
+  <option value="Canada">Canada</option>
+
+  <option value="Cape Verde">Cape Verde</option>
+
+  <option value="Central African Republic">Central African Republic</option>
+
+  <option value="Chad">Chad</option>
+
+  <option value="Chile">Chile</option>
+
+  <option value="China">China</option>
+
+  <option value="Colombia">Colombia</option>
+
+  <option value="Comoros">Comoros</option>
+
+  <option value="Cook Islands">Cook Islands</option>
+
+  <option value="Costa Rica">Costa Rica</option>
+
+  <option value="Croatia">Croatia</option>
+
+  <option value="Cuba">Cuba</option>
+
+  <option value="Cyprus">Cyprus</option>
+
+  <option value="Czech Republic">Czech Republic</option>
+
+  <option value="Democratic Republic of Congo">Democratic Republic of Congo</option>
+
+  <option value="Denmark">Denmark</option>
+
+  <option value="Djibouti">Djibouti</option>
+
+  <option value="Dominica">Dominica</option>
+
+  <option value="Dominican Republic">Dominican Republic</option>
+
+  <option value="East Timor">East Timor</option>
+
+  <option value="Ecuador">Ecuador</option>
+
+  <option value="Egypt">Egypt</option>
+
+  <option value="El Salvador">El Salvador</option>
+
+  <option value="Equatorial Guinea">Equatorial Guinea</option>
+
+  <option value="Eritrea">Eritrea</option>
+
+  <option value="Estonia">Estonia</option>
+
+  <option value="Eswatini">Eswatini</option>
+
+  <option value="Ethiopia">Ethiopia</option>
+
+  <option value="Federated States of Micronesia">Federated States of Micronesia</option>
+
+  <option value="Fiji">Fiji</option>
+
+  <option value="Finland">Finland</option>
+
+  <option value="France">France</option>
+
+  <option value="Gabon">Gabon</option>
+
+  <option value="Gambia">Gambia</option>
+
+  <option value="Georgia">Georgia</option>
+
+  <option value="Germany">Germany</option>
+
+  <option value="Ghana">Ghana</option>
+
+  <option value="Greece">Greece</option>
+
+  <option value="Grenada">Grenada</option>
+
+  <option value="Guatemala">Guatemala</option>
+
+  <option value="Guinea-Bissau">Guinea-Bissau</option>
+
+  <option value="Guinea">Guinea</option>
+
+  <option value="Guyana">Guyana</option>
+
+  <option value="Haiti">Haiti</option>
+
+  <option value="Honduras">Honduras</option>
+
+  <option value="Hong Kong">Hong Kong</option>
+
+  <option value="Hungary">Hungary</option>
+
+  <option value="Iceland">Iceland</option>
+
+  <option value="India">India</option>
+
+  <option value="Indonesia">Indonesia</option>
+
+  <option value="Iran">Iran</option>
+
+  <option value="Iraq">Iraq</option>
+
+  <option value="Ireland">Ireland</option>
+
+  <option value="Israel">Israel</option>
+
+  <option value="Italy">Italy</option>
+
+  <option value="Ivory Coast">Ivory Coast</option>
+
+  <option value="Jamaica">Jamaica</option>
+
+  <option value="Japan">Japan</option>
+
+  <option value="Jordan">Jordan</option>
+
+  <option value="Kazakhstan">Kazakhstan</option>
+
+  <option value="Kenya">Kenya</option>
+
+  <option value="Kiribati">Kiribati</option>
+
+  <option value="Kosovo">Kosovo</option>
+
+  <option value="Kuwait">Kuwait</option>
+
+  <option value="Kyrgyzstan">Kyrgyzstan</option>
+
+  <option value="Laos">Laos</option>
+
+  <option value="Latvia">Latvia</option>
+
+  <option value="Lebanon">Lebanon</option>
+
+  <option value="Lesotho">Lesotho</option>
+
+  <option value="Liberia">Liberia</option>
+
+  <option value="Libya">Libya</option>
+
+  <option value="Liechtenstein">Liechtenstein</option>
+
+  <option value="Lithuania">Lithuania</option>
+
+  <option value="Luxembourg">Luxembourg</option>
+
+  <option value="Madagascar">Madagascar</option>
+
+  <option value="Malawi">Malawi</option>
+
+  <option value="Malaysia">Malaysia</option>
+
+  <option value="Maldives">Maldives</option>
+
+  <option value="Mali">Mali</option>
+
+  <option value="Malta">Malta</option>
+
+  <option value="Marshall Islands">Marshall Islands</option>
+
+  <option value="Mauritania">Mauritania</option>
+
+  <option value="Mauritius">Mauritius</option>
+
+  <option value="Mexico">Mexico</option>
+
+  <option value="Moldova">Moldova</option>
+
+  <option value="Monaco">Monaco</option>
+
+  <option value="Mongolia">Mongolia</option>
+
+  <option value="Montenegro">Montenegro</option>
+
+  <option value="Morocco">Morocco</option>
+
+  <option value="Mozambique">Mozambique</option>
+
+  <option value="Myanmar">Myanmar</option>
+
+  <option value="Namibia">Namibia</option>
+
+  <option value="Nauru">Nauru</option>
+
+  <option value="Nepal">Nepal</option>
+
+  <option value="Netherlands">Netherlands</option>
+
+  <option value="New Zealand">New Zealand</option>
+
+  <option value="Nicaragua">Nicaragua</option>
+
+  <option value="Niger">Niger</option>
+
+  <option value="Nigeria">Nigeria</option>
+
+  <option value="Niue">Niue</option>
+
+  <option value="North Korea">North Korea</option>
+
+  <option value="North Macedonia">North Macedonia</option>
+
+  <option value="Northern Cyprus">Northern Cyprus</option>
+
+  <option value="Norway">Norway</option>
+
+  <option value="Oman">Oman</option>
+
+  <option value="Pakistan">Pakistan</option>
+
+  <option value="Palau">Palau</option>
+
+  <option value="Palestine">Palestine</option>
+
+  <option value="Panama">Panama</option>
+
+  <option value="Papua New Guinea">Papua New Guinea</option>
+
+  <option value="Paraguay">Paraguay</option>
+
+  <option value="Peru">Peru</option>
+
+  <option value="Philippines">Philippines</option>
+
+  <option value="Poland">Poland</option>
+
+  <option value="Portugal">Portugal</option>
+
+  <option value="Puerto Rico">Puerto Rico</option>
+
+  <option value="Qatar">Qatar</option>
+
+  <option value="Republic of China (Taiwan)">Republic of China (Taiwan)</option>
+
+  <option value="Republic of Congo">Republic of Congo</option>
+
+  <option value="Romania">Romania</option>
+
+  <option value="Russia">Russia</option>
+
+  <option value="Rwanda">Rwanda</option>
+
+  <option value="Sahrawi Arab Democratic Republic">Sahrawi Arab Democratic Republic</option>
+
+  <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+
+  <option value="Saint Lucia">Saint Lucia</option>
+
+  <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+
+  <option value="Samoa">Samoa</option>
+
+  <option value="San Marino">San Marino</option>
+
+  <option value="Saudi Arabia">Saudi Arabia</option>
+
+  <option value="Scania">Scania</option>
+
+  <option value="Scotland">Scotland</option>
+
+  <option value="Senegal">Senegal</option>
+
+  <option value="Serbia">Serbia</option>
+
+  <option value="Seychelles">Seychelles</option>
+
+  <option value="Sierra Leone">Sierra Leone</option>
+
+  <option value="Singapore">Singapore</option>
+
+  <option value="Slovakia">Slovakia</option>
+
+  <option value="Slovenia">Slovenia</option>
+
+  <option value="Solomon Islands">Solomon Islands</option>
+
+  <option value="Somalia">Somalia</option>
+
+  <option value="Somaliland">Somaliland</option>
+
+  <option value="South Africa">South Africa</option>
+
+  <option value="South Korea">South Korea</option>
+
+  <option value="South Ossetia">South Ossetia</option>
+
+  <option value="South Sudan">South Sudan</option>
+
+  <option value="Spain">Spain</option>
+
+  <option value="Sri Lanka">Sri Lanka</option>
+
+  <option value="Sudan">Sudan</option>
+
+  <option value="Suriname">Suriname</option>
+
+  <option value="Sweden">Sweden</option>
+
+  <option value="Switzerland">Switzerland</option>
+
+  <option value="Syria">Syria</option>
+
+  <option value="São Tomé and Príncipe">São Tomé and Príncipe</option>
+
+  <option value="Tajikistan">Tajikistan</option>
+
+  <option value="Tanzania">Tanzania</option>
+
+  <option value="Thailand">Thailand</option>
+
+  <option value="Togo">Togo</option>
+
+  <option value="Tonga">Tonga</option>
+
+  <option value="Transnistria">Transnistria</option>
+
+  <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+
+  <option value="Tunisia">Tunisia</option>
+
+  <option value="Turkey">Turkey</option>
+
+  <option value="Turkmenistan">Turkmenistan</option>
+
+  <option value="Tuvalu">Tuvalu</option>
+
+  <option value="Uganda">Uganda</option>
+
+  <option value="Ukraine">Ukraine</option>
+
+  <option value="United Arab Emirates">United Arab Emirates</option>
+
+  <option value="United Kingdom">United Kingdom</option>
+
+  <option value="United States">United States</option>
+
+  <option value="Uruguay">Uruguay</option>
+
+  <option value="Uzbekistan">Uzbekistan</option>
+
+  <option value="Vanuatu">Vanuatu</option>
+
+  <option value="Vatican City">Vatican City</option>
+
+  <option value="Venezuela">Venezuela</option>
+
+  <option value="Vietnam">Vietnam</option>
+
+  <option value="Wales">Wales</option>
+
+  <option value="Yemen">Yemen</option>
+
+  <option value="Zambia">Zambia</option>
+
+  <option value="Zimbabwe">Zimbabwe</option>
+
+  <option value="Agender Pride">Agender Pride</option>
+
+  <option value="Aromantic Pride">Aromantic Pride</option>
+
+  <option value="Asexual Pride">Asexual Pride</option>
+
+  <option value="Bigender Pride">Bigender Pride</option>
+
+  <option value="Bisexual Pride">Bisexual Pride</option>
+
+  <option value="Demiromantic Pride">Demiromantic Pride</option>
+
+  <option value="Demisexual Pride">Demisexual Pride</option>
+
+  <option value="Gay Pride">Gay Pride</option>
+
+  <option value="Gender Fluid">Gender Fluid</option>
+
+  <option value="Genderqueer Pride">Genderqueer Pride</option>
+
+  <option value="Intersex Pride">Intersex Pride</option>
+
+  <option value="Lesbian Pride">Lesbian Pride</option>
+
+  <option value="Non-binary">Non-binary</option>
+
+  <option value="Pansexual Pride">Pansexual Pride</option>
+
+  <option value="Polyamory Pride">Polyamory Pride</option>
+
+  <option value="Polysexual Pride">Polysexual Pride</option>
+
+  <option value="Transgender Pride">Transgender Pride</option>
+
+</select>
+<br>
+        </div>
+    
+        <div>
+            Upload your own flag<br>
+            
+<input type="file" name="player8_custom_flag" accept="image/*" label="Upload your own flag" id="id_player8_6">
+<br>
+        </div>
+    
+</div>
+	</div>
+
+        <div class="cajilla col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <label for="id_ttext">Top Left Text:</label>
+                
+                <input type="text" name="ttext" maxlength="256" id="id_ttext">
+        </div>
+        <div class="cajilla col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <label for="id_btext">Bottom Text:</label>
+                
+                <input type="text" name="btext" maxlength="256" id="id_btext">
+        </div>
+        <div class="cajilla col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <label for="id_url">Top Right:</label>
+                
+                <input type="text" name="url" value="https://top8er.com/" maxlength="256" id="id_url">
+        </div>
+
+        <!-- Layout Options -->
+
+        <span class="moreopt togglelayopt col-md-12">+ Layout Options</span>
+
+        <div class="row col-md-12">
+
+        <div class="layopt col-xs-12 col-sm-12 col-md-12 col-lg-12 row">
+
+	        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+	                <label for="id_lcolor1">Main Color:</label>
+	                <br>
+	                <input type="color" name="lcolor1" value="#fc4f00" required="" id="id_lcolor1"><script type="text/javascript">
+                    (function($){
+                        $(document).ready(function(){
+                            $('#id_lcolor1').each(function(i, elm){
+                                // Make sure html5 color element is not replaced
+                                if (elm.type != 'color') $(elm).colorPicker({});
+                            });
+                        });
+                    })('django' in window && django.jQuery ? django.jQuery: jQuery);
+                </script>
+                
+	        </div>
+
+	        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+	                <label for="id_lcolor2">Highlight Color:</label>
+	                <br>
+	                <input type="color" name="lcolor2" value="#02e9d9" required="" id="id_lcolor2"><script type="text/javascript">
+                    (function($){
+                        $(document).ready(function(){
+                            $('#id_lcolor2').each(function(i, elm){
+                                // Make sure html5 color element is not replaced
+                                if (elm.type != 'color') $(elm).colorPicker({});
+                            });
+                        });
+                    })('django' in window && django.jQuery ? django.jQuery: jQuery);
+                </script>
+                
+	        </div>
+
+
+	        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+	                <label for="id_background">Background Image:</label>
+	                
+	                <input type="file" name="background" accept="image/*" id="id_background"><br>
+	                
+	                <input type="checkbox" name="darken_bg" id="id_darken_bg" checked="checked">
+	                <span style="font-size: 10px">Darken background for better readability</span>
+	        </div>
+
+	        <!-- Checkboxes -->
+
+		        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		        		<br>
+		                <label for="id_blacksquares">Black Background for characters:</label>
+		                
+		                <input type="checkbox" name="blacksquares" id="id_blacksquares" checked="checked"><br>
+		                <span style="font-size: 10px">Add a solid black background to each character's portrait</span><br>
+		        </div>
+
+		        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		        		<br>
+		                <label for="id_charshadow">Character Shadow:</label>
+		                
+		                <input type="checkbox" name="charshadow" id="id_charshadow" checked="checked"><br>
+		                <span style="font-size: 10px">Add a shadow of the main layout color to each character's portrait</span><br>
+		        </div>
+
+		        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+		        		<br>
+		                <label for="id_prmode">PR Mode:</label>
+		                
+		                <input type="checkbox" name="prmode" id="id_prmode"><br>
+		                <span style="font-size: 10px">Makes numbers go from 1 to 8 without repetition for PR graphics</span><br>
+		        </div>
+
+				<!-- A -->
+
+				<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+					<br>
+					<label for="id_logo">Logo:</label>
+					
+					<input type="file" name="logo" accept="image/*" id="id_logo"><br>
+					<span style="font-size: 10px">Replaces top left text with a custom image</span><br>
+				</div>
+
+		    </div>
+
+	    </div>
+
+        <!-- Font options -->
+
+        <span class="moreopt togglefontopt col-md-12">+ Font Options</span>
+
+        <div class="fontopt col-xs-12 col-sm-12 col-md-12 col-lg-12 row">
+
+	        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+	                <label for="id_fontt">Select font Type:</label>
+	                
+	                <select name="fontt" id="id_fontt">
+  <option value="auto" selected="selected">Auto</option>
+
+  <option value="DFGothic-SU-WIN-RKSJ-H-01.ttf">SSBU font (japanese characters)</option>
+
+  <option value="sansthirteenblack.ttf">SansThirteenBlack (european characters)</option>
+
+</select><br>
+	                <label for="id_font_file">Or upload your own font:</label>
+	                
+	                <input type="file" name="font_file" id="id_font_file"><br>
+	        </div>
+
+
+	        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 row">
+
+	        <h4 class="col-md-12">Player Text Colors</h4>
+	        <div class="col-md-12" style="font-size: 10px">Affects player names, twitter handles and position numbers</div>
+
+	        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	                <label for="id_fcolor1">Font Color:</label>
+	                
+	                <input type="color" name="fcolor1" value="#ffffff" required="" id="id_fcolor1"><script type="text/javascript">
+                    (function($){
+                        $(document).ready(function(){
+                            $('#id_fcolor1').each(function(i, elm){
+                                // Make sure html5 color element is not replaced
+                                if (elm.type != 'color') $(elm).colorPicker({});
+                            });
+                        });
+                    })('django' in window && django.jQuery ? django.jQuery: jQuery);
+                </script>
+                <br>
+	        </div>
+
+	        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	                <label for="id_fscolor1">Font Shadow Color:</label>
+	                
+	                <input type="color" name="fscolor1" value="#000000" required="" id="id_fscolor1"><script type="text/javascript">
+                    (function($){
+                        $(document).ready(function(){
+                            $('#id_fscolor1').each(function(i, elm){
+                                // Make sure html5 color element is not replaced
+                                if (elm.type != 'color') $(elm).colorPicker({});
+                            });
+                        });
+                    })('django' in window && django.jQuery ? django.jQuery: jQuery);
+                </script>
+                <br>
+        	</div>
+
+        	<h4 class="col-md-12">Extra Text Colors</h4>
+        	<div class="col-md-12" style="font-size: 10px">Affects text in the corners</div>
+
+	        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	                <label for="id_fcolor2">Font Color:</label>
+	                
+	                <input type="color" name="fcolor2" value="#ffffff" required="" id="id_fcolor2"><script type="text/javascript">
+                    (function($){
+                        $(document).ready(function(){
+                            $('#id_fcolor2').each(function(i, elm){
+                                // Make sure html5 color element is not replaced
+                                if (elm.type != 'color') $(elm).colorPicker({});
+                            });
+                        });
+                    })('django' in window && django.jQuery ? django.jQuery: jQuery);
+                </script>
+                <br>
+	        </div>
+
+	        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	                <label for="id_fscolor2">Font Shadow Color:</label>
+	                
+	                <input type="color" name="fscolor2" value="#000000" required="" id="id_fscolor2"><script type="text/javascript">
+                    (function($){
+                        $(document).ready(function(){
+                            $('#id_fscolor2').each(function(i, elm){
+                                // Make sure html5 color element is not replaced
+                                if (elm.type != 'color') $(elm).colorPicker({});
+                            });
+                        });
+                    })('django' in window && django.jQuery ? django.jQuery: jQuery);
+                </script>
+                <br>
+        	</div>
+
+        	</div>
+
+    	</div>
+
+        <div class="cajilla col-xs-12 col-sm-12 col-md-3 col-lg-3" style="padding-left: 5%; padding-right: 5%
+		                                                 padding-top: 10px;
+		                                                 padding-bottom: 10px;">
+		    <input type="submit" value="Generate" style="height: 50px">
+		</div>
+
+        <div class="cajilla col-xs-12 col-sm-12 col-md-3 col-lg-3" style="padding-left: 5%; padding-right: 5%
+		                                                 padding-top: 10px;
+		                                                 padding-bottom: 10px;">
+			
+		</div>
+
+    </div>
+
+	</form>
+
+	<div class="tab1">
+		<h2>Other Games</h2>
+
+		<style>
+			.logo {
+				max-width: 80%;
+				height: auto;
+				margin: 0; padding: 0;
+			}
+			.logo-container {
+				display: inline-block;
+				width: 15%;
+				text-align: center;
+				margin: 0; padding: 0;
+				margin-bottom: 20px;
+			}
+		</style>
+
+		
+			<h3>Platform Fighter</h3>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/BrawlMinus">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ssbbminus.png">
+						<div>Brawl Minus</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Brawlhalla">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/brawlhalla.png">
+						<div>Brawlhalla</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/DigimonRumbleArena">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/dra.png">
+						<div>Digimon Rumble Arena</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/KirbyFighters2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/kf2.png">
+						<div>Kirby Fighers 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/LethalLeagueBlaze">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/llblaze.png">
+						<div>Lethal League Blaze</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/NASB">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/nasb.png">
+						<div>Nickelodeon All-Star Battle</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/NASB2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/nasb2.png">
+						<div>Nickelodeon All-Star Brawl 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Project+">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/p+ta.png">
+						<div>Project + Tournament Addition</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/ProjectM">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/p+.png">
+						<div>Project M</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/rivals">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/roa.png">
+						<div>Rivals of Aether</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/rivals2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/roa2.png">
+						<div>Rivals of Aether II</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/RushdownRevolt">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/rr.png">
+						<div>RushdownRevolt</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SlapCity">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/slapcity.png">
+						<div>Slap City</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SSB64">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ssb64.png">
+						<div>Super Smash Bros 64</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SSBC">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ssbc.png">
+						<div>Super Smash Bros Crusade</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/melee">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/melee.png">
+						<div>Super Smash Bros Melee</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ssbu.png">
+						<div>Super Smash Bros Ultimate</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SSB4">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ssb4.png">
+						<div>Super Smash Bros for Wii U</div>
+					</a>
+				</div>
+			
+		
+			<h3>2D Fighter</h3>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/2XKO">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/2xko.png">
+						<div>2XKO</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/avg2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/avg2.png">
+						<div>Advanced V.G. 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/ABK">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/abk.png">
+						<div>Akatsuki Blitzkampf</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/amogus">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/amogus.png">
+						<div>Among Us Arena</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Asuka120">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/asuka120.png">
+						<div>Asuka 120% LimitOver BURNING Fest.</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/AsuraBuster">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/AsuraBuster.png">
+						<div>Asura Buster: Eternal Warriors</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/AvengersGalacticStorm">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/aigs.png">
+						<div>Avengers in Galactic Storm</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/BeatsOfMisery">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/beastsofmisery.png">
+						<div>Beasts of mystery</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/BBCF">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/bbcf.png">
+						<div>BlazBlue Centralfiction</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/BBTAG">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/bbtag.png">
+						<div>BlazBlue Cross Tag Battle</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/BreakersRevenge">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/breakersrevenge.png">
+						<div>Breakers Revenge</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/CapcomFightingEvolution">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/capcomfightingevolution.png">
+						<div>Capcom Fighting Evolution</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Cyberbots">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/cyberbots.png">
+						<div>Cyberbots</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/DNFDuel">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/dnf.png">
+						<div>DNF Duel</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/dankuga">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/dankuga.png">
+						<div>Dan-Ku-Ga</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/DarkstalkersNightWarriors">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/darkstalkersnightwarriors.png">
+						<div>Darkstalkers: The Night Warriors</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/dfci">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/dfci.png">
+						<div>Dengeki Bunko Fighting Climax Ignition</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/DBFZ">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/dbfz.png">
+						<div>Dragon Ball FighterZ</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/DuelsOfFortune">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/duelsoffortune.png">
+						<div>Duels of fortune</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/ElemensionalRift">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/elemensional.png">
+						<div>Elemensional Rift</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/efz">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/efz.png">
+						<div>Eternal Fighter Zero</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/FatalFuryCityOfTheWolves">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ffcotw_002.png">
+						<div>Fatal Fury: City of the Wolves</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Garou">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/garou.png">
+						<div>Garou Mark of the Wolves</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/GBVS">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/gbvs.png">
+						<div>Granblue Fantasy Versus</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/GBVSR">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/gbvsr.png">
+						<div>Granblue Fantasy Versus: Rising</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/GuiltyGearStrive">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ggst.png">
+						<div>Guilty Gear Strive</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/GuiltyGearACPR">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ggxx.png">
+						<div>Guilty Gear XX Accent Core Plus R</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/GuiltyGearXrd">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ggxrd.png">
+						<div>Guilty Gear Xrd Rev 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/HxHNenImpact">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/hxhnenimpact.png">
+						<div>HUNTER×HUNTER NEN×IMPACT</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Hyperfight">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/hyperfight.png">
+						<div>HYPERFIGHT</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/IdolShowdown">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/idolshowdown.png">
+						<div>Idol Showdown: Next Fes</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Injustice2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/injustice2.png">
+						<div>Injustice 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Injustice">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/injustice.png">
+						<div>Injustice: Gods Among Us</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/InvincibleVS">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/invinciblevs.png">
+						<div>Invincible VS</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/IronSagaVS">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ironsagavs.png">
+						<div>Iron Saga VS</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/JoJoASBR">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/jojoasbr.png">
+						<div>JoJo's Bizarre Adventure: All Star Battle R</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/jojoban">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/jojoban.png">
+						<div>Jojo's Bizarre Adventure: Hertiage for the Future</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/JoyMechFight">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/joymechfight.png">
+						<div>Joy Mech Fight</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/JumpJousts2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/jumpjousts2.png">
+						<div>Jump Jousts 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Karnov">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/karnov.png">
+						<div>Karnov's Revenge</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/KillerInstinct">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ki.png">
+						<div>Killer Instinct</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/killer_instinct_2013">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/killer_instinct_2013.png">
+						<div>Killer Instinct (2013)</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/KillerInstinct2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ki2.png">
+						<div>Killer Instinct 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/KOF2002UM">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/kof2002um.png">
+						<div>King of Fighters 2002 Ultimate Match</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/KOFXV">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/kofxv.png">
+						<div>King of Fighters XV</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MarvelSuperHeroes">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/marvelsuperheroes.png">
+						<div>Marvel Super Heroes</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MarvelSuperHeroesVSStreetFighter">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mvsf.png">
+						<div>Marvel Super Heroes vs. Street Fighter</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MvCI">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mvci.png">
+						<div>Marvel VS Capcom Infinite</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MvC2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mvc2.png">
+						<div>Marvel vs. Capcom 2: New Age of Heroe</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MarvelVSCapcomClashOfSuperHeroes">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mvcclash.png">
+						<div>Marvel vs. Capcom: Clash of Super Heroes</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MeltyBlood">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mbaacc.png">
+						<div>Melty Blood Actress Again Current Code</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MBTL">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mbtl.png">
+						<div>Melty Blood Type Lumina</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Moonatics">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/moonatics.png">
+						<div>Moonatics</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MK1992">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mk1992.png">
+						<div>Mortal Kombat (1992)</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MK2011">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mk2011.png">
+						<div>Mortal Kombat (2011)</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MK1">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mk1.png">
+						<div>Mortal Kombat 1</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MK11">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mk11.png">
+						<div>Mortal Kombat 11</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MK2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mk2.png">
+						<div>Mortal Kombat II</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MortalKombatX">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mkx.png">
+						<div>Mortal Kombat X</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Multiversus">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/multiversus.png">
+						<div>MultiVersus</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/OneMustFall2097">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/onemustfall2097.png">
+						<div>One Must Fall 2097</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/P4AU">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/p4au.png">
+						<div>Persona 4 Arena Ultimax</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/PlasmaSword">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/plasmasword.png">
+						<div>Plasma Sword: Nightmare of Bilstein</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/PokemonCloseCombat">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/pokemoncc.png">
+						<div>Pokèmon: Close Combat</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/ProjectJustice">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/projectjustice.png">
+						<div>Project Justice</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/RedEarth">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/redearth.png">
+						<div>Red Earth</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/rising_thunder">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/rising_thunder.png">
+						<div>Rising Thunder</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SailorMoonS">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/sms.png">
+						<div>Sailor Moon S</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SamuraiShodown">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/samsho2019.png">
+						<div>Samurai Shodown</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SamuraiShodownV">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ssv.png">
+						<div>Samurai Shodown V</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/ssvi">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ssvi.png">
+						<div>Samurai Shodown VI</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/skullgirls">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/sg.png">
+						<div>Skullgirls</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SpectralVS">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/svs.png">
+						<div>Spectral VS Generation</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/3rdStrike">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/3s.png">
+						<div>Street Figher III 3rd Strike</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SuperTurbo">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/sfst.png">
+						<div>Street Fighert II Super Turbo</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/StreetFighter6">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/sf6.png">
+						<div>Street Fighter 6</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SFA3">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/sfa3.png">
+						<div>Street Fighter Alpha 3</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SFV">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/sfv.png">
+						<div>Street Fighter V</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/TatsunokoVSCapcom">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/tvc.png">
+						<div>Tatsunoko Vs Capcom: Ultimate All-Stars</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/KOFXI">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/kofxi.png">
+						<div>The King of Fighters XI</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/KOFXIII">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/kofxiii.png">
+						<div>The King of Fighters XIII</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/TheLastBlade2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/tlb2.png">
+						<div>The Last Blade 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/TFH">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/tfh.png">
+						<div>Them's Fightin' Herds</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/TomAndJerry">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/tyj.png">
+						<div>Tom and Jerry in Fists of Furry</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/tla">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/tla.png">
+						<div>Tough Love Arena</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/AntinomyOfCommonFlower">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/touhouantinomy.png">
+						<div>Touhou 15.5: Antinomy of Common Flowers</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/TouhouHisoutensoku">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/soku.png">
+						<div>Touhou Hisoutensoku</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/uni2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/uni2.png">
+						<div>UNDER NIGHT IN-BIRTH II Sys:Celes</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/UMvC3">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/umvc3.png">
+						<div>Ultimate Marvel VS Capcom 3</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/UMK3">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/umk3.png">
+						<div>Ultimate Mortal Kombat 3</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/UltraFightDaKyanta2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/kyanta2.png">
+						<div>Ultra Fight Da! Kyanta 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/usfiv">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/usfiv.png">
+						<div>Ultra Street Fighter IV</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/uni">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/uni.png">
+						<div>Under Night In-Birth Exe:Late[cl-r]</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/VHUN">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/vhun.png">
+						<div>Vampire Hunter</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/VSAV">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/vsav.png">
+						<div>Vampire Savior</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/WakuWaku7">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/waku.png">
+						<div>Waku Waku 7</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/XmenVSStreetFighter">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/xmenvssf.png">
+						<div>X-Men vs. Street Fighter</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/XMenCotA">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/xmencota.png">
+						<div>X-Men: Children of the Atom</div>
+					</a>
+				</div>
+			
+		
+			<h3>3D Fighter</h3>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/DoA5">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/doa5.png">
+						<div>Dead or Alive 5</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/DoA6">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/doa6.png">
+						<div>Dead or Alive 6</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MKGold">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mkgold.png">
+						<div>Mortal Kombat Gold</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MortalKombatVSDCUniverse">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mkvsdc.png">
+						<div>Mortal Kombat vs. DC Universe</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MKArmageddon">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mkarmageddon.png">
+						<div>Mortal Kombat: Armageddon</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MKUnchained">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mkunchained.png">
+						<div>Mortal Kombat: Unchained</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/narutorev3">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/narutorev3.png">
+						<div>Naruto Shippuden: Clash of Ninja Revolution 3</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/PowerStone">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/powerstone.png">
+						<div>Power Stone</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/PowerStone2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/powerstone2.png">
+						<div>Power Stone 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SonicTheFighters">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/sonicthefighters.png">
+						<div>Sonic The Fighters</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SC6">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/sc6.png">
+						<div>Soul Calibur 6</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SC2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/sc2.png">
+						<div>Soul Calibur II</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SuperNarutoClashOfNinja4">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/narutocon4.png">
+						<div>Super Naruto: Clash of Ninja 4</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Tekken7">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/tekken7.png">
+						<div>Tekken 7</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Tekken8">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/tekken8.png">
+						<div>Tekken 8</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/VF5">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/vf5.png">
+						<div>Virtua Fighter 5</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/YsVSTheTrails">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ysvstrails.png">
+						<div>Ys Vs. Trails in the Sky: Alternative Saga</div>
+					</a>
+				</div>
+			
+		
+			<h3>TCG</h3>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/DigimonCardGame">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/digimoncg.png">
+						<div>Digimon Card Game</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/DragonBallFusionWorld">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/dbsfw.png">
+						<div>Dragon Ball Super Fusion World</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/FleshAndBlood">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/fleshandblood.png">
+						<div>Flesh and Blood</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/GundamTCG">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/gundamtcg.png">
+						<div>Gundam</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/OnePieceTCG">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/optcg.png">
+						<div>One Piece Trading Card Game</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Riftbound">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/riftbound.png">
+						<div>Riftbound</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Shadowverse">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/shadowverse.png">
+						<div>ShadowverseCCG</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Wixoss">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/wixoss.png">
+						<div>Wixoss</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/YuGiOh">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/yugioh.png">
+						<div>Yu-Gi-Oh!</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/HololiveOCG">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/hololiveocg.png">
+						<div>hololive Original Card Game</div>
+					</a>
+				</div>
+			
+		
+			<h3>Other</h3>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/ARMS">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/arms.png">
+						<div>ARMS</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/aos2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/aos2.png">
+						<div>Acceleration of Sugurui 2</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Bootsies">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/bootsies.png">
+						<div>Bootsies</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/IEGO">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/iego.png">
+						<div>Inazuma Eleven GO Strikers 2013</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/ievr">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ievr.png">
+						<div>Inazuma Eleven Victory Road</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/NeoTurfMasters">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/neoturfmasters.png">
+						<div>Neo Turf Masters</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/PokkenTournamentDX">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/pokken.png">
+						<div>Pokkén Tournament DX</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SmashLegends">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/smashlegends.png">
+						<div>SMASH LEGENDS</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SuperGemFighterMiniMix">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/supergemfighterminimix.png">
+						<div>Super Gem Fighter Mini Mix</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/MarioKart">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/mariokart.png">
+						<div>Super Mario Kart</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/SuperPuzzleFighter2Turbo">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/superpuzzlefighter2turbo.png">
+						<div>Super Puzzle Fighter II Turbo</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Wargroove">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/wargroove.png">
+						<div>Wargroove</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Windjammers">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/windjammers.png">
+						<div>Windjammers</div>
+					</a>
+				</div>
+			
+				<div class="logo-container">
+					<a href="https://www.top8er.com/Windjammers2">
+						<img class="logo" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/windjammers2.png">
+						<div>Windjammers 2</div>
+					</a>
+				</div>
+			
+		
+
+		<p>Don't see the game you were looking for? Would you like to help get it there? Follow <a href="https://github.com/ShonTitor/Top8er/blob/master/HowToHelp.md">this guide</a></p>
+	</div>
+
+	<div class="tab2">
+		<h3><strong>About Us</strong></h3>
+		<p>This generator was made originally for the Smash Venezuela 
+community. As you might know, the economic situation in Venezuela is not
+ the best. The inflation is sky-high, universities are in crisis 
+(private and public alike) and the minimum wage is less than $1 a month 
+(the lowest in the world). For this and more, we ask you to consider 
+supporting us monetarily if you like our work or find it useful.</p>
+		<h4><strong>Riokaru</strong></h4>
+		<img src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/riokaru.jpg" style="float : right; height: 200px; width: auto;">
+		<p>Riokaru is a last year student of Computer Engineering at 
+Universidad Simón Bolívar (USB) in Caracas, Venezuela. He likes 
+functional programming and JRPGs. His main in Super Smash Bros Ultimate 
+is Mewtwo.</p>
+		<a href="https://twitter.com/Riokaru" class="twitter-follow-button" data-show-count="false">Follow @Riokaru</a><script async="" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/widgets.js" charset="utf-8"></script>
+		<br>
+		<script type="text/javascript" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/widget_2.js"></script><script type="text/javascript">kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'E1E4K0N2');kofiwidget2.draw();</script><style>img.kofiimg{display: initial!important;vertical-align:middle;height:13px!important;width:20px!important;padding-top:0!important;padding-bottom:0!important;border:none;margin-top:0;margin-right:5px!important;margin-left:0!important;margin-bottom:3px!important;content:url('https://storage.ko-fi.com/cdn/logomarkLogo.png')}.kofiimg:after{vertical-align:middle;height:25px;padding-top:0;padding-bottom:0;border:none;margin-top:0;margin-right:6px;margin-left:0;margin-bottom:4px!important;content:url('https://storage.ko-fi.com/cdn/whitelogo.svg')}.btn-container{display:inline-block!important;white-space:nowrap;min-width:160px}span.kofitext{color:#fff !important;letter-spacing: -0.15px!important;text-wrap:none;vertical-align:middle;line-height:33px !important;padding:0;text-align:center;text-decoration:none!important; text-shadow: 0 1px 1px rgba(34, 34, 34, 0.05);}.kofitext a{color:#fff !important;text-decoration:none !important;}.kofitext a:hover{color:#fff !important;text-decoration:none}a.kofi-button{box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);line-height:36px!important;min-width:150px;display:inline-block!important;background-color:#29abe0;padding:2px 12px !important;text-align:center !important;border-radius:12px;color:#fff;cursor:pointer;overflow-wrap:break-word;vertical-align:middle;border:0 none #fff !important;font-family:'DM Sans',Helvetica,Century Gothic,sans-serif !important;text-decoration:none;text-shadow:none;font-weight:var(--weight-m)!important;font-size:14px !important}a.kofi-button:visited{color:#fff !important;text-decoration:none !important}a.kofi-button:hover{opacity:.85;color:#f5f5f5 !important;text-decoration:none !important}a.kofi-button:active{color:#f5f5f5 !important;text-decoration:none !important}.kofitext img.kofiimg {height:15px!important;width:19px!important;display: initial;animation: kofi-wiggle 3s infinite;}@keyframes kofi-wiggle{0%{transform:rotate(0) scale(1)}60%{transform:rotate(0) scale(1)}75%{transform:rotate(0) scale(1.12)}80%{transform:rotate(0) scale(1.1)}84%{transform:rotate(-10deg) scale(1.1)}88%{transform:rotate(10deg) scale(1.1)}92%{transform:rotate(-10deg) scale(1.1)}96%{transform:rotate(10deg) scale(1.1)}100%{transform:rotate(0) scale(1)}}</style><link href="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/css.css" rel="stylesheet" type="text/css"><div class="btn-container"><a title="Support me on ko-fi.com" class="kofi-button" style="background-color:#29abe0;" href="https://ko-fi.com/E1E4K0N2" target="_blank"> <span class="kofitext"><img src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/logomarkLogo.webp" alt="Ko-fi tips" class="kofiimg">Support Me on Ko-fi</span></a></div>
+
+		<br><br>
+		<h4><strong>EDM</strong></h4>
+		<img src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/edm.jpg" style="float : right; height: 200px; width: auto;">
+		<p>EDM is a graphic designer from Puerto Cabello, Venezuela currently 
+living in Madrid, Spain. During the Wii U era he got to be a top player 
+both in his region and the whole country. His characters in Ultimate are
+ Falco and Joker.</p>
+        <a href="https://twitter.com/Elenriqu3" class="twitter-follow-button" data-show-count="false">Follow @Elenriqu3</a><script async="" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/widgets.js" charset="utf-8"></script>
+        <br>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+		<input type="hidden" name="cmd" value="_donations">
+		<input type="hidden" name="business" value="elenriqu3@gmail.com">
+		<input type="hidden" name="currency_code" value="USD">
+		<input type="image" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
+		<img alt="" border="0" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/pixel.gif" width="1" height="1" ull7sbge8="">
+		</form>
+
+	</div>
+
+	<div class="tab3">
+		<h2>Special Thanks</h2>
+
+		<h4>Elevated People</h4>
+		<ul>
+			<a href="https://twitter.com/ArcaniusBrain"><li>Brain</li></a>
+			<a href="https://twitter.com/LuigiDiMartino"><li>Luigic7</li></a>
+			<a href="https://twitter.com/shiburizu"><li>Shib</li></a>
+		</ul>
+
+		<h4>Graphic Assets</h4>
+		<ul>
+			<li><a href="https://twitter.com/Elenriqu3">EDM</a> for the layout design as well as guiding me to make adjustments</li>
+			<li>Nintendo and Sora Ltd. for the Super Smash Bros Ultimate font used here</li>
+			<li><a href="https://www.fontzillion.com/foundry/manfred-klein">Manfred Klein</a> for his 'Sans Thirteen Black' font</li>
+			<li><a href="https://twitter.com/playvortexgames">The Vortex Games team</a> for preparing and sending <a href="https://twitter.com/RushdownRevolt">Rushdown Revolt's</a> assets ready to use</li>
+			<li>All game assets belong to their respective creators</li>
+		</ul>
+
+		<h4>Software</h4>
+		<ul>
+			<li><a href="https://www.djangoproject.com/">Django</a></li>
+			<li><a href="https://pypi.org/project/Pillow/">Pillow</a></li>
+			<li><a href="https://pypi.org/project/django-colorful/">Colorful</a></li>
+			<li><a href="https://github.com/fonttools/fonttools">Font Tools</a></li>
+			<li><a href="https://start.gg/">start.gg</a></li>
+			<li><a href="https://challonge.com/">Challonge</a></li>
+		</ul>
+	</div>
+
+	<div class="tab4">
+		<h2>Privacy Policy</h2>
+		<p>
+		Last updated: 2020/10/26<br>
+
+		We operate / (the "Site"). This page informs you of our policies 
+regarding the collection, use and disclosure of Personal Information we 
+receive from users of the Site.<br>
+		We use your Personal Information only for providing and improving the 
+Site. By using the Site, you agree to the collection and use of 
+information in accordance with this policy.<br>
+		Information Collection And Use<br>
+
+
+		While using our Site, we may ask you to provide us with certain 
+personally identifiable information that can be used to contact or 
+identify you. Personally identifiable information may include, but is 
+not limited to your name ("Personal Information").
+		</p>
+
+
+		<h4>Log Data</h4>
+
+		<p>
+		Like many site operators, we collect information that your browser sends whenever you visit our Site ("Log Data").<br>
+
+
+		This Log Data may include information such as your computer's Internet
+ Protocol ("IP") address, browser type, browser version, the pages of 
+our Site that you visit, the time and date of your visit, the time spent
+ on those pages and other statistics.<br>
+
+
+		In addition, we may use third party services such as Google Analytics that collect, monitor and analyze this …<br>
+		The Log Data section is for businesses that use analytics or tracking services in websites or apps, like Google Analytics.
+		</p>
+
+		<h4>Communications</h4>
+
+		<p>
+		We may use your Personal Information to contact you with newsletters, 
+marketing or promotional materials and other information that ...<br>
+
+
+		The Communications section is for businesses that may contact users 
+via email (email newsletters) or other methods. For the full disclosure 
+section, create your own Privacy Policy.
+		</p>
+
+		<h4>Cookies</h4>
+
+		<p>
+		Cookies are files with small amount of data, which may include an 
+anonymous unique identifier. Cookies are sent to your browser from a web
+ site and stored on your computer's hard drive.<br>
+
+
+		Like many sites, we use "cookies" to collect information. You can 
+instruct your browser to refuse all cookies or to indicate when a cookie
+ is being sent. However, if you do not accept cookies, you may not be 
+able to use some portions of our Site.
+		</p>
+
+		<h4>Security</h4>
+
+		<p>
+		The security of your Personal Information is important to us, but 
+remember that no method of transmission over the Internet, or method of 
+electronic storage, is 100% secure. While we strive to use commercially 
+acceptable means to protect your Personal Information, we cannot 
+guarantee its absolute security.
+		</p>
+
+
+		<h4>Changes To This Privacy Policy</h4>
+
+		<p>
+		This Privacy Policy is effective as of october 26 2020 and will remain
+ in effect except with respect to any changes in its provisions in the 
+future, which will be in effect immediately after being posted on this 
+page.<br>
+
+
+		We reserve the right to update or change our Privacy Policy at any 
+time and you should check this Privacy Policy periodically. Your 
+continued use of the Service after we post any modifications to the 
+Privacy Policy on this page will constitute your acknowledgment of the 
+modifications and your consent to abide and be bound by the modified 
+Privacy Policy.<br>
+
+
+		If we make any material changes to this Privacy Policy, we will notify
+ you either through the email address you have provided us, or by 
+placing a prominent notice on our website.
+		</p>
+
+
+		<h4>Contact Us</h4>
+
+
+		<p>If you have any questions about this Privacy Policy, please contact us.</p>
+
+	</div>
+
+    <div class="row" style="width: 80%; margin-left: 10%; margin-bottom: 2%">
+    	<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+
+                Support the Programmer:<br>
+
+				<a href="https://twitter.com/Riokaru?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @Riokaru</a><script async="" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/widgets.js" charset="utf-8"></script>
+				<br>
+				<script type="text/javascript" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/widget_2.js"></script><script type="text/javascript">kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'E1E4K0N2');kofiwidget2.draw();</script><style>img.kofiimg{display: initial!important;vertical-align:middle;height:13px!important;width:20px!important;padding-top:0!important;padding-bottom:0!important;border:none;margin-top:0;margin-right:5px!important;margin-left:0!important;margin-bottom:3px!important;content:url('https://storage.ko-fi.com/cdn/logomarkLogo.png')}.kofiimg:after{vertical-align:middle;height:25px;padding-top:0;padding-bottom:0;border:none;margin-top:0;margin-right:6px;margin-left:0;margin-bottom:4px!important;content:url('https://storage.ko-fi.com/cdn/whitelogo.svg')}.btn-container{display:inline-block!important;white-space:nowrap;min-width:160px}span.kofitext{color:#fff !important;letter-spacing: -0.15px!important;text-wrap:none;vertical-align:middle;line-height:33px !important;padding:0;text-align:center;text-decoration:none!important; text-shadow: 0 1px 1px rgba(34, 34, 34, 0.05);}.kofitext a{color:#fff !important;text-decoration:none !important;}.kofitext a:hover{color:#fff !important;text-decoration:none}a.kofi-button{box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);line-height:36px!important;min-width:150px;display:inline-block!important;background-color:#29abe0;padding:2px 12px !important;text-align:center !important;border-radius:12px;color:#fff;cursor:pointer;overflow-wrap:break-word;vertical-align:middle;border:0 none #fff !important;font-family:'DM Sans',Helvetica,Century Gothic,sans-serif !important;text-decoration:none;text-shadow:none;font-weight:var(--weight-m)!important;font-size:14px !important}a.kofi-button:visited{color:#fff !important;text-decoration:none !important}a.kofi-button:hover{opacity:.85;color:#f5f5f5 !important;text-decoration:none !important}a.kofi-button:active{color:#f5f5f5 !important;text-decoration:none !important}.kofitext img.kofiimg {height:15px!important;width:19px!important;display: initial;animation: kofi-wiggle 3s infinite;}@keyframes kofi-wiggle{0%{transform:rotate(0) scale(1)}60%{transform:rotate(0) scale(1)}75%{transform:rotate(0) scale(1.12)}80%{transform:rotate(0) scale(1.1)}84%{transform:rotate(-10deg) scale(1.1)}88%{transform:rotate(10deg) scale(1.1)}92%{transform:rotate(-10deg) scale(1.1)}96%{transform:rotate(10deg) scale(1.1)}100%{transform:rotate(0) scale(1)}}</style><link href="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/css.css" rel="stylesheet" type="text/css"><div class="btn-container"><a title="Support me on ko-fi.com" class="kofi-button" style="background-color:#29abe0;" href="https://ko-fi.com/E1E4K0N2" target="_blank"> <span class="kofitext"><img src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/logomarkLogo.webp" alt="Ko-fi tips" class="kofiimg">Support Me on Ko-fi</span></a></div>
+
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+
+                Support the Designer:<br>
+
+                <a href="https://twitter.com/Elenriqu3?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @Elenriqu3</a><script async="" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/widgets.js" charset="utf-8"></script>
+                <br>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_donations">
+				<input type="hidden" name="business" value="elenriqu3@gmail.com">
+				<input type="hidden" name="currency_code" value="USD">
+				<input type="image" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
+				<img alt="" border="0" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/pixel.gif" width="1" height="1" ull7sbge8="">
+				</form>
+
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+
+    </div>
+
+
+    <h1 style="text-align: center">Sample</h1>
+	<div class="row" style="width: 80%; margin-left: 10%">
+	    <img style="width: 100%; height: auto;" src="Top8er%20-%20Top%208%20Graphic%20Generator%20-%20ffcotw_files/ffcotw.png">
+	</div>
+
+
+</body></html>
