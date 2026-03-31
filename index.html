@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1280" />
+  <title>GEMA LIVE — Tournament Day Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gem: #1BC0DA; --gem2: #1a7a8a; --gem3: #0d3f47; --black: #000000; --dark: #080c0e;
+      --panel: #0b1518; --panel2: #0f1e22; --border: #1BC0DA22; --border2: #1BC0DA55;
+      --text: #d4f0f5; --mute: #4a7880; --white: #ffffff; --gold: #f0c040;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; color: var(--text); font-family: 'Rajdhani', sans-serif; font-size: 16px; background: var(--black); }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
+    }
+    h1, h2, h3, .orbitron { font-family: 'Orbitron', sans-serif; }
+    .note-serve { background: var(--panel2); border: 1px solid var(--border2); border-radius: 4px; padding: 10px 14px; margin: 0 0 12px; color: var(--mute); font-size: 0.95rem; }
+    header.hero {
+      height: 180px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px;
+      background: var(--dark) center/cover no-repeat; position: relative; overflow: hidden;
+    }
+    header.hero::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(8,12,14,.92) 0%, rgba(8,12,14,.55) 45%, rgba(8,12,14,.75) 100%);
+      z-index: 0;
+    }
+    .hero-bg { position: absolute; inset: 0; background: center/cover no-repeat; filter: grayscale(0.35) brightness(0.45); z-index: -1; }
+    .hero-left, .hero-right { position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; }
+    .hero-right { flex-direction: column; align-items: flex-end; text-align: right; }
+    .logo-circle { width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--border2); object-fit: cover; background: var(--panel); }
+    .hero-titles h1 { margin: 0; font-size: 1.85rem; font-weight: 900; color: var(--gem); text-shadow: 0 0 18px rgba(27,192,218,.55); letter-spacing: 0.06em; }
+    .hero-titles .sub { margin: 4px 0 0; color: var(--mute); font-size: 1rem; font-family: 'Orbitron', sans-serif; letter-spacing: 0.12em; }
+    .hero-badges { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .badge { font-family: 'Orbitron', sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 4px 10px; border-radius: 3px; border: 1px solid var(--border2); background: var(--panel2); color: var(--gem); }
+    .hero-meta { font-family: 'Orbitron', sans-serif; color: var(--text); font-size: 0.9rem; }
+    .hero-meta .city { color: var(--mute); font-size: 0.82rem; margin-top: 4px; }
+    nav.tabs {
+      position: sticky; top: 0; z-index: 100; display: flex; gap: 0; padding: 0 16px; background: rgba(8,12,14,.96);
+      border-bottom: 1px solid var(--border);
+    }
+    nav.tabs button {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 14px 28px; border: none; background: transparent; color: var(--mute); cursor: pointer; border-bottom: 3px solid transparent;
+    }
+    nav.tabs button.active { color: var(--gem); border-bottom-color: var(--gem); }
+    main { padding: 20px 24px 48px; max-width: 1680px; margin: 0 auto; }
+    .page { display: none; }
+    .page.active { display: block; }
+    .live-layout { display: grid; grid-template-columns: 1fr 380px; gap: 20px; align-items: start; }
+    @media (max-width: 1200px) { .live-layout { grid-template-columns: 1fr; } }
+    .panel {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 20px; position: relative;
+      box-shadow: inset 0 1px 0 rgba(27,192,218,.06);
+    }
+    .panel::before {
+      content: ""; display: block; height: 3px; border-radius: 4px 4px 0 0;
+      background: linear-gradient(90deg, transparent, var(--gem), var(--gem2), transparent); opacity: 0.85;
+    }
+    .panel-inner { padding: 16px 18px; }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+    .panel-header h2 { margin: 0; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.14em; color: var(--gem); }
+    label.lbl { display: block; font-family: 'Orbitron', sans-serif; font-size: 0.72rem; letter-spacing: 0.14em; color: var(--mute); margin-bottom: 6px; }
+    input.txt, select.sel, textarea.txt {
+      width: 100%; padding: 10px 12px; border-radius: 4px; border: 1px solid var(--border);
+      background: var(--panel2); color: var(--text); font-family: 'Rajdhani', sans-serif; font-size: 1rem;
+    }
+    textarea.txt { min-height: 120px; resize: vertical; }
+    .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
+    .btn {
+      font-family: 'Orbitron', sans-serif; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 10px 18px; border-radius: 4px; border: 1px solid var(--border2); background: linear-gradient(180deg, var(--gem3), var(--panel2));
+      color: var(--gem); cursor: pointer; font-size: 0.72rem;
+    }
+    .btn:hover { border-color: var(--gem); color: var(--white); }
+    .btn-primary { background: linear-gradient(180deg, var(--gem2), var(--gem3)); color: var(--white); }
+    .log {
+      font-family: 'Rajdhani', monospace; font-size: 0.9rem; max-height: 220px; overflow-y: auto; padding: 10px;
+      background: var(--black); border: 1px solid var(--border); border-radius: 4px; margin-top: 12px;
+    }
+    .log div { margin: 4px 0; padding: 2px 0; border-bottom: 1px solid rgba(27,192,218,.08); }
+    .log .ok { color: #5ee085; }
+    .log .err { color: #ff6b6b; }
+    .log .warn { color: #f0c040; }
+    .log .info { color: var(--mute); }
+    .toggle-btns { display: inline-flex; gap: 6px; }
+    .toggle-btns button { font-size: 0.65rem; padding: 8px 12px; opacity: 0.75; }
+    .toggle-btns button.on { opacity: 1; border-color: var(--gem); color: var(--gem); }
+    .player-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    @media (max-width: 1400px) { .player-grid { grid-template-columns: repeat(4, 1fr); } }
+    .pcard {
+      background: var(--panel2); border: 1px solid var(--border); border-radius: 4px; padding: 14px; text-align: center;
+    }
+    .pavatar { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 10px; object-fit: cover; border: 2px solid var(--border2); background: var(--panel); display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:800;color:var(--gem);}
+    .pgt { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 1.05rem; margin: 0; word-break: break-word; }
+    .pname { color: var(--mute); font-size: 0.9rem; margin: 4px 0; }
+    .pspon { color: var(--gold); font-weight: 600; font-size: 0.85rem; }
+    .plink { display: inline-flex; gap: 8px; margin-top: 8px; }
+    .plink a { color: var(--gem); }
+    table.data { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    table.data th, table.data td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+    table.data th { background: var(--panel2); font-family: 'Orbitron', sans-serif; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--gem); }
+    table.data tr:hover td { background: rgba(27,192,218,.06); }
+    .set-row { cursor: pointer; }
+    .set-row.active { outline: 2px solid var(--gem); background: rgba(27,192,218,.1); }
+    .set-pending td:first-child { border-left: 3px solid var(--mute); }
+    .set-live td:first-child { border-left: 3px solid var(--gem); }
+    .set-done td:first-child { border-left: 3px solid #5ee085; }
+    .set-other td:first-child { border-left: 3px solid #a855f7; }
+    .score-inp { width: 52px; padding: 4px 6px; font-family: 'Orbitron', sans-serif; }
+    .composer-panel { position: sticky; top: 52px; }
+    .composer-active { font-size: 0.85rem; color: var(--mute); margin-bottom: 10px; min-height: 2.5em; }
+    .char-count { font-family: 'Orbitron', sans-serif; font-size: 0.7rem; color: var(--mute); text-align: right; margin-top: 6px; }
+    .char-count.over { color: #ff6b6b; }
+    .bracket-svg-wrap { overflow-x: auto; padding: 12px 0; }
+    .stand-mini { margin-top: 16px; }
+    .warn-banner { background: rgba(240,192,64,.12); border: 1px solid var(--gold); color: var(--gold); padding: 12px; border-radius: 4px; margin-bottom: 16px; font-weight: 600; }
+    .help-vars { font-size: 0.85rem; color: var(--mute); border: 1px solid var(--border); border-radius: 4px; padding: 10px; background: var(--black); max-height: 200px; overflow-y: auto; }
+    .help-vars code { color: var(--gem); }
+    .dnd-item { display: flex; align-items: center; gap: 10px; padding: 8px; background: var(--panel2); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 6px; cursor: grab; }
+    .dnd-item.dragging { opacity: 0.5; }
+    .preset-row { display: grid; grid-template-columns: 48px 1fr auto; gap: 10px; align-items: center; padding: 10px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 8px; background: var(--panel2); }
+    .preset-star { font-size: 1.2rem; cursor: pointer; user-select: none; color: var(--mute); }
+    .preset-star.fav { color: var(--gold); }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--gem2); border-radius: 4px; }
+    .hidden { display: none !important; }
+    .flex-gap { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  </style>
+</head>
+<body>
+  <!-- GEMA LIVE — Abre esta carpeta con: python3 -m http.server 8080 (recomendado para fetch + assets) -->
+  <p class="note-serve orbitron" style="margin:12px 24px 0;">Recomendado: sirve esta carpeta por HTTP (<code style="color:var(--gem)">python3 -m http.server 8080</code>) para evitar bloqueos de <code>file://</code> y cargar imágenes locales.</p>
+  <header class="hero">
+    <div class="hero-bg" id="heroBg" style="background-image:url('gema-live-assets/hero-banner.png');"></div>
+    <div class="hero-left">
+      <img id="heroLogo" class="logo-circle" src="gema-live-assets/logo.png" width="64" height="64" alt="La Gema" />
+      <div class="hero-titles">
+        <h1>LA GEMA</h1>
+        <div class="sub">Tournament Day Tool</div>
+        <div class="hero-badges" id="heroBadges"><span class="badge" id="badgeGame">—</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-meta" id="heroDate">—</div>
+      <div class="hero-meta city" id="heroCity">—</div>
+    </div>
+  </header>
+  <nav class="tabs">
+    <button type="button" id="tabLive" class="active">LIVE</button>
+    <button type="button" id="tabConfig">CONFIG</button>
+  </nav>
+  <main>
+    <section id="pageLive" class="page active">
+      <div class="live-layout">
+        <div class="live-main">
+          <div class="panel"><div class="panel-inner">
+            <div class="panel-header"><h2>Conexión</h2></div>
+            <div class="row">
+              <div><label class="lbl">Token start.gg</label><input class="txt" id="liveToken" type="password" autocomplete="off" /></div>
+              <div><label class="lbl">URL del torneo</label><input class="txt" id="tourneyUrl" placeholder="https://start.gg/tournament/..." /></div>
+            </div>
+            <div class="row">
+              <div><label class="lbl">Mis torneos (dropdown)</label>
+                <div class="flex-gap">
+                  <select class="sel" id="myTournaments"></select>
+                  <button type="button" class="btn" id="btnMyTournaments">Mis torneos</button>
+                </div>
+              </div>
+              <div><label class="lbl">Evento activo (sync)</label>
+                <select class="sel" id="eventSelect"></select>
+              </div>
+            </div>
+            <div class="flex-gap" style="margin-top:8px;">
+              <button type="button" class="btn btn-primary" id="btnSync">Sync</button>
+              <button type="button" class="btn" id="btnSyncSets">Sync sets + standings</button>
+            </div>
+            <div class="log" id="liveLog"></div>
+          </div></div>
+          <div class="panel"><div class="panel-inner">
+            <div class="panel-header">
+              <h2>Players</h2>
+              <div class="toggle-btns" id="playerViewToggle">
+                <button type="button" class="on" data-v="grid">Grid</button>
+                <button type="button" data-v="table">Tabla</button>
+              </div>
+            </div>
+            <div class="row">
+              <div><label class="lbl">Buscar</label><input class="txt" id="playerSearch" placeholder="Gamertag o nombre" /></div>
+              <div><label class="lbl">Evento (filtro UI)</label><select class="sel" id="playerEventFilter"></select></div>
+            </div>
+            <div id="playerGrid" class="player-grid"></div>
+            <div id="playerTableWrap" class="hidden" style="overflow-x:auto;"><table class="data" id="playerTable"><thead id="playerThead"></thead><tbody id="playerTbody"></tbody></table></div>
+          </div></div>
+          <div class="panel"><div class="panel-inner">
+            <div class="panel-header">
+              <h2>Bracket / Sets</h2>
+              <div class="toggle-btns" id="bracketViewToggle">
+                <button type="button" class="on" data-v="list">Lista</button>
+                <button type="button" data-v="tree">Árbol</button>
+              </div>
+            </div>
+            <div id="setsListWrap"><div style="overflow-x:auto;"><table class="data" id="setsTable"><thead><tr><th>Fase</th><th>Ronda</th><th>Matchup</th><th title="Pendiente">P</th><th title="En curso">●</th><th>A</th><th>B</th><th>Report</th></tr></thead><tbody id="setsTbody"></tbody></table></div></div>
+            <div id="setsTreeWrap" class="hidden"><div class="bracket-svg-wrap" id="bracketSvgHost"></div></div>
+            <div class="panel-inner stand-mini"><h3 class="orbitron" style="color:var(--gem);font-size:0.85rem;letter-spacing:0.12em;">Standings</h3>
+              <table class="data" id="standTable"><thead><tr><th>#</th><th>Gamertag / Entrant</th><th>Evento</th></tr></thead><tbody id="standTbody"></tbody></table>
+            </div>
+          </div></div>
+        </div>
+        <aside id="composerAside" class="composer-panel">
+          <div class="panel"><div class="panel-inner">
+            <div class="panel-header"><h2>Tweet composer</h2></div>
+            <div class="composer-active" id="composerActive">Sin set activo — modo manual</div>
+            <label class="lbl">Preset</label>
+            <select class="sel" id="presetSelect"></select>
+            <p id="presetEmptyHint" class="hidden" style="color:var(--mute);font-size:0.9rem;">Crea presets en Config</p>
+            <label class="lbl" style="margin-top:10px;">Texto</label>
+            <textarea class="txt" id="tweetText" maxlength="2000"></textarea>
+            <div class="char-count" id="charCount">0 / 280</div>
+            <div class="flex-gap" style="margin-top:12px;">
+              <button type="button" class="btn btn-primary" id="btnTweet">Post</button>
+            </div>
+          </div></div>
+        </aside>
+      </div>
+    </section>
+    <section id="pageConfig" class="page">
+      <div id="tokenWarn" class="warn-banner hidden">Configura tu token de start.gg para usar la herramienta.</div>
+      <div class="panel"><div class="panel-inner">
+        <div class="panel-header"><h2>Token y defaults</h2></div>
+        <label class="lbl">Token start.gg (se guarda al salir del campo)</label>
+        <input class="txt" id="cfgToken" type="password" autocomplete="off" />
+        <div class="flex-gap" style="margin-top:10px;">
+          <button type="button" class="btn" id="btnTestToken">Probar conexión</button>
+        </div>
+        <div class="log" id="configLog" style="max-height:120px;margin-top:12px;"></div>
+        <label class="lbl" style="margin-top:14px;">Hashtags fijos (se añaden al tweet)</label>
+        <input class="txt" id="cfgHashtags" placeholder="#LaGema #FGC" />
+      </div></div>
+      <div class="panel"><div class="panel-inner">
+        <div class="panel-header"><h2>Formato del clipboard</h2></div>
+        <p style="color:var(--mute);font-size:0.9rem;">Activa campos y reordénalos. Separador:</p>
+        <input class="txt" id="clipSep" style="max-width:120px;margin-bottom:12px;" value="|" />
+        <div id="clipDnd"></div>
+        <label class="lbl">Preview</label>
+        <div class="log" id="clipPreview" style="max-height:80px;white-space:pre-wrap;"></div>
+      </div></div>
+      <div class="panel"><div class="panel-inner">
+        <div class="panel-header"><h2>Presets de tweets</h2></div>
+        <div id="presetList"></div>
+        <hr style="border-color:var(--border);margin:20px 0;" />
+        <div class="row">
+          <div><label class="lbl">Nombre preset</label><input class="txt" id="editPresetName" /></div>
+        </div>
+        <label class="lbl">Template</label>
+        <textarea class="txt" id="editPresetTpl" style="min-height:160px;"></textarea>
+        <div class="help-vars" style="margin-top:10px;">
+          <div><code>{ganador}</code> — ganador</div>
+          <div><code>{perdedor}</code> — perdedor</div>
+          <div><code>{resultado}</code> — score</div>
+          <div><code>{fase}</code> — fase / ronda</div>
+          <div><code>{evento}</code> — evento</div>
+          <div><code>{jugador:GAMERTAG}</code> — @twitter o gamertag</div>
+        </div>
+        <div class="flex-gap" style="margin-top:12px;">
+          <button type="button" class="btn btn-primary" id="btnSavePreset">Guardar</button>
+          <button type="button" class="btn" id="btnCancelPreset">Nuevo</button>
+        </div>
+        <input type="hidden" id="editPresetId" />
+      </div></div>
+      <div class="panel"><div class="panel-inner">
+        <div class="panel-header"><h2>Visualización</h2></div>
+        <p class="lbl">Columnas tabla jugadores</p>
+        <div id="colToggles" class="flex-gap" style="margin-bottom:12px;"></div>
+        <label class="flex-gap" style="cursor:pointer;"><input type="checkbox" id="showComposerCfg" /> Mostrar panel Tweet composer en LIVE</label>
+      </div></div>
+    </section>
+  </main>
+  <script>
+(function () {
+  'use strict';
+
+  var ENDPOINT = 'https://api.start.gg/gql/alpha';
+  var LS_TOKEN = 'gema_token';
+  var LS_PRESETS = 'gema_presets';
+  var LS_CLIP = 'gema_clipboard_format';
+  var LS_TAGS = 'gema_hashtags';
+  var LS_UI = 'gema_ui';
+
+  var CLIP_FIELDS = [
+    { key: 'gamertag', label: 'Gamertag' },
+    { key: 'name', label: 'Nombre real' },
+    { key: 'sponsor', label: 'Sponsor' },
+    { key: 'twitter', label: 'Twitter (@handle)' },
+    { key: 'twitch', label: 'Twitch' },
+    { key: 'country', label: 'País' }
+  ];
+
+  var RATE_TIMES = [];
+  var RATE_MAX = 80;
+  var RATE_WINDOW_MS = 60000;
+
+  var S = {
+    token: '',
+    slug: '',
+    tournament: null,
+    eventId: null,
+    eventName: '',
+    eventGame: '',
+    entrants: [],
+    playersMap: new Map(),
+    sets: [],
+    standings: [],
+    characters: [],
+    activeSetId: null,
+    playerView: 'grid',
+    bracketView: 'list',
+    lastPresetId: null
+  };
+
+  function $(sel) { return document.querySelector(sel); }
+  function $all(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+
+  function saveSetting(key, value) {
+    try {
+      localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+    } catch (e) { logLive('localStorage: ' + e.message, 'err'); }
+  }
+  function loadSetting(key, def) {
+    try {
+      var raw = localStorage.getItem(key);
+      if (raw == null) return def;
+      if (def !== undefined && typeof def === 'object' && def !== null && !Array.isArray(def) && typeof raw === 'string') {
+        try { return JSON.parse(raw); } catch (e) { return def; }
+      }
+      if (typeof def === 'number') return Number(raw) || def;
+      if (typeof def === 'boolean') return raw === 'true';
+      try { return JSON.parse(raw); } catch (e2) { return raw; }
+    } catch (e) { return def; }
+  }
+
+  function logEl(id, msg, type) {
+    var el = $(id);
+    if (!el) return;
+    var line = document.createElement('div');
+    line.className = type || 'info';
+    line.textContent = new Date().toLocaleTimeString() + ' — ' + msg;
+    el.appendChild(line);
+    el.scrollTop = el.scrollHeight;
+  }
+  function logLive(msg, type) { logEl('#liveLog', msg, type); }
+  function logConfig(msg, type) { logEl('#configLog', msg, type); }
+
+  function parseSlugFromURL(url) {
+    if (!url || !String(url).trim()) return '';
+    var s = String(url).trim();
+    if (!/^https?:\/\//i.test(s)) s = 'https://' + s.replace(/^\/+/, '');
+    var m = s.match(/start\.gg\/tournament\/([^\/\?#]+)/i) || s.match(/smash\.gg\/tournament\/([^\/\?#]+)/i);
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
+  async function rateLimitWait() {
+    var now = Date.now();
+    while (RATE_TIMES.length && now - RATE_TIMES[0] > RATE_WINDOW_MS) RATE_TIMES.shift();
+    if (RATE_TIMES.length >= RATE_MAX) {
+      var wait = RATE_WINDOW_MS - (now - RATE_TIMES[0]) + 80;
+      logLive('Rate limit: pausa ~' + Math.ceil(wait / 1000) + 's', 'warn');
+      await new Promise(function (r) { setTimeout(r, wait); });
+      return rateLimitWait();
+    }
+    RATE_TIMES.push(Date.now());
+  }
+
+  async function gql(query, variables) {
+    var tok = (S.token || loadSetting(LS_TOKEN, '') || '').trim();
+    if (!tok) throw new Error('Falta token');
+    await rateLimitWait();
+    var res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + tok },
+      body: JSON.stringify({ query: query, variables: variables || {} })
+    });
+    var text = await res.text();
+    var json;
+    try { json = JSON.parse(text); } catch (e) {
+      throw new Error('Respuesta no JSON: ' + text.slice(0, 200));
+    }
+    if (json.errors && json.errors.length)
+      throw new Error(json.errors.map(function (e) { return e.message; }).join('; '));
+    return json.data;
+  }
+
+  var Q_TOURNAMENTS = 'query CurrentUserTournaments { currentUser { name tournaments(query:{perPage:20 sortBy:"startAt desc"}) { nodes { id name slug startAt } } } }';
+  var Q_TOURNAMENT_INFO = 'query TournamentInfo($slug:String!){ tournament(slug:$slug){ id name slug startAt city venueName venueAddress countryCode events { id name numEntrants startAt videogame { id displayName characters { id name } } } } } }';
+  var Q_ENTRANTS = 'query EventEntrants($eventId:ID!,$page:Int!,$perPage:Int!){ event(id:$eventId){ entrants(query:{page:$page perPage:$perPage}){ pageInfo{ totalPages total } nodes { id seed participants { gamerTag prefix user { name location { country } images(type: PROFILE){ url } authorizations(types:[TWITTER,TWITCH]){ type externalUsername url } } } } } } } }';
+  var Q_SETS = 'query EventSets($eventId:ID!,$page:Int!,$perPage:Int!){ event(id:$eventId){ sets(page:$page perPage:$perPage filters:{ state:[1,2,3,4,5,6] }){ pageInfo{ totalPages } nodes { id state fullRoundText phaseGroup{ phase{ name } } slots { entrant { id name } standing { stats { score { value } } } } } } } } }';
+  var Q_STAND = 'query EventStandings($eventId:ID!,$page:Int!,$perPage:Int!){ event(id:$eventId){ standings(query:{page:$page perPage:$perPage}){ pageInfo{ totalPages } nodes { placement entrant { name } } } } } }';
+  var Q_ME = 'query Me { currentUser { name } }';
+  var M_REPORT = 'mutation ReportBracketSet($setId:ID!,$winnerId:ID!,$gameData:[BracketSetGameDataInput]){ reportBracketSet(setId:$setId winnerId:$winnerId gameData:$gameData){ id state } }';
+
+  async function fetchCurrentUserTournaments() {
+    var data = await gql(Q_TOURNAMENTS, {});
+    var nodes = ((data.currentUser || {}).tournaments || {}).nodes || [];
+    var sel = $('#myTournaments');
+    sel.innerHTML = '<option value="">— Elegir torneo —</option>';
+    nodes.forEach(function (n) {
+      var o = document.createElement('option');
+      o.value = n.slug;
+      o.textContent = n.name + ' (' + n.slug + ')';
+      sel.appendChild(o);
+    });
+    logLive('Torneos del usuario: ' + nodes.length, 'ok');
+    return nodes;
+  }
+
+  function normalizePlayerFromEntrant(node) {
+    var parts = node.participants || [];
+    var p0 = parts[0] || {};
+    var u = p0.user || {};
+    var gtag = (p0.gamerTag || '').trim() || ('Entrant ' + node.id);
+    var auth = u.authorizations || [];
+    var tw = auth.filter(function (a) { return a.type === 'TWITTER'; })[0];
+    var twt = auth.filter(function (a) { return a.type === 'TWITCH'; })[0];
+    var imgs = u.images || [];
+    var img = imgs[0] && imgs[0].url;
+    return {
+      entrantId: node.id,
+      seed: node.seed,
+      gamerTag: gtag,
+      prefix: (p0.prefix || '').trim(),
+      name: u.name || '',
+      country: (u.location && u.location.country) || '',
+      sponsor: (p0.prefix || '').trim(),
+      profileUrl: img || '',
+      twitter: tw ? (tw.externalUsername || '').replace(/^@/, '') : '',
+      twitterUrl: (tw && tw.url) || '',
+      twitch: twt ? (twt.externalUsername || '').replace(/^@/, '') : '',
+      twitchUrl: (twt && twt.url) || ''
+    };
+  }
+
+  function buildPlayersMap(entrants) {
+    var m = new Map();
+    entrants.forEach(function (e) {
+      m.set(String(e.gamerTag).toLowerCase(), e);
+    });
+    return m;
+  }
+
+  function flagEmoji(country) {
+    if (!country) return '🌍';
+    var c = String(country).trim();
+    if (c.length === 2) {
+      var up = c.toUpperCase();
+      var A = 0x41;
+      var cp = function (ch) { return 0x1F1E6 - A + ch.charCodeAt(0); };
+      try {
+        return String.fromCodePoint(cp(up[0]), cp(up[1]));
+      } catch (e) { return '🌍'; }
+    }
+    return '🌍';
+  }
+
+  function initials(g) {
+    var p = String(g || '').trim().split(/\s+/);
+    var a = p[0] && p[0][0] ? p[0][0].toUpperCase() : '?';
+    var b = p[1] && p[1][0] ? p[1][0].toUpperCase() : '';
+    return a + b;
+  }
+
+  function getClipFormat() {
+    var d = loadSetting(LS_CLIP, null);
+    if (!d || typeof d !== 'object') {
+      d = { separator: '|', fields: ['gamertag', 'name', 'sponsor', 'twitter', 'twitch', 'country'] };
+    }
+    if (!Array.isArray(d.fields)) d.fields = ['gamertag', 'name', 'sponsor', 'twitter', 'twitch', 'country'];
+    if (d.separator == null) d.separator = '|';
+    return d;
+  }
+
+  function clipFieldValue(pl, key) {
+    switch (key) {
+      case 'gamertag': return pl.gamerTag || '';
+      case 'name': return pl.name || '';
+      case 'sponsor': return pl.prefix || pl.sponsor || '';
+      case 'twitter': return pl.twitter ? '@' + pl.twitter : '';
+      case 'twitch': return pl.twitch || '';
+      case 'country': return pl.country || '';
+      default: return '';
+    }
+  }
+
+  function copyToClipboard(pl, fmt) {
+    fmt = fmt || getClipFormat();
+    var sep = fmt.separator || '|';
+    var parts = [];
+    fmt.fields.forEach(function (k) {
+      var v = clipFieldValue(pl, k);
+      if (v) parts.push(v);
+    });
+    var s = parts.join(' ' + sep + ' ');
+    navigator.clipboard.writeText(s).then(function () {
+      logLive('Copiado (' + parts.length + ' campos)', 'ok');
+    }).catch(function (e) {
+      logLive('Clipboard: ' + e.message, 'err');
+    });
+  }
+
+  function activeSetModel() {
+    if (!S.activeSetId) return null;
+    for (var i = 0; i < S.sets.length; i++) if (String(S.sets[i].id) === String(S.activeSetId)) return S.sets[i];
+    return null;
+  }
+
+  function setScoresFromInputs(set, row) {
+    var inpA = row.querySelector('[data-score="0"]');
+    var inpB = row.querySelector('[data-score="1"]');
+    var sa = parseInt(inpA && inpA.value, 10);
+    var sb = parseInt(inpB && inpB.value, 10);
+    if (isNaN(sa)) sa = 0;
+    if (isNaN(sb)) sb = 0;
+    return { a: sa, b: sb };
+  }
+
+  function resolveTemplate(template, setData, playersMap, hashtagsForAppend) {
+    var g = '', l = '', score = '', fase = '', ev = S.eventName || '';
+    if (setData && setData.slots && setData.slots.length >= 2) {
+      var s0 = setData.slots[0].entrant;
+      var s1 = setData.slots[1].entrant;
+      var n0 = s0 ? cleanEntrantName(s0.name) : 'A';
+      var n1 = s1 ? cleanEntrantName(s1.name) : 'B';
+      var st0 = deepScore(setData.slots[0]);
+      var st1 = deepScore(setData.slots[1]);
+      var scA = st0 != null ? Number(st0) : null;
+      var scB = st1 != null ? Number(st1) : null;
+      var row = document.querySelector('tr.set-row[data-set-id="' + setData.id + '"]');
+      if (row) {
+        var sc = setScoresFromInputs(setData, row);
+        scA = sc.a;
+        scB = sc.b;
+      }
+      if (scA != null && scB != null) {
+        if (scA > scB) { g = n0; l = n1; score = scA + '-' + scB; }
+        else if (scB > scA) { g = n1; l = n0; score = scB + '-' + scA; }
+        else { g = n0; l = n1; score = scA + '-' + scB; }
+      }
+      var ph = (setData.phaseGroup && setData.phaseGroup.phase && setData.phaseGroup.phase.name) || '';
+      fase = [ph, setData.fullRoundText || ''].filter(Boolean).join(' — ');
+    }
+    var out = String(template || '');
+    if (!setData) {
+      out = out.replace(/\{ganador\}/g, '{ganador}');
+      out = out.replace(/\{perdedor\}/g, '{perdedor}');
+      out = out.replace(/\{resultado\}/g, '{resultado}');
+      out = out.replace(/\{fase\}/g, '{fase}');
+    } else {
+      out = out.replace(/\{ganador\}/g, g);
+      out = out.replace(/\{perdedor\}/g, l);
+      out = out.replace(/\{resultado\}/g, score);
+      out = out.replace(/\{fase\}/g, fase);
+    }
+    out = out.replace(/\{evento\}/g, ev);
+    out = out.replace(/\{jugador:([^}]+)\}/gi, function (_, tag) {
+      var key = String(tag).trim().toLowerCase();
+      var pl = playersMap.get(key);
+      if (pl && pl.twitter) return '@' + pl.twitter;
+      if (pl && pl.gamerTag) return pl.gamerTag;
+      return tag.trim();
+    });
+    var tags = normalizeHashtags(hashtagsForAppend || '');
+    if (tags) out = (out.trim() ? out.trim() + '\n\n' : '') + tags;
+    return out;
+  }
+
+  function normalizeHashtags(raw) {
+    if (!raw || !String(raw).trim()) return '';
+    return String(raw).trim().split(/\s+/).map(function (t) {
+      var x = t.trim();
+      if (!x) return '';
+      return x[0] === '#' ? x : '#' + x;
+    }).filter(Boolean).join(' ');
+  }
+
+  function openTweetIntent(text) {
+    var u = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
+    window.open(u, '_blank', 'noopener,noreferrer');
+  }
+
+  function deepScore(slot) {
+    try {
+      return slot.standing.stats.score.value;
+    } catch (e) { return null; }
+  }
+
+  function cleanEntrantName(name) {
+    if (!name) return '';
+    return String(name).replace(/\s*\|\s*[^|]+$/, '').trim();
+  }
+
+  async function reportSet(setId, winnerId, gameData) {
+    var data = await gql(M_REPORT, { setId: setId, winnerId: winnerId, gameData: gameData || [] });
+    logLive('Report OK set ' + setId + ' state ' + ((data.reportBracketSet || {}).state != null ? data.reportBracketSet.state : ''), 'ok');
+    return data.reportBracketSet;
+  }
+
+  function loadPresets() {
+    var raw = loadSetting(LS_PRESETS, '[]');
+    if (typeof raw === 'string') {
+      try { raw = JSON.parse(raw); } catch (e) { raw = []; }
+    }
+    if (!Array.isArray(raw)) raw = [];
+    return raw;
+  }
+  function savePresets(arr) { saveSetting(LS_PRESETS, arr); }
+  function savePreset(preset) {
+    var arr = loadPresets();
+    var i = -1;
+    for (var j = 0; j < arr.length; j++) if (arr[j].id === preset.id) { i = j; break; }
+    if (i >= 0) arr[i] = preset;
+    else arr.push(preset);
+    savePresets(arr);
+    renderPresetsCfg();
+    fillPresetDropdown();
+  }
+  function deletePreset(id) {
+    savePresets(loadPresets().filter(function (p) { return p.id !== id; }));
+    logConfig('Preset borrado', 'ok');
+    renderPresetsCfg();
+    fillPresetDropdown();
+  }
+  function toggleFavorite(id) {
+    var arr = loadPresets();
+    var p;
+    for (var j = 0; j < arr.length; j++) if (arr[j].id === id) { p = arr[j]; break; }
+    if (p) { p.favorite = !p.favorite; savePresets(arr); renderPresetsCfg(); fillPresetDropdown(); }
+  }
+
+  function uid() { return 'p' + Math.random().toString(36).slice(2) + Date.now().toString(36); }
+
+  function setRowStateClass(tr, state) {
+    tr.classList.remove('set-pending', 'set-live', 'set-done', 'set-other');
+    var n = Number(state);
+    if (n === 1) tr.classList.add('set-pending');
+    else if (n === 2) tr.classList.add('set-live');
+    else if (n === 3 || n === 4) tr.classList.add('set-done');
+    else tr.classList.add('set-other');
+  }
+
+  function buildSelections(charRow, e0, e1) {
+    var sels = [];
+    if (!e0 || !e1 || !charRow) return sels;
+    charRow.querySelectorAll('.char-sel').forEach(function (sel) {
+      var eid = sel.getAttribute('data-ent');
+      var cid = sel.value;
+      if (eid && cid) sels.push({ entrantId: String(eid), characterId: String(cid) });
+    });
+    return sels;
+  }
+
+  async function doReportSet(set, tr) {
+    var slots = set.slots || [];
+    var e0 = slots[0] && slots[0].entrant;
+    var e1 = slots[1] && slots[1].entrant;
+    if (!e0 || !e1) { logLive('Set sin dos entrants', 'err'); return; }
+    var sc = setScoresFromInputs(set, tr);
+    var sa = sc.a;
+    var sb = sc.b;
+    if (sa === sb) { logLive('Define un ganador (scores distintos)', 'warn'); return; }
+    var winnerId = sa > sb ? String(e0.id) : String(e1.id);
+    var charRow = tr.nextElementSibling && tr.nextElementSibling.classList.contains('set-char-row') ? tr.nextElementSibling : null;
+    var selections = buildSelections(charRow, e0, e1);
+    var gameData = [{ gameNum: 1, entrant1Score: sa, entrant2Score: sb, winnerId: winnerId, selections: selections }];
+    try {
+      var r = await reportSet(String(set.id), winnerId, gameData);
+      set.state = (r && r.state != null) ? r.state : 3;
+      if (!slots[0].standing) slots[0].standing = { stats: { score: { value: sa } } };
+      else if (!slots[0].standing.stats) slots[0].standing.stats = { score: { value: sa } };
+      else slots[0].standing.stats = { score: { value: sa } };
+      if (!slots[1].standing) slots[1].standing = { stats: { score: { value: sb } } };
+      else slots[1].standing.stats = { score: { value: sb } };
+      setRowStateClass(tr, set.state);
+      refreshTweetArea();
+    } catch (e) {
+      logLive('Report: ' + e.message, 'err');
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function renderBracketSVG(sets) {
+    var host = $('#bracketSvgHost');
+    if (!sets.length) { host.innerHTML = '<p style="color:var(--mute)">Sin sets</p>'; return; }
+    var byPhase = {};
+    sets.forEach(function (se) {
+      var ph = (se.phaseGroup && se.phaseGroup.phase && se.phaseGroup.phase.name) || 'Bracket';
+      if (!byPhase[ph]) byPhase[ph] = [];
+      byPhase[ph].push(se);
+    });
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('width', '100%');
+    var keys = Object.keys(byPhase);
+    var h = 40 + keys.length * 40 + sets.length * 58;
+    svg.setAttribute('height', String(h));
+    var y = 20;
+    keys.forEach(function (ph) {
+      var t = document.createElementNS(svgNS, 'text');
+      t.setAttribute('x', '20');
+      t.setAttribute('y', String(y));
+      t.setAttribute('fill', '#1BC0DA');
+      t.setAttribute('font-family', 'Orbitron');
+      t.setAttribute('font-size', '14');
+      t.textContent = ph;
+      svg.appendChild(t);
+      y += 28;
+      byPhase[ph].forEach(function (se) {
+        var slots = se.slots || [];
+        var a = slots[0] && slots[0].entrant ? cleanEntrantName(slots[0].entrant.name) : '—';
+        var b = slots[1] && slots[1].entrant ? cleanEntrantName(slots[1].entrant.name) : '—';
+        var rect = document.createElementNS(svgNS, 'rect');
+        rect.setAttribute('x', '20');
+        rect.setAttribute('y', String(y));
+        rect.setAttribute('width', '420');
+        rect.setAttribute('height', '48');
+        rect.setAttribute('rx', '4');
+        rect.setAttribute('fill', '#0f1e22');
+        rect.setAttribute('stroke', '#1BC0DA55');
+        svg.appendChild(rect);
+        var tx = document.createElementNS(svgNS, 'text');
+        tx.setAttribute('x', '32');
+        tx.setAttribute('y', String(y + 30));
+        tx.setAttribute('fill', '#d4f0f5');
+        tx.setAttribute('font-family', 'Rajdhani');
+        tx.setAttribute('font-size', '15');
+        tx.textContent = a + '  vs  ' + b + '  ·  ' + (se.fullRoundText || '');
+        svg.appendChild(tx);
+        y += 58;
+      });
+      y += 16;
+    });
+    host.innerHTML = '';
+    host.appendChild(svg);
+  }
+
+  function renderStandings() {
+    var tb = $('#standTbody');
+    tb.innerHTML = '';
+    S.standings.forEach(function (s) {
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + escapeHtml(s.placement) + '</td><td>' + escapeHtml((s.entrant && s.entrant.name) || '') + '</td><td>' + escapeHtml(S.eventName || '') + '</td>';
+      tb.appendChild(tr);
+    });
+  }
+
+  var TWEET_DIRTY = false;
+
+  function renderPlayers() {
+    var q = ($('#playerSearch').value || '').trim().toLowerCase();
+    var list = S.entrants.filter(function (p) {
+      if (!q) return true;
+      return (p.gamerTag && p.gamerTag.toLowerCase().indexOf(q) >= 0) || (p.name && p.name.toLowerCase().indexOf(q) >= 0);
+    });
+    var ui = loadSetting(LS_UI, {}) || {};
+    var cols = ui.playerTableColumns || {};
+
+    if (S.playerView === 'grid') {
+      $('#playerGrid').classList.remove('hidden');
+      $('#playerTableWrap').classList.add('hidden');
+      $('#playerGrid').innerHTML = '';
+      list.forEach(function (pl) {
+        var card = document.createElement('div');
+        card.className = 'pcard';
+        var av;
+        if (pl.profileUrl) av = '<img class="pavatar" src="' + escapeHtml(pl.profileUrl) + '" alt=""/>';
+        else av = '<div class="pavatar">' + escapeHtml(initials(pl.gamerTag)) + '</div>';
+        var sp = pl.prefix ? '<div class="pspon">' + escapeHtml(pl.prefix) + '</div>' : '';
+        var tw = pl.twitter ? '<a href="' + escapeHtml(pl.twitterUrl || ('https://twitter.com/' + pl.twitter)) + '" target="_blank" rel="noopener">𝕏</a>' : '';
+        var tv = pl.twitch ? '<a href="' + escapeHtml(pl.twitchUrl || ('https://twitch.tv/' + pl.twitch)) + '" target="_blank" rel="noopener">Twitch</a>' : '';
+        var soc = (tw || tv) ? '<div class="plink">' + tw + (tw && tv ? ' ' : '') + tv + '</div>' : '';
+        card.innerHTML = av + '<p class="pgt">' + escapeHtml(pl.gamerTag) + '</p><p class="pname">' + escapeHtml(pl.name) + '</p>' + sp +
+          '<div>' + flagEmoji(pl.country) + '</div>' + soc +
+          '<button type="button" class="btn" style="margin-top:10px;width:100%">Copiar</button>';
+        card.querySelector('button').addEventListener('click', function () { copyToClipboard(pl, getClipFormat()); });
+        $('#playerGrid').appendChild(card);
+      });
+      return;
+    }
+
+    $('#playerGrid').classList.add('hidden');
+    $('#playerTableWrap').classList.remove('hidden');
+    var coldefs = [
+      { key: 'num', label: '#', always: true },
+      { key: 'gamertag', label: 'Gamertag' },
+      { key: 'name', label: 'Nombre' },
+      { key: 'country', label: 'País' },
+      { key: 'sponsor', label: 'Sponsor' },
+      { key: 'twitter', label: 'Twitter' },
+      { key: 'twitch', label: 'Twitch' },
+      { key: 'event', label: 'Evento(s)' },
+      { key: 'seed', label: 'Seed' }
+    ];
+    var thead = $('#playerThead');
+    thead.innerHTML = '';
+    var hr = document.createElement('tr');
+    coldefs.forEach(function (c) {
+      if (!c.always && cols[c.key] === false) return;
+      var th = document.createElement('th');
+      th.textContent = c.label;
+      hr.appendChild(th);
+    });
+    hr.appendChild(document.createElement('th'));
+    thead.appendChild(hr);
+    var tb = $('#playerTbody');
+    tb.innerHTML = '';
+    list.forEach(function (pl, idx) {
+      var tr = document.createElement('tr');
+      function addCell(val) {
+        var td = document.createElement('td');
+        td.textContent = val == null ? '' : String(val);
+        tr.appendChild(td);
+      }
+      coldefs.forEach(function (c) {
+        if (!c.always && cols[c.key] === false) return;
+        if (c.key === 'num') addCell(idx + 1);
+        else if (c.key === 'gamertag') addCell(pl.gamerTag);
+        else if (c.key === 'name') addCell(pl.name);
+        else if (c.key === 'country') addCell(pl.country + ' ' + flagEmoji(pl.country));
+        else if (c.key === 'sponsor') addCell(pl.prefix);
+        else if (c.key === 'twitter') addCell(pl.twitter ? '@' + pl.twitter : '');
+        else if (c.key === 'twitch') addCell(pl.twitch || '');
+        else if (c.key === 'event') addCell(S.eventName || '');
+        else if (c.key === 'seed') addCell(pl.seed);
+      });
+      var td = document.createElement('td');
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'btn';
+      b.textContent = 'Copiar';
+      b.addEventListener('click', function () { copyToClipboard(pl, getClipFormat()); });
+      td.appendChild(b);
+      tr.appendChild(td);
+      tb.appendChild(tr);
+    });
+  }
+
+  function refreshHero() {
+    var t = S.tournament;
+    if (t && t.startAt != null) {
+      var n = Number(t.startAt);
+      var ms = String(t.startAt).length <= 10 ? n * 1000 : n;
+      var d = new Date(ms);
+      $('#heroDate').textContent = isNaN(d.getTime()) ? '—' : d.toLocaleDateString(undefined, { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
+    } else $('#heroDate').textContent = '—';
+    var city = '';
+    if (t) city = [t.city, t.venueName || t.venueAddress].filter(Boolean).join(' · ');
+    $('#heroCity').textContent = city || '—';
+    $('#badgeGame').textContent = S.eventGame || '—';
+  }
+
+  function syncSelectedEventMeta() {
+    var id = $('#eventSelect').value;
+    if (!id || !S.tournament || !S.tournament.events) return;
+    var ev;
+    for (var i = 0; i < S.tournament.events.length; i++)
+      if (String(S.tournament.events[i].id) === String(id)) { ev = S.tournament.events[i]; break; }
+    if (!ev) return;
+    S.eventId = id;
+    S.eventName = ev.name || '';
+    S.eventGame = (ev.videogame && ev.videogame.displayName) || '';
+    S.characters = (ev.videogame && ev.videogame.characters) || [];
+    $('#badgeGame').textContent = S.eventGame || S.eventName || '—';
+    $('#playerEventFilter').innerHTML = '<option value="">' + escapeHtml(S.eventName || 'Evento') + '</option>';
+  }
+
+  function refreshActiveSetUi() {
+    var set = activeSetModel();
+    if (set) {
+      var slots = set.slots || [];
+      var n0 = slots[0] && slots[0].entrant ? cleanEntrantName(slots[0].entrant.name) : '?';
+      var n1 = slots[1] && slots[1].entrant ? cleanEntrantName(slots[1].entrant.name) : '?';
+      var ph = (set.phaseGroup && set.phaseGroup.phase && set.phaseGroup.phase.name) || '';
+      $('#composerActive').textContent = 'Set activo: ' + n0 + ' vs ' + n1 + ' — ' + ph;
+    } else $('#composerActive').textContent = 'Sin set activo — modo manual';
+  }
+
+  function fillPresetDropdown() {
+    var sel = $('#presetSelect');
+    var presets = loadPresets().slice().sort(function (a, b) {
+      if (!!b.favorite !== !!a.favorite) return (b.favorite ? 1 : 0) - (a.favorite ? 1 : 0);
+      return (a.name || '').localeCompare(b.name || '');
+    });
+    var keep = sel.value;
+    sel.innerHTML = '';
+    if (!presets.length) {
+      $('#presetEmptyHint').classList.remove('hidden');
+      sel.classList.add('hidden');
+      return;
+    }
+    $('#presetEmptyHint').classList.add('hidden');
+    sel.classList.remove('hidden');
+    presets.forEach(function (p) {
+      var o = document.createElement('option');
+      o.value = p.id;
+      o.textContent = (p.favorite ? '★ ' : '') + (p.name || 'sin nombre');
+      sel.appendChild(o);
+    });
+    if (keep && presets.some(function (p) { return p.id === keep; })) sel.value = keep;
+    else if (S.lastPresetId && presets.some(function (p) { return p.id === S.lastPresetId; })) sel.value = S.lastPresetId;
+  }
+
+  function refreshTweetArea() {
+    var sel = $('#presetSelect');
+    var presets = loadPresets();
+    var p;
+    for (var i = 0; i < presets.length; i++) if (presets[i].id === sel.value) { p = presets[i]; break; }
+    if (!p) return;
+    var tags = loadSetting(LS_TAGS, '') || '';
+    var body = resolveTemplate(p.template, activeSetModel(), S.playersMap, tags);
+    if (!TWEET_DIRTY) $('#tweetText').value = body;
+    tweetCount();
+  }
+
+  function applyPresetToTextarea() {
+    var sel = $('#presetSelect');
+    S.lastPresetId = sel.value || null;
+    var presets = loadPresets();
+    var p;
+    for (var i = 0; i < presets.length; i++) if (presets[i].id === sel.value) { p = presets[i]; break; }
+    if (!p) return;
+    var tags = loadSetting(LS_TAGS, '') || '';
+    TWEET_DIRTY = false;
+    $('#tweetText').value = resolveTemplate(p.template, activeSetModel(), S.playersMap, tags);
+    tweetCount();
+  }
+
+  function tweetCount() {
+    var n = ($('#tweetText').value || '').length;
+    var el = $('#charCount');
+    el.textContent = n + ' / 280';
+    el.classList.toggle('over', n > 280);
+  }
+
+  function renderSetsTable() {
+    var tb = $('#setsTbody');
+    tb.innerHTML = '';
+    var keys = [];
+    var map = {};
+    S.sets.forEach(function (set) {
+      var ph = (set.phaseGroup && set.phaseGroup.phase && set.phaseGroup.phase.name) || '—';
+      var key = ph + '|||' + (set.fullRoundText || '');
+      if (map[key] == null) { map[key] = []; keys.push(key); }
+      map[key].push(set);
+    });
+    keys.forEach(function (k) {
+      map[k].forEach(function (set) {
+        var slots = set.slots || [];
+        var e0 = slots[0] && slots[0].entrant;
+        var e1 = slots[1] && slots[1].entrant;
+        var n0 = e0 ? e0.name : 'TBD';
+        var n1 = e1 ? e1.name : 'TBD';
+        var ph = (set.phaseGroup && set.phaseGroup.phase && set.phaseGroup.phase.name) || '—';
+        var tr = document.createElement('tr');
+        tr.className = 'set-row';
+        tr.dataset.setId = set.id;
+        setRowStateClass(tr, set.state);
+        if (String(set.id) === String(S.activeSetId)) tr.classList.add('active');
+        var st0 = deepScore(slots[0] || {});
+        var st1 = deepScore(slots[1] || {});
+        tr.innerHTML =
+          '<td>' + escapeHtml(ph) + '</td>' +
+          '<td>' + escapeHtml(set.fullRoundText || '') + '</td>' +
+          '<td><strong>' + escapeHtml(cleanEntrantName(n0)) + '</strong> vs <strong>' + escapeHtml(cleanEntrantName(n1)) + '</strong></td>' +
+          '<td>' + (set.state === 1 ? '●' : '') + '</td>' +
+          '<td>' + (set.state === 2 ? '●' : '') + '</td>' +
+          '<td><input class="score-inp" type="number" min="0" data-score="0" value="' + (st0 != null ? st0 : '') + '"/></td>' +
+          '<td><input class="score-inp" type="number" min="0" data-score="1" value="' + (st1 != null ? st1 : '') + '"/></td>' +
+          '<td><button type="button" class="btn btn-report">Report</button></td>';
+        tr.addEventListener('click', function (ev) {
+          if (ev.target.closest('input') || ev.target.closest('button') || ev.target.closest('select')) return;
+          S.activeSetId = set.id;
+          refreshActiveSetUi();
+          $all('#setsTbody tr.set-row').forEach(function (r) { r.classList.toggle('active', r.dataset.setId === String(set.id)); });
+          refreshTweetArea();
+        });
+        tr.querySelector('.btn-report').addEventListener('click', function (ev) {
+          ev.stopPropagation();
+          doReportSet(set, tr);
+        });
+        tr.querySelectorAll('.score-inp').forEach(function (inp) {
+          inp.addEventListener('input', function () { refreshTweetArea(); });
+        });
+        tb.appendChild(tr);
+
+        var charRow = document.createElement('tr');
+        charRow.className = 'set-char-row';
+        if (S.characters && S.characters.length) {
+          var opts = '<option value="">Personaje</option>';
+          for (var ci = 0; ci < S.characters.length; ci++) {
+            var c = S.characters[ci];
+            opts += '<option value="' + escapeHtml(String(c.id)) + '">' + escapeHtml(c.name) + '</option>';
+          }
+          charRow.innerHTML = '<td colspan="5"></td><td><select class="sel char-sel" data-ent="' + (e0 && e0.id ? escapeHtml(String(e0.id)) : '') + '">' + opts + '</select></td>' +
+            '<td><select class="sel char-sel" data-ent="' + (e1 && e1.id ? escapeHtml(String(e1.id)) : '') + '">' + opts + '</select></td><td></td>';
+        } else {
+          charRow.innerHTML = '<td colspan="5" style="color:var(--mute);font-size:0.85rem;">Sin catálogo de personajes</td>' +
+            '<td><input class="txt char-txt" placeholder="Nota A" data-ent="' + (e0 && e0.id ? escapeHtml(String(e0.id)) : '') + '"/></td>' +
+            '<td><input class="txt char-txt" placeholder="Nota B" data-ent="' + (e1 && e1.id ? escapeHtml(String(e1.id)) : '') + '"/></td><td></td>';
+        }
+        tb.appendChild(charRow);
+      });
+    });
+  }
+
+  async function fetchAll(full) {
+    S.token = ($('#liveToken').value || '').trim() || loadSetting(LS_TOKEN, '');
+    var slug = parseSlugFromURL($('#tourneyUrl').value || '');
+    if (!S.token) { logLive('Token requerido', 'err'); return; }
+    if (!slug) { logLive('URL / slug inválido', 'err'); return; }
+    var eventId = $('#eventSelect').value;
+    if (!eventId) { logLive('Selecciona un evento', 'warn'); return; }
+    S.slug = slug;
+    try {
+      logLive('Conectando torneo…', 'info');
+      var tdata = await gql(Q_TOURNAMENT_INFO, { slug: slug });
+      var t = tdata.tournament;
+      if (!t) throw new Error('Torneo no encontrado');
+      S.tournament = t;
+      syncSelectedEventMeta();
+
+      if (full !== false) {
+        logLive('Cargando jugadores…', 'info');
+        S.entrants = [];
+        var page = 1;
+        var totalPages = 1;
+        do {
+          var ed = await gql(Q_ENTRANTS, { eventId: eventId, page: page, perPage: 25 });
+          var conn = ed.event && ed.event.entrants;
+          if (!conn) break;
+          totalPages = (conn.pageInfo && conn.pageInfo.totalPages) || 1;
+          (conn.nodes || []).forEach(function (n) {
+            S.entrants.push(normalizePlayerFromEntrant(n));
+          });
+          page++;
+        } while (page <= totalPages);
+        S.playersMap = buildPlayersMap(S.entrants);
+        logLive('Jugadores: ' + S.entrants.length, 'ok');
+        renderPlayers();
+      }
+
+      logLive('Cargando sets…', 'info');
+      S.sets = [];
+      page = 1;
+      totalPages = 1;
+      do {
+        var sd = await gql(Q_SETS, { eventId: eventId, page: page, perPage: 30 });
+        var sc = sd.event && sd.event.sets;
+        if (!sc) break;
+        totalPages = (sc.pageInfo && sc.pageInfo.totalPages) || 1;
+        (sc.nodes || []).forEach(function (n) { S.sets.push(n); });
+        page++;
+      } while (page <= totalPages);
+      logLive('Sets: ' + S.sets.length, 'ok');
+
+      logLive('Cargando standings…', 'info');
+      S.standings = [];
+      page = 1;
+      totalPages = 1;
+      do {
+        var st = await gql(Q_STAND, { eventId: eventId, page: page, perPage: 40 });
+        var stc = st.event && st.event.standings;
+        if (!stc) break;
+        totalPages = (stc.pageInfo && stc.pageInfo.totalPages) || 1;
+        (stc.nodes || []).forEach(function (n) { S.standings.push(n); });
+        page++;
+      } while (page <= totalPages);
+      logLive('Standings: ' + S.standings.length, 'ok');
+
+      renderSetsTable();
+      renderBracketSVG(S.sets);
+      renderStandings();
+      refreshActiveSetUi();
+      fillPresetDropdown();
+      refreshTweetArea();
+      logLive('Sync completo', 'ok');
+    } catch (e) {
+      logLive('Error: ' + e.message, 'err');
+    }
+  }
+
+  async function fetchSetsStandingsOnly() {
+    if (!S.eventId && !$('#eventSelect').value) { logLive('Sin evento', 'warn'); return; }
+    var eventId = S.eventId || $('#eventSelect').value;
+    S.token = ($('#liveToken').value || '').trim() || loadSetting(LS_TOKEN, '');
+    if (!S.token) { logLive('Token requerido', 'err'); return; }
+    try {
+      logLive('Solo sets + standings…', 'info');
+      S.sets = [];
+      var page = 1;
+      var totalPages = 1;
+      do {
+        var sd = await gql(Q_SETS, { eventId: eventId, page: page, perPage: 30 });
+        var sc = sd.event && sd.event.sets;
+        if (!sc) break;
+        totalPages = (sc.pageInfo && sc.pageInfo.totalPages) || 1;
+        (sc.nodes || []).forEach(function (n) { S.sets.push(n); });
+        page++;
+      } while (page <= totalPages);
+      S.standings = [];
+      page = 1;
+      totalPages = 1;
+      do {
+        var st = await gql(Q_STAND, { eventId: eventId, page: page, perPage: 40 });
+        var stc = st.event && st.event.standings;
+        if (!stc) break;
+        totalPages = (stc.pageInfo && stc.pageInfo.totalPages) || 1;
+        (stc.nodes || []).forEach(function (n) { S.standings.push(n); });
+        page++;
+      } while (page <= totalPages);
+      renderSetsTable();
+      renderBracketSVG(S.sets);
+      renderStandings();
+      logLive('Sets/standings OK', 'ok');
+    } catch (e) {
+      logLive('Error: ' + e.message, 'err');
+    }
+  }
+
+  function populateEventsDropdown(events) {
+    var sel = $('#eventSelect');
+    var v = sel.value;
+    sel.innerHTML = '';
+    (events || []).forEach(function (e) {
+      var o = document.createElement('option');
+      o.value = e.id;
+      o.textContent = e.name + ' (' + (e.numEntrants || 0) + ')';
+      sel.appendChild(o);
+    });
+    if (v) sel.value = v;
+  }
+
+  async function loadTournamentShell() {
+    var slug = parseSlugFromURL($('#tourneyUrl').value || '');
+    if (!slug) return;
+    try {
+      var tdata = await gql(Q_TOURNAMENT_INFO, { slug: slug });
+      var t = tdata.tournament;
+      if (!t) throw new Error('Torneo no encontrado');
+      S.tournament = t;
+      S.slug = slug;
+      populateEventsDropdown(t.events);
+      syncSelectedEventMeta();
+      refreshHero();
+      logLive('Torneo / eventos cargados', 'ok');
+    } catch (e) {
+      logLive('Torneo: ' + e.message, 'err');
+    }
+  }
+
+  function renderPresetsCfg() {
+    var host = $('#presetList');
+    host.innerHTML = '';
+    loadPresets().forEach(function (p) {
+      var row = document.createElement('div');
+      row.className = 'preset-row';
+      var star = document.createElement('span');
+      star.className = 'preset-star' + (p.favorite ? ' fav' : '');
+      star.textContent = '★';
+      star.title = 'Favorito';
+      star.addEventListener('click', function () { toggleFavorite(p.id); });
+      var mid = document.createElement('div');
+      mid.innerHTML = '<strong>' + escapeHtml(p.name) + '</strong><div style="color:var(--mute);font-size:0.85rem;max-width:640px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + escapeHtml(p.template) + '</div>';
+      var btns = document.createElement('div');
+      var b1 = document.createElement('button');
+      b1.type = 'button';
+      b1.className = 'btn';
+      b1.textContent = 'Editar';
+      b1.addEventListener('click', function () {
+        $('#editPresetId').value = p.id;
+        $('#editPresetName').value = p.name;
+        $('#editPresetTpl').value = p.template;
+      });
+      var b2 = document.createElement('button');
+      b2.type = 'button';
+      b2.className = 'btn';
+      b2.textContent = 'Borrar';
+      b2.addEventListener('click', function () { deletePreset(p.id); });
+      btns.appendChild(b1);
+      btns.appendChild(b2);
+      row.appendChild(star);
+      row.appendChild(mid);
+      row.appendChild(btns);
+      host.appendChild(row);
+    });
+  }
+
+  var CLIP_ORDER = CLIP_FIELDS.map(function (x) { return x.key; });
+
+  function renderClipDnd() {
+    var host = $('#clipDnd');
+    host.innerHTML = '';
+    var fmt = getClipFormat();
+    var order = fmt.fields.slice();
+    CLIP_FIELDS.forEach(function (f) {
+      if (order.indexOf(f.key) < 0) order.push(f.key);
+    });
+    CLIP_ORDER.splice(0, CLIP_ORDER.length);
+    order.forEach(function (k) { CLIP_ORDER.push(k); });
+    order = CLIP_ORDER.slice();
+    order.forEach(function (key) {
+      var f = CLIP_FIELDS.filter(function (x) { return x.key === key; })[0];
+      if (!f) return;
+      var on = fmt.fields.indexOf(f.key) >= 0;
+      var row = document.createElement('div');
+      row.className = 'dnd-item';
+      row.draggable = true;
+      row.dataset.key = f.key;
+      row.innerHTML = '<input type="checkbox" class="clip-cb"' + (on ? ' checked' : '') + '/> <span style="flex:1">' + escapeHtml(f.label) + '</span> <span style="color:var(--mute);cursor:pointer" data-act="up">▲</span> <span style="color:var(--mute);cursor:pointer" data-act="down">▼</span>';
+      row.addEventListener('dragstart', function (e) { row.classList.add('dragging'); e.dataTransfer.setData('text/plain', f.key); });
+      row.addEventListener('dragend', function () { row.classList.remove('dragging'); });
+      row.addEventListener('dragover', function (e) { e.preventDefault(); });
+      row.addEventListener('drop', function (e) {
+        e.preventDefault();
+        var k = e.dataTransfer.getData('text/plain');
+        reorderClipKeys(k, f.key);
+      });
+      row.querySelector('.clip-cb').addEventListener('change', saveClipFromUi);
+      row.querySelector('[data-act="up"]').addEventListener('click', function () { moveClipKey(f.key, -1); });
+      row.querySelector('[data-act="down"]').addEventListener('click', function () { moveClipKey(f.key, 1); });
+      host.appendChild(row);
+    });
+    updateClipPreview();
+  }
+
+  function getOrderedKeysFromUi() {
+    var keys = [];
+    $all('#clipDnd .dnd-item').forEach(function (row) {
+      if (row.querySelector('.clip-cb').checked) keys.push(row.dataset.key);
+    });
+    return keys;
+  }
+
+  function reorderClipKeys(fromK, toK) {
+    var order = CLIP_ORDER.slice();
+    var fi = order.indexOf(fromK);
+    var ti = order.indexOf(toK);
+    if (fi < 0 || ti < 0) return;
+    order.splice(fi, 1);
+    order.splice(ti, 0, fromK);
+    CLIP_ORDER.splice(0, CLIP_ORDER.length);
+    order.forEach(function (x) { CLIP_ORDER.push(x); });
+    saveClipFromUi();
+    renderClipDnd();
+  }
+
+  function moveClipKey(key, dir) {
+    var order = CLIP_ORDER.slice();
+    var i = order.indexOf(key);
+    var j = i + dir;
+    if (j < 0 || j >= order.length) return;
+    var t = order[i];
+    order[i] = order[j];
+    order[j] = t;
+    CLIP_ORDER.splice(0, CLIP_ORDER.length);
+    order.forEach(function (x) { CLIP_ORDER.push(x); });
+    saveClipFromUi();
+    renderClipDnd();
+  }
+
+  function saveClipFromUi() {
+    var fmt = { separator: $('#clipSep').value || '|', fields: getOrderedKeysFromUi() };
+    saveSetting(LS_CLIP, fmt);
+    updateClipPreview();
+  }
+
+  function updateClipPreview() {
+    var fmt = getClipFormat();
+    var ex = { gamerTag: 'Pepe', name: 'Pepe Pérez', prefix: 'TEAM', twitter: 'pepefgc', twitch: 'pepe', country: 'MX' };
+    var parts = [];
+    fmt.fields.forEach(function (k) {
+      var v = clipFieldValue(ex, k);
+      if (v) parts.push(v);
+    });
+    $('#clipPreview').textContent = parts.join(' ' + fmt.separator + ' ');
+  }
+
+  function initUiPrefs() {
+    var ui = loadSetting(LS_UI, {}) || {};
+    if (!ui.playerTableColumns) {
+      ui.playerTableColumns = { gamertag: true, name: true, country: true, sponsor: true, twitter: true, twitch: true, event: true, seed: true };
+    }
+    var host = $('#colToggles');
+    host.innerHTML = '';
+    Object.keys(ui.playerTableColumns).forEach(function (k) {
+      var lab = document.createElement('label');
+      lab.className = 'flex-gap';
+      lab.style.cursor = 'pointer';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = ui.playerTableColumns[k] !== false;
+      cb.addEventListener('change', function () {
+        var u2 = loadSetting(LS_UI, {}) || {};
+        u2.playerTableColumns = u2.playerTableColumns || {};
+        u2.playerTableColumns[k] = cb.checked;
+        saveSetting(LS_UI, u2);
+        renderPlayers();
+      });
+      lab.appendChild(cb);
+      lab.appendChild(document.createTextNode(' ' + k));
+      host.appendChild(lab);
+    });
+    var sc = $('#showComposerCfg');
+    sc.checked = ui.showTweetComposer !== false;
+    toggleComposerVisibility(sc.checked);
+    sc.onchange = function () {
+      var u2 = loadSetting(LS_UI, {}) || {};
+      u2.showTweetComposer = sc.checked;
+      saveSetting(LS_UI, u2);
+      toggleComposerVisibility(sc.checked);
+    };
+  }
+
+  function toggleComposerVisibility(on) {
+    $('#composerAside').classList.toggle('hidden', !on);
+    var lay = document.querySelector('.live-layout');
+    if (lay) lay.style.gridTemplateColumns = on ? '1fr 380px' : '1fr';
+  }
+
+  function switchTab(which) {
+    $('#pageLive').classList.toggle('active', which === 'live');
+    $('#pageConfig').classList.toggle('active', which === 'config');
+    $('#tabLive').classList.toggle('active', which === 'live');
+    $('#tabConfig').classList.toggle('active', which === 'config');
+  }
+
+  function init() {
+    var tok = loadSetting(LS_TOKEN, '') || '';
+    $('#liveToken').value = tok;
+    $('#cfgToken').value = tok;
+    $('#tourneyUrl').value = loadSetting('gema_last_url', '') || '';
+    $('#cfgHashtags').value = loadSetting(LS_TAGS, '') || '';
+    if (!tok.trim()) $('#tokenWarn').classList.remove('hidden');
+    else $('#tokenWarn').classList.add('hidden');
+
+    initUiPrefs();
+    renderClipDnd();
+    $('#clipSep').addEventListener('input', saveClipFromUi);
+    renderPresetsCfg();
+    fillPresetDropdown();
+
+    $('#playerSearch').addEventListener('input', function () { renderPlayers(); });
+    $('#tabLive').onclick = function () { switchTab('live'); };
+    $('#tabConfig').onclick = function () { switchTab('config'); };
+
+    $('#liveToken').addEventListener('change', function () {
+      saveSetting(LS_TOKEN, $('#liveToken').value.trim());
+      $('#cfgToken').value = $('#liveToken').value;
+      if ($('#liveToken').value.trim()) $('#tokenWarn').classList.add('hidden');
+    });
+    $('#cfgToken').addEventListener('change', function () {
+      saveSetting(LS_TOKEN, $('#cfgToken').value.trim());
+      $('#liveToken').value = $('#cfgToken').value;
+      if ($('#cfgToken').value.trim()) $('#tokenWarn').classList.add('hidden');
+    });
+    $('#cfgHashtags').addEventListener('change', function () {
+      saveSetting(LS_TAGS, $('#cfgHashtags').value);
+      refreshTweetArea();
+    });
+
+    $('#presetSelect').addEventListener('change', applyPresetToTextarea);
+
+    $('#btnTestToken').onclick = async function () {
+      try {
+        saveSetting(LS_TOKEN, $('#cfgToken').value.trim());
+        var d = await gql(Q_ME, {});
+        logConfig('Token OK — ' + ((d.currentUser || {}).name || 'usuario'), 'ok');
+      } catch (e) { logConfig('Token inválido: ' + e.message, 'err'); }
+    };
+
+    $('#btnSavePreset').onclick = function () {
+      var id = $('#editPresetId').value || uid();
+      var name = $('#editPresetName').value.trim() || 'Preset';
+      var template = $('#editPresetTpl').value;
+      var existing;
+      loadPresets().forEach(function (p) { if (p.id === id) existing = p; });
+      var fav = existing ? !!existing.favorite : false;
+      savePreset({ id: id, name: name, template: template, favorite: fav });
+      $('#editPresetId').value = '';
+      $('#editPresetName').value = '';
+      $('#editPresetTpl').value = '';
+      logConfig('Preset guardado', 'ok');
+    };
+    $('#btnCancelPreset').onclick = function () {
+      $('#editPresetId').value = '';
+      $('#editPresetName').value = '';
+      $('#editPresetTpl').value = '';
+    };
+
+    $('#myTournaments').addEventListener('change', function () {
+      var sl = $('#myTournaments').value;
+      if (sl) {
+        $('#tourneyUrl').value = 'https://www.start.gg/tournament/' + sl;
+        saveSetting('gema_last_url', $('#tourneyUrl').value);
+        loadTournamentShell().catch(function () {});
+      }
+    });
+    $('#btnMyTournaments').onclick = async function () {
+      try {
+        $('#liveToken').dispatchEvent(new Event('change'));
+        await fetchCurrentUserTournaments();
+      } catch (e) { logLive('Mis torneos: ' + e.message, 'err'); }
+    };
+    $('#tourneyUrl').addEventListener('change', function () { saveSetting('gema_last_url', $('#tourneyUrl').value); });
+    $('#eventSelect').addEventListener('change', function () {
+      syncSelectedEventMeta();
+      refreshHero();
+    });
+
+    $('#btnSync').onclick = function () {
+      saveSetting('gema_last_url', $('#tourneyUrl').value);
+      fetchAll(true);
+    };
+    $('#btnSyncSets').onclick = fetchSetsStandingsOnly;
+
+    $('#playerViewToggle').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-v]');
+      if (!b) return;
+      $all('#playerViewToggle button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      S.playerView = b.getAttribute('data-v');
+      renderPlayers();
+    });
+    $('#bracketViewToggle').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-v]');
+      if (!b) return;
+      $all('#bracketViewToggle button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      S.bracketView = b.getAttribute('data-v');
+      $('#setsListWrap').classList.toggle('hidden', S.bracketView !== 'list');
+      $('#setsTreeWrap').classList.toggle('hidden', S.bracketView !== 'tree');
+      if (S.bracketView === 'tree') renderBracketSVG(S.sets);
+    });
+
+    $('#tweetText').addEventListener('input', function () { TWEET_DIRTY = true; tweetCount(); });
+    $('#btnTweet').onclick = function () { openTweetIntent($('#tweetText').value || ''); };
+
+    if (tok) {
+      setTimeout(function () {
+        fetchCurrentUserTournaments().catch(function () {});
+        if (parseSlugFromURL($('#tourneyUrl').value || '')) loadTournamentShell().catch(function () {});
+      }, 0);
+    }
+  }
+
+  init();
+})();
+
+
+  </script>
+</body>
+</html>
