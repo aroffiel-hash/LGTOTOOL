@@ -436,10 +436,10 @@
   }
 
   var Q_TOURNAMENTS = 'query CurrentUserTournaments { currentUser { name tournaments(query:{perPage:20 sortBy:"startAt desc"}) { nodes { id name slug startAt } } } }';
-  var Q_TOURNAMENT_INFO = 'query TournamentInfo($slug:String!){ tournament(slug:$slug){ id name slug startAt city venueName venueAddress countryCode events { id name numEntrants startAt videogame { id displayName characters { id name } } } } } }';
-  var Q_ENTRANTS = 'query EventEntrants($eventId:ID!,$page:Int!,$perPage:Int!){ event(id:$eventId){ entrants(query:{page:$page perPage:$perPage}){ pageInfo{ totalPages total } nodes { id seed participants { gamerTag prefix user { name location { country } images(type: PROFILE){ url } authorizations(types:[TWITTER,TWITCH]){ type externalUsername url } } } } } } } }';
-  var Q_SETS = 'query EventSets($eventId:ID!,$page:Int!,$perPage:Int!){ event(id:$eventId){ sets(page:$page perPage:$perPage filters:{ state:[1,2,3,4,5,6] }){ pageInfo{ totalPages } nodes { id state fullRoundText phaseGroup{ phase{ name } } slots { entrant { id name } standing { stats { score { value } } } } } } } } }';
-  var Q_STAND = 'query EventStandings($eventId:ID!,$page:Int!,$perPage:Int!){ event(id:$eventId){ standings(query:{page:$page perPage:$perPage}){ pageInfo{ totalPages } nodes { placement entrant { name } } } } } }';
+  var Q_TOURNAMENT_INFO = 'query TournamentInfo($slug:String!){ tournament(slug:$slug){ id name slug startAt city venueName venueAddress countryCode events { id name numEntrants startAt videogame { id displayName characters { id name } } } } }';
+  var Q_ENTRANTS = 'query EventEntrants($eventId:ID!,$page:Int!,$perPage:Int!){ event(id:$eventId){ entrants(query:{page:$page perPage:$perPage}){ pageInfo{ totalPages total } nodes { id seeds{ seedNum } participants { gamerTag prefix user { name location { country } images(type:"PROFILE"){ url } authorizations(types:[TWITTER,TWITCH]){ type externalUsername url } } } } } } }';
+  var Q_SETS = 'query EventSets($eventId:ID!,$page:Int!,$perPage:Int!){ event(id:$eventId){ sets(page:$page perPage:$perPage filters:{ state:[1,2,3,4,5,6] }){ pageInfo{ totalPages } nodes { id state fullRoundText phaseGroup{ phase{ name } } slots { entrant { id name } standing { stats { score { value } } } } } } } }';
+  var Q_STAND = 'query EventStandings($eventId:ID!,$page:Int!,$perPage:Int!){ event(id:$eventId){ standings(query:{page:$page perPage:$perPage}){ pageInfo{ totalPages } nodes { placement entrant { name } } } } }';
   var Q_ME = 'query Me { currentUser { name } }';
   var M_REPORT = 'mutation ReportBracketSet($setId:ID!,$winnerId:ID!,$gameData:[BracketSetGameDataInput]){ reportBracketSet(setId:$setId winnerId:$winnerId gameData:$gameData){ id state } }';
 
@@ -474,7 +474,7 @@
     var img = imgs[0] && imgs[0].url;
     return {
       entrantId: node.id,
-      seed: node.seed,
+      seed: (node.seeds && node.seeds[0]) ? node.seeds[0].seedNum : null,
       gamerTag: gtag,
       prefix: (p0.prefix || '').trim(),
       name: u.name || '',
